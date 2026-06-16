@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b0d10" />
+  <title>ITL | Handles Gen | @e9vr dc</title>
+  <style>
+    :root{
+      --bg:#07090c;
+      --panel:#0d1117;
+      --panel2:#0a0d12;
+      --text:#e6edf3;
+      --muted:#8b949e;
+      --line:#1f2937;
+      --accent:#7dd3fc;
+      --accent2:#a78bfa;
+      --good:#34d399;
+      --danger:#fb7185;
+      --shadow: 0 14px 40px rgba(0,0,0,.45);
+      --radius:18px;
+    }
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at top, rgba(125,211,252,.08), transparent 32%),
+        linear-gradient(180deg, #05070a 0%, #090c11 100%);
+      color:var(--text);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      overflow-x:hidden;
+    }
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:18px;
+      padding-bottom:32px;
+    }
+    .top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+      margin-bottom:16px;
+    }
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+    .title{
+      font-size:22px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin:0;
+    }
+    .sub{
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.5;
+      max-width:760px;
+    }
+    .credit{
+      text-align:right;
+      color:var(--muted);
+      font-size:12px;
+      white-space:nowrap;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 340px 1fr;
+      gap:16px;
+      align-items:start;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(13,17,23,.96), rgba(10,13,18,.96));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .card h2{
+      margin:0;
+      padding:14px 16px;
+      font-size:13px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      border-bottom:1px solid var(--line);
+      background:rgba(255,255,255,.02);
+    }
+    .body{padding:14px 16px}
+    .row{display:flex;gap:10px;flex-wrap:wrap}
+    .field{margin-bottom:12px}
+    .label{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      font-size:12px;
+      color:var(--muted);
+      margin-bottom:8px;
+    }
+    input[type="number"], select, input[type="text"]{
+      width:100%;
+      background:#070a0f;
+      border:1px solid #263244;
+      color:var(--text);
+      border-radius:12px;
+      padding:12px 12px;
+      font:inherit;
+      outline:none;
+    }
+    input[type="range"]{width:100%}
+    .checks{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:10px;
+    }
+    .check{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border:1px solid #243244;
+      border-radius:12px;
+      background:#080b10;
+      color:var(--text);
+      font-size:12px;
+    }
+    .check input{accent-color:var(--accent)}
+    .buttons{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+    button{
+      border:0;
+      border-radius:12px;
+      padding:12px 14px;
+      color:#041018;
+      background:linear-gradient(135deg, var(--accent), #60a5fa);
+      font:inherit;
+      font-weight:700;
+      cursor:pointer;
+      flex:1;
+      min-width:140px;
+    }
+    button.secondary{
+      background:#111827;
+      color:var(--text);
+      border:1px solid #263244;
+      font-weight:600;
+    }
+    .mini{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:11px;
+      line-height:1.5;
+    }
+    .outputHead{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      padding:14px 16px;
+      border-bottom:1px solid var(--line);
+      background:rgba(255,255,255,.02);
+    }
+    .count{
+      color:var(--muted);
+      font-size:12px;
+    }
+    textarea{
+      width:100%;
+      min-height:640px;
+      resize:vertical;
+      padding:16px;
+      border:0;
+      outline:none;
+      background:transparent;
+      color:#dbeafe;
+      font:inherit;
+      line-height:1.7;
+      white-space:pre;
+      tab-size:2;
+    }
+    .status{
+      margin-top:10px;
+      font-size:12px;
+      color:var(--good);
+      min-height:16px;
+    }
+    .ascii{
+      color:#94a3b8;
+      font-size:11px;
+      line-height:1.35;
+      white-space:pre-wrap;
+      padding:12px 16px 0;
+      user-select:none;
+    }
+    .footer{
+      padding:12px 16px 16px;
+      color:var(--muted);
+      font-size:11px;
+      line-height:1.5;
+    }
+    .presetHelp{
+      margin-top:8px;
+      color:var(--muted);
+      font-size:11px;
+      line-height:1.4;
+    }
+    @media (max-width: 920px){
+      .grid{grid-template-columns:1fr}
+      textarea{min-height:460px}
+      .credit{text-align:left;white-space:normal}
+      .top{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">
+        <h1 class="title">ITL </h1>
+        <div class="sub">Simple handles generator for handsnipers, checklist.</div>
+      </div>
+      <div class="credit">0513bb7af5c056f4c4bfe320298ccfe9e1e14194c2704582d25e8004d010ff0b21<br/>session</div>
+    </div>
+
+    <div class="grid">
+      <section class="card">
+        <h2>Generator settings</h2>
+        <div class="body">
+          <div class="field">
+            <div class="label"><span>Amount</span><span id="amountVal">1000</span></div>
+            <input id="amount" type="range" min="1" max="1000" value="1000" />
+          </div>
+
+          <div class="field">
+            <div class="label"><span>Base length</span><span id="lenVal">3</span></div>
+            <input id="len" type="range" min="2" max="32" value="3" />
+          </div>
+
+          <div class="field">
+            <div class="label"><span>config</span></div>
+            <select id="preset">
+              <option value="random" selected>Random (default)</option>
+              <option value="4c">4C (4 characters)</option>
+              <option value="4c_repeat">4C repeat (AAxx)</option>
+              <option value="4c_double">4C double (AABB)</option>
+              <option value="3c">3C (3 characters)</option>
+              <option value="4l">4L (4 letters)</option>
+              <option value="3l">3L (3 letters)</option>
+              
+              
+              <option value="2c_extend">2C extend (AAxxx)</option>
+              <option value="semi_4l">Semi 4L</option>
+              <option value="semi_3l">Semi 3L</option>
+              <option value="semi_3c">Semi 3C</option>
+              <option value="og_words">OG users</option>
+            </select>
+            <div class="presetHelp">
+              3C/4C/4L = letters-only presets. Semi presets add one separator (. or _) at a chosen spot. OG words = real English words (any length, no rules).
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="label"><span>Semi separator</span><span>dot / underscore</span></div>
+            <select id="semiSepType">
+              <option value="random" selected>Random separator</option>
+              <option value="dot">Dot only</option>
+              <option value="underscore">Underscore only</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <div class="label"><span>Semi position</span><span>place</span></div>
+            <select id="semiSepPos">
+              <option value="random" selected>Random place</option>
+              <option value="begin">Beginning</option>
+              <option value="end">End</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <div class="label"><span>Start style</span><span>prefix / suffix</span></div>
+            <select id="dotMode">
+              <option value="none">No dot</option>
+              <option value="start" selected>Dot at beginning</option>
+              <option value="end">Dot at end</option>
+              <option value="both">Dot at beginning + end</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <div class="label"><span>Repeat bias</span><span id="repeatVal">0</span></div>
+            <input id="repeat" type="range" min="0" max="100" value="0" />
+          </div>
+
+          <div class="checks">
+            <label class="check"><input id="useNums" type="checkbox" checked /> Numbers</label>
+            <label class="check"><input id="useUnderscore" type="checkbox" /> Underscore</label>
+            <label class="check"><input id="avoidConsecutiveDots" type="checkbox" checked /> No ..</label>
+            <label class="check"><input id="uniqueOnly" type="checkbox" checked /> Unique only</label>
+          </div>
+
+          <div class="buttons">
+            <button id="genBtn">Generate</button>
+            <button class="secondary" id="copyBtn">Copy list</button>
+          </div>
+
+          <div class="mini">
+            Discord usernames are lowercase and can use letters, numbers, underscores, and periods. This tool avoids invalid consecutive dots and keeps results random for better odds. [web:17][web:14][web:62][web:64]
+          </div>
+          <div class="status" id="status"></div>
+
+          <div class="ascii">
+┌───────────────────────────────────┐
+│  /\\  randomize  /\\  minimize  /\\ │
+│  |||  short name  ||  clean list  ||│
+└───────────────────────────────────┘
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="outputHead">
+          <div>
+            <h2 style="padding:0;border:0;background:none;margin:0;">Output</h2>
+            <div class="count" id="countText">0 usernames</div>
+          </div>
+          <div class="count">tap copy button</div>
+        </div>
+        <textarea id="out" readonly spellcheck="false" placeholder="Generated usernames will appear here..."></textarea>
+        <div class="footer">
+          Tip: for shorter, more “sniper-style” candidates, keep base length at 3 or 4 and use dot mode sparingly. Short, common-looking handles are more likely to be taken, so random mixes matter more than fixed patterns. [web:17][web:14]
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    const chars = "abcdefghijklmnopqrstuvwxyz";
+    const nums = "0123456789";
+    const out = $("out");
+
+    const ogWords = [
+      "clear","bright","dark","light","shadow","wave","flow","sky","storm","rain","snow","wind","fire","ice","flame",
+      "frost","glow","shine","spark","blink","flash","bolt","thunder","cloud","moon","star","sun","night","day","dawn","dusk",
+      "blue","black","white","red","green","gold","silver","bronze","rust","amber","violet","navy","teal","charcoal","ink",
+      "ash","smoke","fog","mist","haze","dust","sand","rock","stone","pearl","jade","opal","ruby","diamond","crystal",
+      "glass","steel","iron","copper","titan","dragon","wolf","bear","hawk","lion","tiger","cat","fox","rat","bat","raven",
+      "eagle","swan","fish","shark","whale","cod","salmon","trout","bass","pike","turtle","snake","frog","bug","moth","bee",
+      "fly","ant","spider","crab","path","road","lane","street","bridge","gate","door","wall","key","lock","chain","hook",
+      "pin","clip","band","ring","belt","strap","lace","cord","wire","mesh","net","screen","grid","panel","board","plate",
+      "tile","brick","block","chunk","piece","part","bit","chip","slice","slab","strip","strand","speck","spot","dot","mark",
+      "sign","logo","tag","label","stamp","seal","code","hash","room","hall","tower","castle","fort","base","camp","zone",
+      "area","field","park","garden","yard","land","ground","earth","soil","mud","clay","mine","quarry","pit","hole","cave",
+      "tunnel","shaft","well","pool","pond","lake","river","stream","brook","creek","bay","sea","ocean","tide","surf","rush",
+      "drift","current","flux","shift","move","step","pace","walk","run","jump","leap","hop","skip","dash","zoom","blast",
+      "boom","crash","smash","slash","wipe","cut","chop","hack","slice","dice","peel","scrape","rub","brush","clean","wash",
+      "rinse","dry","polish","gleam","glint","glare","spark","glitter","pure","fresh","raw","wild","free","open","wide","deep",
+      "high","low","tall","short","thin","fat","small","big","huge","tiny","mini","micro","nano","atomic","cosmic","space",
+      "void","null","zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirty",
+      "forty","fifty","sixty","seventy","eighty","ninety","hundred"
+    ].filter(w => /^[a-z]{3,7}$/.test(w));
+
+    function rand(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+    function randomChar(pool){ return pool[Math.floor(Math.random()*pool.length)]; }
+    function randomSep(type){ return type === "underscore" ? "_" : type === "dot" ? "." : (Math.random() < 0.5 ? "." : "_"); }
+    function pickPos(pos, len){
+      if (pos === "begin") return 0;
+      if (pos === "end") return len;
+      return 1 + Math.floor(Math.random() * Math.max(1, len - 1));
+    }
+
+    function makeName(len, useNums, useUnderscore, repeatBias){
+      let pool = chars;
+      if (useNums) pool += nums;
+      if (useUnderscore) pool += "_";
+      let s = "";
+      for (let i = 0; i < len; i++){
+        if (i > 0 && Math.random() < repeatBias){
+          s += s[s.length - 1];
+        } else {
+          s += randomChar(pool);
+        }
+      }
+      return s;
+    }
+
+    function make4cRepeat(){
+      const a = rand(chars), x = rand(chars), y = rand(chars);
+      return a + a + x + y;
+    }
+
+    function make4cDouble(){
+      const a = rand(chars), b = rand(chars);
+      return a + a + b + b;
+    }
+
+    function make2cExtend(){
+      const a = rand(chars), x = rand(chars), y = rand(chars), z = rand(chars);
+      return a + a + x + y + z;
+    }
+
+    function applyDots(name, mode){
+      if (mode === "start") return "." + name;
+      if (mode === "end") return name + ".";
+      if (mode === "both") return "." + name + ".";
+      return name;
+    }
+
+    function insertSemi(name, sepType, sepPos){
+      const sep = randomSep(sepType);
+      const pos = pickPos(sepPos, name.length);
+      return name.slice(0, pos) + sep + name.slice(pos);
+    }
+
+    function validName(name){
+      if (name.length < 2 || name.length > 32) return false;
+      if (name.includes("..")) return false;
+      if (!/^[a-z0-9_.]+$/.test(name)) return false;
+      return true;
+    }
+
+    function generate(){
+      const amount = +$("amount").value;
+      const len = +$("len").value;
+      const preset = $("preset").value;
+      const mode = $("dotMode").value;
+      const useNums = $("useNums").checked;
+      const useUnderscore = $("useUnderscore").checked;
+      const repeatBias = +$("repeat").value / 100;
+      const uniqueOnly = $("uniqueOnly").checked;
+      const semiSepType = $("semiSepType").value;
+      const semiSepPos = $("semiSepPos").value;
+
+      const set = new Set();
+      let tries = 0;
+      const maxTries = amount * 120;
+
+      while (set.size < amount && tries < maxTries){
+        tries++;
+        let name = "";
+
+        if (preset === "og_words"){
+          name = rand(ogWords);
+          name = applyDots(name, mode);
+        } else if (preset === "3c"){
+          name = makeName(3, true, false, 0);
+          name = applyDots(name, mode);
+        } else if (preset === "4c"){
+          name = makeName(4, true, false, 0);
+          name = applyDots(name, mode);
+        } else if (preset === "4l"){
+          name = makeName(4, false, false, 0);
+          name = applyDots(name, mode);
+        } else if (preset === "3l"){
+          name = makeName(3, false, false, 0);
+          name = applyDots(name, mode);
+        } else if (preset === "3c_nums"){
+          name = makeName(3, true, false, 0);
+          name = applyDots(name, mode);
+        } else if (preset === "4c_nums"){
+          name = makeName(4, true, false, 0);
+          name = applyDots(name, mode);
+        } else if (preset === "4c_repeat"){
+          name = make4cRepeat();
+          name = applyDots(name, mode);
+        } else if (preset === "4c_double"){
+          name = make4cDouble();
+          name = applyDots(name, mode);
+        } else if (preset === "2c_extend"){
+          name = make2cExtend();
+          name = applyDots(name, mode);
+        } else if (preset === "semi_4l"){
+          name = insertSemi(makeName(4, false, false, 0), semiSepType, semiSepPos);
+        } else if (preset === "semi_3l"){
+          name = insertSemi(makeName(3, false, false, 0), semiSepType, semiSepPos);
+        } else if (preset === "semi_3c"){
+          name = insertSemi(makeName(3, true, false, 0), semiSepType, semiSepPos);
+        } else {
+          let baseLen = len;
+          if (mode === "both") baseLen = Math.max(2, len - 2);
+          else if (mode !== "none") baseLen = Math.max(2, len - 1);
+          name = makeName(baseLen, useNums, useUnderscore, repeatBias);
+          name = applyDots(name, mode);
+        }
+
+        if (!validName(name)) continue;
+        if (uniqueOnly && set.has(name)) continue;
+        set.add(name);
+      }
+
+      const list = [...set].sort(() => Math.random() - 0.5);
+      out.value = list.join("\n");
+      $("countText").textContent = `${list.length} usernames`;
+      $("status").textContent = list.length ? `Generated ${list.length} usernames.` : `No results matched current settings.`;
+    }
+
+    async function copyList(){
+      try{
+        await navigator.clipboard.writeText(out.value || "");
+        $("status").textContent = "Copied to clipboard.";
+      } catch (e) {
+        out.focus();
+        out.select();
+        document.execCommand("copy");
+        $("status").textContent = "Copied to clipboard.";
+      }
+    }
+
+    $("genBtn").addEventListener("click", generate);
+    $("copyBtn").addEventListener("click", copyList);
+
+    ["amount","len","repeat"].forEach(id => {
+      $(id).addEventListener("input", () => {
+        $("amountVal").textContent = $("amount").value;
+        $("lenVal").textContent = $("len").value;
+        $("repeatVal").textContent = $("repeat").value;
+      });
+    });
+
+    $("amountVal").textContent = $("amount").value;
+    $("lenVal").textContent = $("len").value;
+    $("repeatVal").textContent = $("repeat").value;
+    generate();
+  </script>
+</body>
+</html>
