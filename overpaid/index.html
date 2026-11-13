@@ -50,7 +50,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 input,select,textarea{font:inherit;font-size:16px;color:var(--txt);-webkit-user-select:text;user-select:text}
 .num{font-family:var(--f-num);font-variant-numeric:tabular-nums}
 
-#app{height:100%;display:flex;flex-direction:column;background:var(--bg);position:relative;overflow:hidden;transition:background .5s}
+#app{height:100%;display:flex;flex-direction:column;background:var(--bg);color:var(--txt);position:relative;overflow:hidden;transition:background .5s}
 #aura{position:absolute;inset:-30% -30% auto;height:70%;pointer-events:none;filter:blur(60px);opacity:.55;
   background:radial-gradient(40% 50% at 30% 50%,var(--glow),transparent 70%),radial-gradient(35% 45% at 75% 40%,color-mix(in srgb,var(--acc2) 22%,transparent),transparent 70%);
   animation:drift 14s ease-in-out infinite alternate}
@@ -81,8 +81,8 @@ main{position:relative;z-index:2;flex:1;overflow-y:auto;overflow-x:hidden;-webki
 .view{animation:vin .45s cubic-bezier(.2,.8,.2,1)}
 @keyframes vin{from{opacity:0;transform:translateY(14px) scale(.985)}}
 
-nav.dock{position:relative;z-index:6;display:grid;grid-template-columns:repeat(5,1fr);gap:2px;padding-block:8px;padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px));border-top:1px solid var(--line);background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(16px)}
-.dock button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;border-radius:12px;color:var(--mute);font-size:10.5px;font-weight:600;letter-spacing:.03em;transition:color .25s,transform .2s}
+nav.dock{position:relative;z-index:6;display:grid;grid-template-columns:repeat(6,1fr);gap:2px;padding-block:8px;padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px));border-top:1px solid var(--line);background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(16px)}
+.dock button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;border-radius:12px;color:var(--mute);font-size:10px;font-weight:600;letter-spacing:.03em;transition:color .25s,transform .2s}
 .dock button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
 .dock button.on{color:var(--txt)}
 .dock button.on svg{transform:translateY(-2px) scale(1.12);filter:drop-shadow(0 0 8px var(--acc))}
@@ -538,6 +538,131 @@ details.how b{color:var(--txt)}
 .thm{display:flex;gap:8px;flex-wrap:wrap}
 .thm button{width:42px;height:42px;border-radius:12px;border:2px solid transparent;box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
 .thm button.on{border-color:#fff}
+/* ============ WALLET (light exchange theme) ============ */
+#app[data-zone=wallet],.sheet[data-zone=wallet]{--bg:#ffffff;--panel:#ffffff;--panel2:#f3f5f8;--line:#e6e9ef;--txt:#0a0b0d;--mute:#5b616e;--acc:#2156f5;--acc2:#2156f5;--glow:rgba(33,86,245,.16);--up:#05a660;--dn:#d6334b;color-scheme:light}
+#app[data-zone=wallet] #grain,#app[data-zone=wallet] #aura{display:none}
+#app[data-zone=wallet] .logo .brandw{background:linear-gradient(180deg,#0a0b0d,#2156f5);-webkit-background-clip:text;background-clip:text}
+#app[data-zone=wallet] .bal{background:#f3f5f8;border-color:#e6e9ef;box-shadow:none}
+#app[data-zone=wallet] nav.dock{background:rgba(255,255,255,.92)}
+#app[data-zone=wallet] .dock button.on svg{filter:none;color:var(--acc)}
+#app[data-zone=wallet] .dock button.on{color:var(--acc)}
+.sheet[data-zone=wallet]{background:#fff;border-top:0;box-shadow:0 -10px 40px rgba(0,0,0,.2)}
+.sheet[data-zone=wallet]::before{display:none}
+.sheet[data-zone=wallet] .grab{background:#d9dde4}
+#app[data-zone=wallet] .btn,.sheet[data-zone=wallet] .btn{background:var(--acc);color:#fff;box-shadow:none;border-radius:999px;height:52px;font-weight:600}
+#app[data-zone=wallet] .btn::after,.sheet[data-zone=wallet] .btn::after{display:none}
+#app[data-zone=wallet] .btn.ghost,.sheet[data-zone=wallet] .btn.ghost{background:#eef0f3;color:var(--txt);border:0}
+#app[data-zone=wallet] .btn.sm,.sheet[data-zone=wallet] .btn.sm{height:40px;padding:0 16px;font-size:14px}
+.sheet[data-zone=wallet] .btn.red{background:var(--dn)}
+.sheet[data-zone=wallet] .chip{background:#fff;border-color:var(--line);color:var(--txt)}
+.sheet[data-zone=wallet] .tinp{background:#f3f5f8;border-color:var(--line)}
+.cb{display:flex;flex-direction:column;gap:18px}
+.cbt{font-size:30px;font-weight:700;letter-spacing:-.02em;font-family:var(--f-body);padding-top:8px}
+.seg{display:flex;background:#eef0f3;border-radius:999px;padding:4px;gap:2px}
+.seg button{flex:1;height:38px;border-radius:999px;font-size:14px;font-weight:600;color:var(--mute);transition:all .2s}
+.seg button.on{background:#fff;color:var(--txt);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.cbbal span{font-size:14px;color:var(--mute);font-weight:500}
+.cbbal b{display:block;font-size:clamp(34px,10vw,44px);font-weight:700;letter-spacing:-.025em;margin:2px 0;font-variant-numeric:tabular-nums}
+.cbbal em{font-style:normal;font-size:14px;font-weight:600}
+.cbchart{position:relative;height:180px;touch-action:none;margin:0 -4px}
+.cbchart svg{width:100%;height:100%;display:block}
+.cbdot{position:absolute;width:12px;height:12px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 5px rgba(33,86,245,.14);transform:translate(-50%,-50%);pointer-events:none}
+.cbline{position:absolute;top:0;bottom:0;width:1px;background:#cfd4dc;pointer-events:none}
+.ranges{display:flex;justify-content:space-between}
+.ranges button{padding:7px 11px;border-radius:999px;font-size:13px;font-weight:600;color:var(--mute)}
+.ranges button.on{background:#eef3ff;color:var(--acc)}
+.acts{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.acts button{display:flex;flex-direction:column;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--txt)}
+.acts i{width:52px;height:52px;border-radius:50%;background:var(--acc);display:grid;place-items:center;transition:transform .15s}
+.acts button:active i{transform:scale(.9)}
+.acts svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.cbh2{font-size:20px;font-weight:700;letter-spacing:-.01em;margin-bottom:4px;font-family:var(--f-body)}
+.cbrow{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 0;width:100%;text-align:left;border-bottom:1px solid var(--line)}
+.cbrow:last-child{border-bottom:0}
+.cbrow b{display:block;font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cbrow small{display:block;font-size:13px;color:var(--mute);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cbrow .r{text-align:right}
+.cbrow .r small.up{color:var(--up)}.cbrow .r small.dn{color:var(--dn)}
+.cxi{display:inline-grid;place-items:center;border-radius:50%;background:var(--c);color:#fff;font-weight:700;flex:0 0 auto;font-family:var(--f-body);line-height:1;box-shadow:inset 0 -2px 0 rgba(0,0,0,.12)}
+.movers{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding:2px}
+.movers::-webkit-scrollbar{display:none}
+.mv{flex:0 0 124px;border:1px solid var(--line);border-radius:16px;padding:12px;text-align:left;display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.mv b{font-size:15px}.mv span{font-size:13px;color:var(--mute)}
+.pill{display:inline-block;padding:3px 8px;border-radius:999px;font-size:12px;font-weight:700}
+.pill.up{background:#e6f7ef;color:var(--up)}.pill.dn{background:#fdecee;color:var(--dn)}
+.cbcard{border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:6px;text-align:left;width:100%;background:#fff;color:var(--txt)}
+button.cbcard:active{background:#f7f8fa}
+.fh{display:grid;grid-template-columns:40px 1fr 40px;align-items:center;margin-bottom:8px}
+.fh b{text-align:center;font-size:17px;font-weight:700}
+.sheet[data-zone=wallet] .back{background:#f3f5f8;border:0}
+.sheet[data-zone=wallet] .back svg{stroke:#0a0b0d}
+.amt{display:flex;flex-direction:column;align-items:center;gap:6px;padding:18px 0 8px;text-align:center}
+.amt b{font-size:clamp(44px,15vw,64px);font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.amt span{font-size:14px;color:var(--mute)}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:10px 0 12px}
+.keys button{height:54px;font-size:24px;font-weight:600;border-radius:14px;color:var(--txt)}
+.keys button:active{background:#eef0f3}
+.rv{display:flex;flex-direction:column}
+.rv div{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);font-size:15px}
+.rv div span{color:var(--mute)}
+.rv div b{font-weight:600;text-align:right;overflow-wrap:anywhere}
+.okc{width:84px;height:84px;border-radius:50%;background:var(--up);display:grid;place-items:center;margin:24px auto 8px;animation:pop .5s cubic-bezier(.2,1.6,.4,1)}
+.okc svg{width:44px;height:44px;stroke:#fff;stroke-width:3.2;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:30;stroke-dashoffset:30;animation:draw .45s .25s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.seedgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;filter:blur(7px);transition:filter .3s;cursor:pointer}
+.seedgrid.show{filter:none}
+.seedgrid span{padding:8px;border-radius:10px;background:var(--panel2);font-size:13px;font-family:var(--f-num);color:var(--txt)}
+.seedgrid span i{font-style:normal;color:var(--mute);margin-right:4px}
+.addr{font-family:var(--f-num);font-size:13px;word-break:break-all;background:#f3f5f8;border-radius:12px;padding:12px;-webkit-user-select:all;user-select:all}
+.picker{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px}
+.picker::-webkit-scrollbar{display:none}
+.picker button{flex:0 0 auto;display:flex;align-items:center;gap:8px;padding:7px 14px 7px 8px;border-radius:999px;border:1px solid var(--line);font-size:14px;font-weight:600;color:var(--txt);background:#fff}
+.picker button.on{border-color:var(--acc);background:#eef3ff;color:var(--acc)}
+/* hardware devices */
+.hwstage{display:grid;place-items:center;padding:34px 0 26px;background:radial-gradient(60% 70% at 50% 40%,#eef1f6,#fafbfc);border-radius:22px}
+.hw{position:relative;box-shadow:0 22px 34px -12px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.18)}
+.hw .phys{position:absolute;background:#2a2b30;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 2px 3px rgba(0,0,0,.4);transition:transform .08s}
+.hw .phys::before{content:"";position:absolute;inset:-12px}
+.hw .phys:active{transform:translateY(2px);background:#3b3d44}
+.hw.stick{width:min(300px,84vw);aspect-ratio:300/84;border-radius:16px;background:linear-gradient(180deg,#2c2d31,#0c0c0e)}
+.hw.stick .cover{position:absolute;right:-5px;top:-7px;bottom:-7px;width:47%;border-radius:20px;background:linear-gradient(180deg,#f2f3f6,#a7abb3 48%,#dfe2e7);box-shadow:inset 0 1px 0 #fff,0 6px 12px rgba(0,0,0,.28);pointer-events:none}
+.hw.stick .cover::after{content:"";position:absolute;left:14%;top:50%;width:12px;height:12px;border-radius:50%;transform:translateY(-50%);background:radial-gradient(circle at 35% 30%,#fff,#8d929b);box-shadow:inset 0 0 0 1px rgba(0,0,0,.2)}
+.hw.stick .scr{position:absolute;left:6%;top:18%;width:42%;height:64%;border-radius:6px}
+.hw.stick .bl,.hw.stick .br{top:-10px;width:30px;height:11px;border-radius:7px 7px 2px 2px}
+.hw.stick .bl{left:8%}.hw.stick .br{left:34%}
+.hw.sq{width:156px;height:206px;border-radius:26px;background:linear-gradient(160deg,#2b2c30,#0b0b0d)}
+.hw.sq .scr{position:absolute;left:16px;right:16px;top:22px;height:104px;border-radius:6px}
+.hw.sq .bl,.hw.sq .br{bottom:26px;width:52px;height:32px;border-radius:14px}
+.hw.sq .bl{left:18px}.hw.sq .br{right:18px}
+.hw.sq .brandmark{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);font-size:8px;color:#555}
+.hw.touch{width:178px;height:250px;border-radius:28px;background:linear-gradient(160deg,#35363b,#0b0b0d);padding:12px}
+.hw.touch .scr{width:100%;height:100%;border-radius:16px;background:radial-gradient(120% 80% at 50% 0,#0f2a20,#020403)}
+.scr{background:#000;color:#f1f1f1;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-align:center;font-family:var(--f-num);font-size:9.5px;line-height:1.25;padding:4px;cursor:pointer;box-shadow:inset 0 0 0 1px #111;text-shadow:0 0 6px rgba(255,255,255,.25)}
+.hw.sq .scr{background:#060606;color:#fff}
+.scr b{font-size:12px;font-weight:700}
+.scr small{font-size:8.5px;color:#bdbdbd}
+.scr .dg{font-size:16px;letter-spacing:.1em}
+.scr .dots{font-size:10px;letter-spacing:.15em}
+.scr .gl{font-size:20px;line-height:1}
+.scr .sw{display:grid;grid-template-columns:1fr 1fr;gap:1px 8px;font-size:9px;text-align:left}
+.scr .ad{color:#8ab4ff}
+.hw.touch .scr{font-family:var(--f-body);font-size:12px;gap:6px;padding:10px}
+.hw.touch .scr b{font-size:15px}.hw.touch .scr small{font-size:11px}.hw.touch .scr .gl{font-size:30px}
+.hw.touch .scr .sw{font-size:11px;gap:3px 10px}
+.scr .kp{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;width:100%}
+.scr .kp button{height:30px;border-radius:9px;background:#1b1f1d;color:#fff;font-size:15px;font-weight:600}
+.scr .kp button:active{background:#2fe3a4;color:#002}
+.scr .tb{margin-top:4px;padding:7px 14px;border-radius:999px;background:#2fe3a4;color:#002;font-weight:700;font-size:12px;position:relative;overflow:hidden}
+.scr .tb.ghost{background:#1b1f1d;color:#fff}
+.scr .tb.hold i{position:absolute;inset:0;width:0;background:#fff;opacity:.5}
+.scr .tb.hold.on i{width:100%;transition:width 1.2s linear}
+.scr .tb.hold span{position:relative}
+.scr .tg{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;width:100%}
+.scr .tg button{display:flex;flex-direction:column;align-items:center;gap:0;padding:4px 1px;border-radius:9px;background:#141816;color:#fff;font-size:10px;font-weight:600}
+.scr .tg span{font-size:16px}.scr .tg small{font-size:8.5px}
+.hwhint{font-size:12px;color:var(--mute);text-align:center;margin:-6px 0 0}
+.pfb img,.pfav img,.socav img{width:100%;height:100%;object-fit:cover;display:block}
+
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
 
@@ -554,6 +679,7 @@ details.how b{color:var(--txt)}
     <button data-v="home" class="on"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</button>
     <button data-v="casino"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.3"/><circle cx="16" cy="16" r="1.3"/><circle cx="12" cy="12" r="1.3"/></svg>Casino</button>
     <button data-v="trade"><svg viewBox="0 0 24 24"><path d="M3 17l5-6 4 4 8-9"/><path d="M15 6h5v5"/></svg>Trade</button>
+    <button data-v="wallet"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="3"/><path d="M3 10h18"/><circle cx="16.5" cy="15" r="1.3"/><path d="M6 6l9-3 1 3"/></svg>Wallet</button>
     <button data-v="lab"><svg viewBox="0 0 24 24"><path d="M12 3c-5 0-8 3.5-8 8 0 3 1.5 5 3 6v3h10v-3c1.5-1 3-3 3-6 0-4.5-3-8-8-8z"/><circle cx="9" cy="11" r="1.6"/><circle cx="15" cy="11" r="1.6"/><path d="M10 20v-2M14 20v-2"/></svg>Blacksite</button>
     <button data-v="shop"><svg viewBox="0 0 24 24"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg>Maison</button>
   </nav>
@@ -595,8 +721,9 @@ $('#logo').insertAdjacentHTML('afterbegin',LOGO(110));
 const KEY='noircap.v2';
 const DEF=()=>({v:2,cash:10000,bet:10,owned:{},pos:{},coins:[],stats:{w:0,won:0,best:0,bestM:0,games:0,rugs:0,launched:0},daily:0,t:0,qb:100,tf:1,guide:1,
   lab:{dirty:0,heat:0,ops:{air:1},cd:{},q:[],led:[],raids:0,washed:0,drained:0,fixer:0},
+  cx:null,wl:[{id:'main',n:'Trading account',k:'acct',b:{}}],hw:[],wtx:[],
   tr:[],pc:{th:'neon',pat:'glow',usd:1,mc:1,cap:''},prof:{name:'',handle:'',av:null,sign:{text:'OVERPAID',st:'neon',col:'#ff4fd8',rot:1,sp:1},soc:{},pri:'ig'}});
-function merge(d){const b=DEF();const o=Object.assign(b,d||{});o.stats=Object.assign(DEF().stats,(d&&d.stats)||{});o.lab=Object.assign(DEF().lab,(d&&d.lab)||{});o.prof=Object.assign(DEF().prof,(d&&d.prof)||{});o.prof.sign=Object.assign(DEF().prof.sign,o.prof.sign||{});o.prof.soc=o.prof.soc||{};o.pc=Object.assign(DEF().pc,(d&&d.pc)||{});if(!Array.isArray(o.tr))o.tr=[];
+function merge(d){const b=DEF();const o=Object.assign(b,d||{});o.stats=Object.assign(DEF().stats,(d&&d.stats)||{});o.lab=Object.assign(DEF().lab,(d&&d.lab)||{});o.prof=Object.assign(DEF().prof,(d&&d.prof)||{});o.prof.sign=Object.assign(DEF().prof.sign,o.prof.sign||{});o.prof.soc=o.prof.soc||{};o.pc=Object.assign(DEF().pc,(d&&d.pc)||{});if(!Array.isArray(o.tr))o.tr=[];if(!Array.isArray(o.wl)||!o.wl.length)o.wl=DEF().wl;if(!Array.isArray(o.hw))o.hw=[];if(!Array.isArray(o.wtx))o.wtx=[];
   if(!Array.isArray(o.coins)||(o.coins[0]&&!o.coins[0].k))o.coins=[];
   for(const id in o.pos){if(!o.coins.find(c=>c.id===id))delete o.pos[id]}
   return o}
@@ -655,7 +782,7 @@ function win(amount,b,mult){
   if(mult>=10||profit>=Math.max(50000,S.cash*0.25))bigWin(mult,amount);else if(mult>=2)burst(null,null,30);
   vib(30);
 }
-function netWorth(){return S.cash+assetValue()+posValue()}
+function netWorth(){return S.cash+assetValue()+posValue()+cryptoValue()}
 function assetValue(){let v=0;for(const id in S.owned){const it=ITEM[id];if(it)v+=it.p*S.owned[id]}return v}
 function posValue(){let v=0;for(const id in S.pos){const c=coinById(id);if(c)v+=S.pos[id].q*c.p}for(const c of S.coins)if(c.mine&&!c.rug)v+=c.dev*SUP*c.p*0.5;return v}
 function rentPerSec(){let r=0;for(const id in S.owned){const it=ITEM[id];if(it&&it.rent)r+=it.rent*S.owned[id]}return r}
@@ -936,7 +1063,7 @@ function mtick(){
   if(others.length<20&&Math.random()<.1){const c=mkCoin({mc:rnd(3500,7000)});warm(c,6);S.coins.push(c);if(cur==='trade'&&tab==='new')toast(`New pair · $${esc(c.tk)}`)}
   if(others.length>24){const v=others.filter(c=>!S.pos[c.id]).sort((a,b)=>a.p-b.p)[0];if(v)S.coins.splice(S.coins.indexOf(v),1)}
   const r=rentPerSec();if(r>0){S.cash+=r;if(cur==='home'||Math.random()<.2)updBal(true)}
-  labTick();
+  labTick();cxTick();
   for(const f of tickSubs)f();
   save(false);
 }
@@ -950,6 +1077,7 @@ function go(v,force){
   if(cleanup){try{cleanup()}catch(e){}cleanup=null}
   closeSheet();cur=v;sub=null;
   $('#app').dataset.zone=v;
+  document.documentElement.style.background=document.body.style.background=v==='wallet'?'#ffffff':'#060608';
   $$('#dock button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
   main.innerHTML='';main.scrollTop=0;
   const el=h('<div class="view"></div>');main.append(el);
@@ -981,7 +1109,8 @@ function homeView(el){
     <div class="card stat"><span>Cash</span><b id="hc">${fmt(S.cash)}</b></div>
     <div class="card stat"><span>Assets</span><b>${fmt(assetValue())}</b></div>
     <div class="card stat"><span>Bags</span><b id="hp">${fmt(posValue())}</b></div>
-    <div class="card stat"><span>Dirty wallet</span><b style="color:#ffb000" id="hd">${fmt(S.lab.dirty)}</b></div>
+    <div class="card stat"><span>Crypto</span><b id="hcx">${fmt(cryptoValue())}</b></div>
+    <div class="card stat" style="grid-column:1/-1"><span>Dirty wallet</span><b style="color:#ffb000" id="hd">${fmt(S.lab.dirty)}</b></div>
   </div>
   <div class="sec">
     <button class="btn wide" id="daily" ${ready?'':'disabled'}>${ready?'Collect allowance · '+fmt(dailyAmt()):'Allowance in '+fmtDur(4*3600e3-(Date.now()-S.daily))}</button>
@@ -1022,8 +1151,8 @@ function homeView(el){
   $('#daily',el).onclick=()=>{const a=dailyAmt();S.daily=Date.now();earn(a);burst(null,null,60);toast('Allowance collected · '+fmt(a),'good');go('home',true)};
   const m=$('#mom',el);if(m)m.onclick=()=>{earn(2500);toast('Mom sent $2,500. She is disappointed.','good');go('home',true)};
   $('#xfer',el).onclick=saveCodeSheet;$('#gopf',el).onclick=profileSheet;
-  $('#reset',el).onclick=()=>confirmSheet('Start over?','This wipes your cash, collection, coins and Blacksite ledger.','Wipe and restart',()=>{const keep=S.t;S=DEF();S.t=keep+1;writeLocal();cloudDirty=true;cloudPush();updBal(true);go('home',true);toast('Fresh start · $10,000')},true);
-  const t=()=>{$('#nw',el).textContent=fmt(netWorth());$('#hc',el).textContent=fmt(S.cash);$('#hp',el).textContent=fmt(posValue());$('#hd',el).textContent=fmt(S.lab.dirty);$('#savebox',el).innerHTML=saveLine()};
+  $('#reset',el).onclick=resetSheet;
+  const t=()=>{$('#nw',el).textContent=fmt(netWorth());$('#hc',el).textContent=fmt(S.cash);$('#hp',el).textContent=fmt(posValue());$('#hd',el).textContent=fmt(S.lab.dirty);$('#hcx',el).textContent=fmt(cryptoValue());$('#savebox',el).innerHTML=saveLine()};
   tickSubs.add(t);return()=>tickSubs.delete(t);
 }
 const dailyAmt=()=>Math.round(clamp(netWorth()*0.03,2500,2e6));
@@ -1640,11 +1769,15 @@ const cleanH=v=>String(v||'').trim().replace(/^@/,'');
 function socURL(k,v){const s=SOC.find(x=>x[0]===k);v=cleanH(v);if(!s||!v)return '';if(k==='web')return /^https?:\/\//i.test(v)?v:'https://'+v;return s[2]?s[2]+encodeURIComponent(v):''}
 const SIGNST=[['neon','Neon'],['led','LED board'],['gold','Gold'],['strobe','Strobe']];
 const SIGNCOL=['#ff4fd8','#62e3ff','#2fe3a4','#ffd34d','#ff3b30','#ffffff','#b48bff','#ff8a1f'];
-function renderPfb(){const b=$('#pfb');if(b)b.innerHTML=iconSVG(S.prof.av)}
+const avatarHTML=()=>S.prof.img?`<img src="${S.prof.img}" alt="Profile picture">`:iconSVG(S.prof.av);
+function renderPfb(){const b=$('#pfb');if(b)b.innerHTML=avatarHTML()}
+const imgLoad=src=>new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.onerror=()=>r(null);i.src=src});
+function loadPhoto(f){return new Promise((res,rej)=>{const u=URL.createObjectURL(f),im=new Image();im.onload=()=>{const z=320,c=document.createElement('canvas');c.width=c.height=z;const x=c.getContext('2d'),m=Math.min(im.width,im.height);x.drawImage(im,(im.width-m)/2,(im.height-m)/2,m,m,0,0,z,z);URL.revokeObjectURL(u);res(c.toDataURL('image/jpeg',.85))};im.onerror=()=>{URL.revokeObjectURL(u);rej()};im.src=u})}
 function profileSheet(){
   const P=S.prof,nw=netWorth();
   const el=h(`<div class="pf">
-    <div class="pfh"><button class="pfav" aria-label="Shuffle avatar">${iconSVG(P.av)}<i>↻</i></button><div class="pfid"><input class="tinp" id="pn" maxlength="24" placeholder="Your name" value="${esc(P.name)}" autocomplete="off"><input class="tinp" id="ph" maxlength="24" placeholder="@handle" value="${esc(P.handle)}" autocomplete="off" autocapitalize="off"></div></div>
+    <div class="pfh"><button class="pfav" aria-label="Change profile picture">${avatarHTML()}<i>✎</i></button><div class="pfid"><input class="tinp" id="pn" maxlength="24" placeholder="Your name" value="${esc(P.name)}" autocomplete="off"><input class="tinp" id="ph" maxlength="24" placeholder="@handle" value="${esc(P.handle)}" autocomplete="off" autocapitalize="off"></div></div>
+    <div class="pills"><label class="chip on" for="pimg">Upload photo</label><input type="file" id="pimg" accept="image/*" hidden><button class="chip" id="pgen">Generated avatar ↻</button><button class="chip" id="pimgx" ${P.img?'':'hidden'}>Remove photo</button></div>
     <div class="pfrank"><span class="rank"><i></i>${RANKS[rankOf(nw)][1]}</span><b class="num">${fmt(nw)}</b></div>
     <div class="pfsec"><div class="sec-h"><h3>Club sign</h3><span class="eyebrow">full-screen flex</span></div>
       <input class="tinp" id="st" maxlength="60" placeholder="Type anything" value="${esc(P.sign.text)}" autocomplete="off">
@@ -1658,7 +1791,11 @@ function profileSheet(){
       <button class="btn wide" id="sshow">Show my socials card</button></div>
   </div>`);
   const sv=()=>save(true);
-  $('.pfav',el).onclick=()=>{P.av=mkIcon('');$('.pfav',el).innerHTML=iconSVG(P.av)+'<i>↻</i>';renderPfb();vib(8);sv()};
+  const refAv=()=>{$('.pfav',el).innerHTML=avatarHTML()+'<i>✎</i>';$('#pimgx',el).hidden=!P.img;renderPfb();sv()};
+  $('.pfav',el).onclick=()=>$('#pimg',el).click();
+  $('#pimg',el).onchange=async e=>{const f=e.target.files&&e.target.files[0];if(!f)return;try{P.img=await loadPhoto(f);refAv();toast('Profile picture updated','good')}catch(_){toast('That image could not be read','bad')}e.target.value=''};
+  $('#pgen',el).onclick=()=>{P.img=null;P.av=mkIcon('');vib(8);refAv()};
+  $('#pimgx',el).onclick=()=>{P.img=null;refAv()};
   $('#pn',el).oninput=e=>{P.name=e.target.value;sv()};
   $('#ph',el).oninput=e=>{P.handle=e.target.value;sv()};
   $('#st',el).oninput=e=>{P.sign.text=e.target.value;sv()};
@@ -1704,7 +1841,7 @@ async function showSocials(){
   const pri=socURL(P.pri,P.soc[P.pri])||rows.map(s=>socURL(s[0],P.soc[s[0]])).find(Boolean)||'';
   const hd=cleanH(P.handle);
   const ov=h(`<div class="socov"><div class="socbg"></div><button class="socx" aria-label="Close">✕</button>
-    <div class="soccard"><div class="socav">${iconSVG(P.av)}</div><h2>${esc(P.name||'Anonymous Whale')}</h2>${hd?`<p class="soch">@${esc(hd)}</p>`:''}
+    <div class="soccard"><div class="socav">${avatarHTML()}</div><h2>${esc(P.name||'Anonymous Whale')}</h2>${hd?`<p class="soch">@${esc(hd)}</p>`:''}
     <span class="chip gold">${RANKS[rankOf(nw)][1]} · ${fmt(nw)}</span>
     <div class="soclist">${rows.map(s=>{const u=socURL(s[0],P.soc[s[0]]),v=esc(cleanH(P.soc[s[0]])),inner=`<i style="background:${s[3]}">${s[1][0]}</i><span><small>${s[1]}</small><b>${s[0]==='web'||s[0]==='dc'?v:'@'+v}</b></span><em>${u?'↗':'⧉'}</em>`;
       return u?`<a class="socrow" href="${esc(u)}" target="_blank" rel="noopener">${inner}</a>`:`<button class="socrow" data-copy="${v}">${inner}</button>`}).join('')}</div>
@@ -1760,7 +1897,7 @@ async function drawPnl(cv,t,o){
     x.strokeStyle=col;x.lineWidth=7;x.lineJoin='round';x.shadowColor=col;x.shadowBlur=26;x.stroke();x.shadowBlur=0;x.lineTo(W-72,bot);x.lineTo(72,bot);x.closePath();const fg=x.createLinearGradient(0,top,0,bot);fg.addColorStop(0,col+'55');fg.addColorStop(1,col+'00');x.fillStyle=fg;x.fill()}
   if(o.cap){x.fillStyle=th.txt;x.font='italic 600 42px "Inter Tight", sans-serif';x.fillText('“'+o.cap+'”',72,1192,W-144)}
   const hd=cleanH(S.prof.handle),who=hd?'@'+hd:(S.prof.name||'');
-  if(who){const av=await svgImg(iconSVG(S.prof.av));x.save();rrect(x,72,1236,60,60,18);x.clip();if(av)x.drawImage(av,72,1236,60,60);x.restore();x.fillStyle=th.txt;x.font='700 32px "Inter Tight", sans-serif';x.fillText(who,148,1267,460)}
+  if(who){const av=S.prof.img?await imgLoad(S.prof.img):await svgImg(iconSVG(S.prof.av));x.save();rrect(x,72,1236,60,60,18);x.clip();if(av)x.drawImage(av,72,1236,60,60);x.restore();x.fillStyle=th.txt;x.font='700 32px "Inter Tight", sans-serif';x.fillText(who,148,1267,460)}
   x.textAlign='right';x.fillStyle=th.mute;x.font='600 22px "JetBrains Mono", monospace';x.fillText('overpaid · simulated play money',W-72,1267);x.textAlign='left';
 }
 async function saveImage(blob,name){
@@ -1789,13 +1926,294 @@ function pnlSheet(t){
   sheet(el);redraw();
 }
 
-const VIEWS={home:homeView,casino:casinoView,trade:tradeView,lab:labView,shop:shopView};
+/* ================= WALLET · simulated exchange account, self-custody wallets, hardware wallets ================= */
+const CX={
+ BTC:{n:'Bitcoin',p:97000,c:'#f7931a',g:'₿',v:.0006,fee:.00002,dp:8,s:19.8e6,a:'The first cryptocurrency. Only 21 million will ever exist.'},
+ ETH:{n:'Ethereum',p:3600,c:'#627eea',g:'Ξ',v:.0008,fee:.0004,dp:6,s:120.4e6,a:'Programmable blockchain that runs smart contracts and most tokens.'},
+ SOL:{n:'Solana',p:210,c:'#9945ff',g:'◎',v:.0011,fee:.00001,dp:5,s:475e6,a:'Fast, low-fee chain and the home of most memecoin trading.'},
+ XMR:{n:'Monero',p:190,c:'#ff6600',g:'ɱ',v:.0009,fee:.00006,dp:6,s:18.4e6,a:'Privacy coin. Amounts, senders and receivers are hidden by default.'},
+ LTC:{n:'Litecoin',p:105,c:'#345d9d',g:'Ł',v:.0009,fee:.0001,dp:6,s:75.2e6,a:'Early Bitcoin fork with faster blocks and lower fees.'},
+ DOGE:{n:'Dogecoin',p:.38,c:'#c2a633',g:'Ð',v:.0013,fee:1,dp:2,s:146e9,a:'The original meme coin, started as a joke in 2013.'},
+ USDC:{n:'USD Coin',p:1,c:'#2775ca',g:'$',v:0,fee:1,dp:2,s:60e9,a:'A stablecoin designed to stay at one US dollar.'}};
+const CXK=Object.keys(CX);
+const HWM={nanosp:{n:'Ledger Nano S Plus',f:'stick',p:79,d:'USB stick · two buttons · small screen'},nanox:{n:'Ledger Nano X',f:'stick',p:149,d:'Stick with Bluetooth and a battery'},safe3:{n:'Trezor Safe 3',f:'sq',p:79,d:'Compact · two buttons · mono screen'},safe5:{n:'Trezor Safe 5',f:'touch',p:169,d:'Colour touchscreen · haptics'}};
+const WORDS='abandon amber anchor apple arctic arrow atom autumn badge bamboo banner barrel basket beach blade blanket blossom border bounce brave bridge bronze cabin cactus camera canyon carbon castle cedar chalk cherry circle cliff clover cobalt comet copper coral cotton crater crystal dawn delta desert diamond dolphin dragon dune eagle echo ember engine falcon feather fiber flame forest fossil galaxy garden glacier globe gravel harbor hazel horizon island ivory jacket jungle kernel kettle lantern lava lemon lizard lotus magnet maple marble meadow meteor mirror motion mountain nectar neon noble ocean olive orbit oyster panda paper pepper pilot planet pocket prism pulse quartz radar raven ribbon river rocket saddle salmon satin shadow signal silver sketch solar spark spiral stone summit tiger timber topaz tower tunnel velvet violet voyage walnut willow window winter zebra'.split(' ');
+const seedGen=n=>Array.from({length:n},()=>pick(WORDS));
+const B58='123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz',BECH='qpzry9x8gf2tvdw0s3jn54khce6mua7l';
+const rs=(cs,n)=>Array.from({length:n},()=>cs[ri(0,cs.length-1)]).join('');
+function mkAddr(k){switch(k){case 'BTC':return 'bc1q'+rs(BECH,38);case 'LTC':return 'ltc1q'+rs(BECH,38);case 'SOL':return rs(B58,44);case 'XMR':return '4'+rs('123456789AB',1)+rs(B58,93);case 'DOGE':return 'D'+rs(B58,33);default:return '0x'+hex(40)}}
+const addrOf=(w,k)=>{w.ad=w.ad||{};return w.ad[k]||(w.ad[k]=mkAddr(k))};
+const shortA=a=>a.length>16?a.slice(0,8)+'…'+a.slice(-6):a;
+function cxInit(){if(S.cx&&S.cx.p&&S.cx.p.BTC)return;S.cx={p:{},o:{},h:{},dr:{},ot:Date.now(),n:0};for(const k of CXK){const p=k==='USDC'?1:CX[k].p*rnd(.92,1.08);S.cx.p[k]=p;S.cx.o[k]=k==='USDC'?1:p*rnd(.95,1.05);S.cx.h[k]=[]}}
+function cxTick(){cxInit();const X=S.cx;X.n++;
+  for(const k of CXK){const c=CX[k];if(!c.v)continue;if(Math.random()<.015)X.dr[k]=rnd(-1,1)*c.v*.25;X.p[k]*=Math.exp(gauss()*c.v+(X.dr[k]||0)-Math.log(X.p[k]/c.p)*.0004)}
+  if(X.n%5===0)for(const k of CXK){X.h[k].push(+X.p[k].toPrecision(7));if(X.h[k].length>180)X.h[k].shift()}
+  if(Date.now()-X.ot>864e5){X.o=Object.assign({},X.p);X.ot=Date.now()}}
+const allW=()=>[...S.wl,...S.hw];
+const wById=id=>allW().find(w=>w.id===id);
+const mainW=()=>S.wl[0];
+const wVal=w=>S.cx?CXK.reduce((a,k)=>a+(w.b[k]||0)*S.cx.p[k],0):0;
+function cryptoValue(){return S.cx?allW().reduce((a,w)=>a+wVal(w),0):0}
+const hold=k=>allW().reduce((a,w)=>a+(w.b[k]||0),0);
+const chg24=k=>S.cx.p[k]/S.cx.o[k]-1;
+const famt=(k,a)=>(+a).toLocaleString('en-US',{maximumFractionDigits:a>=1000?2:CX[k].dp})+' '+k;
+const fusd=n=>(n<0?'-':'')+'$'+Math.abs(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:n!==0&&Math.abs(n)<1?4:2});
+const cxIcon=(k,s=40)=>`<span class="cxi" style="--c:${CX[k].c};width:${s}px;height:${s}px;font-size:${Math.round(s*.5)}px">${CX[k].g}</span>`;
+function wlog(ty,k,q,usd,n){S.wtx.unshift({t:Date.now(),ty,k,q,usd,n:n||''});if(S.wtx.length>40)S.wtx.pop();save(true)}
+const SER=new Map(),RNG=[['LIVE',0],['1H',.0012],['1D',.004],['1W',.01],['1M',.022],['1Y',.06]];
+function series(k,rg){
+  if(rg==='LIVE'){const a=S.cx.h[k].slice();a.push(S.cx.p[k]);return a.length>1?a:[S.cx.p[k],S.cx.p[k]]}
+  const key=k+rg;let s=SER.get(key);if(!s){const v=(RNG.find(r=>r[0]===rg)||RNG[2])[1]*(CX[k].v/.0008);s=[1];for(let i=1;i<120;i++)s.push(s[i-1]*Math.exp(gauss()*v));SER.set(key,s)}
+  const p=S.cx.p[k],last=s[s.length-1];let out=s.map(x=>x/last*p);
+  if(rg==='1D'){const a=Math.log(S.cx.o[k]/out[0]);out=out.map((x,i)=>x*Math.exp(a*(1-i/(out.length-1))))}
+  return out}
+function pSeries(rg){const ks=CXK.filter(k=>hold(k)>0);if(!ks.length)return null;const ss=ks.map(k=>series(k,rg)),n=Math.min(...ss.map(s=>s.length));return Array.from({length:n},(_,i)=>ks.reduce((a,k,j)=>a+hold(k)*ss[j][ss[j].length-n+i],0))}
+function lineChart(box,arr,col,onScrub){
+  const W=box.clientWidth||340,H=box.clientHeight||170,mn=Math.min(...arr),mx=Math.max(...arr),r=(mx-mn)||mx*.001||1,i0='lc'+(UID++);
+  const X=i=>i/(arr.length-1)*W,Y=v=>10+(1-(v-mn)/r)*(H-20),d=arr.map((v,i)=>(i?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1)).join('');
+  box.innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><defs><linearGradient id="${i0}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${col}" stop-opacity=".16"/><stop offset="1" stop-color="${col}" stop-opacity="0"/></linearGradient></defs><path d="${d}L${W} ${H}L0 ${H}Z" fill="url(#${i0})"/><path d="${d}" fill="none" stroke="${col}" stroke-width="2.2" stroke-linejoin="round"/></svg><i class="cbline" hidden></i><i class="cbdot" style="background:${col}"></i>`;
+  const dot=$('.cbdot',box),ln=$('.cbline',box),place=i=>{dot.style.left=X(i)+'px';dot.style.top=Y(arr[i])+'px'};place(arr.length-1);
+  const mv=e=>{const b=box.getBoundingClientRect(),i=Math.round(clamp((e.clientX-b.left)/b.width,0,1)*(arr.length-1));place(i);ln.hidden=false;ln.style.left=X(i)+'px';onScrub&&onScrub(arr[i],i,arr.length)};
+  box.onpointerdown=e=>{try{box.setPointerCapture(e.pointerId)}catch(_){}box.dataset.s=1;mv(e)};
+  box.onpointermove=e=>{if(box.dataset.s)mv(e)};
+  box.onpointerup=box.onpointercancel=()=>{delete box.dataset.s;ln.hidden=true;place(arr.length-1);onScrub&&onScrub(null)};
+}
+const RLBL={LIVE:'live',['1H']:'past hour',['1D']:'today',['1W']:'past week',['1M']:'past month',['1Y']:'past year'};
+const ACTS=[['buy','Buy','M12 5v14M5 12h14'],['sell','Sell','M5 12h14'],['convert','Convert','M7 7h11l-3-3M17 17H6l3 3'],['send','Send','M7 17L17 7M9 7h8v8'],['receive','Receive','M17 7L7 17M15 17H7V9']];
+const actsHTML=()=>`<div class="acts">${ACTS.map(a=>`<button data-act="${a[0]}"><i><svg viewBox="0 0 24 24"><path d="${a[2]}"/></svg></i>${a[1]}</button>`).join('')}</div>`;
+function wireActs(root,k){$$('[data-act]',root).forEach(b=>b.onclick=()=>{vib(8);const a=b.dataset.act;if(a==='buy')buyFlow(k);else if(a==='sell')sellFlow(k);else if(a==='convert')convertFlow(k);else if(a==='send')sendFlow({k});else receiveFlow({k})})}
+function hwIcon(f,s=40){return f==='stick'?`<svg viewBox="0 0 40 40" width="${s}" height="${s}"><rect x="3" y="14" width="34" height="12" rx="4" fill="#16171a"/><rect x="18" y="12" width="20" height="16" rx="5" fill="#c9ccd2"/><rect x="6" y="17" width="10" height="6" rx="1" fill="#3b82f6" opacity=".8"/></svg>`:f==='sq'?`<svg viewBox="0 0 40 40" width="${s}" height="${s}"><rect x="9" y="4" width="22" height="32" rx="6" fill="#16171a"/><rect x="12" y="8" width="16" height="12" rx="2" fill="#eaeaea"/><rect x="12" y="26" width="6" height="5" rx="2" fill="#333"/><rect x="22" y="26" width="6" height="5" rx="2" fill="#333"/></svg>`:`<svg viewBox="0 0 40 40" width="${s}" height="${s}"><rect x="8" y="3" width="24" height="34" rx="6" fill="#16171a"/><rect x="11" y="6" width="18" height="28" rx="3" fill="#0e3b2b"/><circle cx="20" cy="20" r="5" fill="#2fe3a4" opacity=".8"/></svg>`}
+
+let wtab='home',wrange='1D';
+function walletView(el){
+  const render=()=>{
+    if($('.cbchart[data-s]',el))return;
+    el.innerHTML=`<div class="cb"><div class="sec-h" style="align-items:center"><h1 class="cbt">Wallet</h1><span class="mute small">simulated prices</span></div>
+      <div class="seg">${[['home','Portfolio'],['wallets','Wallets'],['hw','Hardware']].map(t=>`<button data-wt="${t[0]}" class="${wtab===t[0]?'on':''}">${t[1]}</button>`).join('')}</div><div class="wpane cb"></div></div>`;
+    $$('[data-wt]',el).forEach(b=>b.onclick=()=>{wtab=b.dataset.wt;vib(6);render()});
+    ({home:paneHome,wallets:paneWallets,hw:paneHW})[wtab]($('.wpane',el));
+  };
+  render();let n=0;const t=()=>{if(++n%3===0&&!sheetClose)render()};tickSubs.add(t);return()=>tickSubs.delete(t);
+}
+function assetRow(k,mine){const q=hold(k),c=chg24(k);return `<button class="cbrow" data-k="${k}">${cxIcon(k)}<span><b>${CX[k].n}</b><small>${mine?famt(k,q):k}</small></span><span class="r"><b>${fusd(mine?q*S.cx.p[k]:S.cx.p[k])}</b><small class="${c>=0?'up':'dn'}">${c>=0?'↗':'↘'} ${(Math.abs(c)*100).toFixed(2)}%</small></span></button>`}
+function paneHome(p){
+  const tot=cryptoValue(),ser=pSeries(wrange),ch=ser?ser[ser.length-1]-ser[0]:0,chp=ser&&ser[0]?ch/ser[0]:0,mine=CXK.filter(k=>hold(k)>0).sort((a,b)=>hold(b)*S.cx.p[b]-hold(a)*S.cx.p[a]);
+  const movers=CXK.filter(k=>k!=='USDC').sort((a,b)=>Math.abs(chg24(b))-Math.abs(chg24(a)));
+  p.innerHTML=`<div class="cbbal"><span>Crypto balance</span><b class="pb">${fusd(tot)}</b>${ser?`<em class="pc ${ch>=0?'up':'dn'}">${ch>=0?'↗':'↘'} ${fusd(Math.abs(ch))} (${(Math.abs(chp)*100).toFixed(2)}%) ${RLBL[wrange]}</em>`:''}</div>
+    ${ser?`<div class="cbchart"></div><div class="ranges">${RNG.map(r=>`<button data-r="${r[0]}" class="${wrange===r[0]?'on':''}">${r[0]}</button>`).join('')}</div>`:`<div class="cbcard"><b style="font-size:17px">Buy your first crypto</b><span class="mute small">Use your Overpaid cash to buy Bitcoin, Ethereum, Solana, Monero and more. Move it to your own wallets or a hardware wallet.</span></div>`}
+    ${actsHTML()}
+    <div class="cbcard" style="flex-direction:row;justify-content:space-between;align-items:center"><div><span class="mute small">Cash available</span><b style="display:block;font-size:19px">${fusd(S.cash)}</b></div><button class="btn sm" data-act="buy">Buy crypto</button></div>
+    ${mine.length?`<div><h2 class="cbh2">Your assets</h2>${mine.map(k=>assetRow(k,1)).join('')}</div>`:''}
+    <div><h2 class="cbh2">Top movers</h2><div class="movers">${movers.map(k=>{const c=chg24(k);return `<button class="mv" data-k="${k}">${cxIcon(k,32)}<b>${k}</b><span>${fusd(S.cx.p[k])}</span><span class="pill ${c>=0?'up':'dn'}">${c>=0?'↗':'↘'} ${(Math.abs(c)*100).toFixed(2)}%</span></button>`}).join('')}</div></div>
+    <div><h2 class="cbh2">Prices</h2>${CXK.map(k=>assetRow(k,0)).join('')}</div>
+    ${S.wtx.length?`<div><h2 class="cbh2">Recent activity</h2>${S.wtx.slice(0,8).map(t=>`<div class="cbrow">${cxIcon(t.k)}<span><b>${t.ty} ${t.k}</b><small>${esc(t.n)||ago(t.t)+' ago'}</small></span><span class="r"><b>${famt(t.k,t.q)}</b><small>${fusd(t.usd)}</small></span></div>`).join('')}</div>`:''}`;
+  if(ser){const box=$('.cbchart',p),pb=$('.pb',p),pc=$('.pc',p);lineChart(box,ser,ch>=0?'#05a660':'#d6334b',(v,i,n)=>{if(v==null){pb.textContent=fusd(tot);return}pb.textContent=fusd(v)});
+    $$('[data-r]',p).forEach(b=>b.onclick=()=>{wrange=b.dataset.r;vib(5);paneHome(p)})}
+  wireActs(p);$$('[data-k]',p).forEach(b=>b.onclick=()=>assetSheet(b.dataset.k));
+}
+function paneWallets(p){
+  p.innerHTML=`${S.wl.map(w=>{const ks=CXK.filter(k=>w.b[k]>0);return `<button class="cbcard" data-w="${w.id}"><div class="row" style="justify-content:space-between"><b style="font-size:16px">${esc(w.n)}</b><span class="pill ${w.k==='acct'?'up':''}" style="background:#eef3ff;color:var(--acc)">${w.k==='acct'?'Exchange account':'Self-custody'}</span></div><b style="font-size:24px;letter-spacing:-.02em">${fusd(wVal(w))}</b><div class="row" style="gap:4px">${ks.map(k=>cxIcon(k,22)).join('')||'<span class="mute small">Empty</span>'}</div></button>`}).join('')}
+    <button class="btn wide" id="nw">Create a new wallet</button>
+    <p class="mute small">The exchange account is where buys and sells land. Self-custody wallets come with their own 12-word recovery phrase. Move coins between them with Send.</p>`;
+  $$('[data-w]',p).forEach(b=>b.onclick=()=>walletSheet(wById(b.dataset.w)));$('#nw',p).onclick=createWalletFlow;
+}
+function paneHW(p){
+  p.innerHTML=`${S.hw.length?S.hw.map(d=>`<button class="cbcard" data-d="${d.id}" style="flex-direction:row;align-items:center;gap:14px">${hwIcon(HWM[d.m].f,52)}<span style="flex:1;min-width:0;text-align:left"><b style="display:block;font-size:16px">${esc(d.n)}</b><span class="mute small">${HWM[d.m].n} · ${d.wiped?'wiped':!d.ok?'not set up':'locked'}</span></span><b>${fusd(wVal(d))}</b></button>`).join(''):`<div class="cbcard"><b style="font-size:17px">Cold storage</b><span class="mute small">Hardware wallets keep your coins offline behind a PIN and a 24-word recovery phrase. Coins on a hardware wallet come with you when you start the game over.</span></div>`}
+    <h2 class="cbh2">Get a hardware wallet</h2>
+    ${Object.entries(HWM).map(([id,m])=>`<div class="cbrow">${hwIcon(m.f)}<span><b>${m.n}</b><small>${m.d}</small></span><button class="btn sm" data-buy="${id}">${fusd(m.p).replace('.00','')}</button></div>`).join('')}`;
+  $$('[data-d]',p).forEach(b=>b.onclick=()=>deviceSheet(wById(b.dataset.d)));
+  $$('[data-buy]',p).forEach(b=>b.onclick=()=>{const m=HWM[b.dataset.buy];confirmSheet(`Buy a ${m.n}?`,`Costs ${fusd(m.p)} of cash. It arrives sealed. You set the PIN and write down the recovery phrase on the device.`,`Buy for ${fusd(m.p)}`,()=>{if(!spend(m.p))return;const d={id:'hw'+hex(6),m:b.dataset.buy,n:'My '+m.n.split(' ').slice(1).join(' '),pin:null,seed:seedGen(24),b:{},ad:{},ok:0,t:Date.now()};S.hw.push(d);save(true);toast('Delivered · unbox it and set it up','good');setTimeout(()=>deviceSheet(d),350)})});
+}
+function fhead(title,back){return `<div class="fh">${back?'<button class="back fb" aria-label="Back"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>':'<span></span>'}<b>${title}</b><span></span></div>`}
+function amountUI(box,o){
+  let s='0';
+  box.innerHTML=`${fhead(o.title,o.back)}${o.top||''}<div class="amt"><b>$0</b><span></span></div><div class="pills" style="justify-content:center">${[10,50,100,1000].map(x=>`<button class="chip" data-q="${x}">$${x>=1000?'1k':x}</button>`).join('')}<button class="chip" data-q="max">Max</button></div><div class="keys">${['1','2','3','4','5','6','7','8','9','.','0','⌫'].map(k=>`<button data-kk="${k}" aria-label="${k==='⌫'?'Delete':k}">${k}</button>`).join('')}</div><button class="btn wide go">${o.cta||'Preview'}</button>`;
+  const draw=()=>{const v=parseFloat(s)||0,mx=o.max(),over=v>mx+1e-9;$('.amt b',box).textContent='$'+Number(s.split('.')[0]).toLocaleString('en-US')+(s.includes('.')?'.'+s.split('.')[1]:'');$('.amt b',box).style.color=over?'var(--dn)':'';$('.amt span',box).innerHTML=over?`<span class="dn">Not enough · max ${fusd(mx)}</span>`:o.sub(v);$('.go',box).disabled=!(v>0)||over};
+  $$('[data-kk]',box).forEach(b=>b.onclick=()=>{const k=b.dataset.kk;vib(4);if(k==='⌫')s=s.length>1?s.slice(0,-1):'0';else if(k==='.'){if(!s.includes('.'))s+='.'}else if(s==='0')s=k;else if(!(s.includes('.')&&s.split('.')[1].length>=2)&&s.replace('.','').length<10)s+=k;draw()});
+  $$('[data-q]',box).forEach(b=>b.onclick=()=>{const q=b.dataset.q,v=q==='max'?Math.floor(o.max()*100)/100:+q;s=String(Math.max(0,v));draw()});
+  $('.go',box).onclick=()=>o.next(parseFloat(s)||0);const bk=$('.fb',box);if(bk)bk.onclick=o.back;
+  if(o.wire)o.wire(draw);draw();
+}
+function reviewUI(box,o){box.innerHTML=`${fhead(o.title||'Review',1)}${o.hero||''}<div class="rv">${o.rows.map(r=>`<div><span>${r[0]}</span><b>${r[1]}</b></div>`).join('')}</div>${o.note?`<p class="mute small" style="margin-top:10px">${o.note}</p>`:''}<button class="btn wide go" style="margin-top:16px">${o.cta}</button>`;$('.fb',box).onclick=o.back;$('.go',box).onclick=o.confirm}
+function doneUI(box,title,sub){box.innerHTML=`<div class="okc"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h3 style="text-align:center;font-size:22px;font-weight:700">${title}</h3><p class="mute" style="text-align:center;margin:6px 0 20px">${sub}</p><button class="btn wide go">Done</button>`;$('.go',box).onclick=closeSheet;vib([20,40,20]);burst(null,null,24,['#2156f5','#05a660','#ffffff','#f7931a'])}
+const coinPicker=(ks,sel)=>`<div class="picker">${ks.map(x=>`<button data-ck="${x}" class="${x===sel?'on':''}">${cxIcon(x,24)}${x}</button>`).join('')}</div>`;
+const flowBox=()=>{const b=h('<div class="flow"></div>');sheet(b);return b};
+function buyFlow(k0){let k=k0||'BTC';const box=flowBox(),fee=v=>Math.max(.99,v*.0149);
+  const s1=()=>amountUI(box,{title:'Buy',top:coinPicker(CXK,k),max:()=>S.cash,sub:v=>`≈ ${famt(k,Math.max(0,v-fee(v))/S.cx.p[k])}`,next:s2,wire:draw=>$$('[data-ck]',box).forEach(x=>x.onclick=()=>{k=x.dataset.ck;$$('[data-ck]',box).forEach(y=>y.classList.toggle('on',y===x));draw()})});
+  const s2=v=>{if(v<2){toast('Minimum purchase is $2','bad');return}const f=fee(v),px=S.cx.p[k],q=(v-f)/px;
+    reviewUI(box,{hero:`<div class="amt">${cxIcon(k,48)}<b style="font-size:34px">${famt(k,q)}</b><span>${CX[k].n}</span></div>`,rows:[['Pay with','Overpaid cash'],[k+' price',fusd(px)],['Purchase',fusd(v-f)],['Fee',fusd(f)],['Total',fusd(v)],['Lands in',esc(mainW().n)]],cta:'Buy now',back:s1,
+      confirm:()=>{if(!spend(v))return;mainW().b[k]=(mainW().b[k]||0)+q;wlog('Bought',k,q,v);doneUI(box,'Purchase complete',`You bought ${famt(k,q)}`)}})};
+  s1()}
+function sellFlow(k0){const w=mainW();let ks=CXK.filter(x=>w.b[x]>0);if(!ks.length){toast('Nothing to sell in your exchange account','bad');return}let k=ks.includes(k0)?k0:ks[0];const box=flowBox(),fee=v=>Math.max(.99,v*.0149);
+  const s1=()=>amountUI(box,{title:'Sell',top:coinPicker(ks,k),max:()=>(w.b[k]||0)*S.cx.p[k],sub:v=>`${famt(k,v/S.cx.p[k])} of ${famt(k,w.b[k]||0)}`,next:s2,wire:draw=>$$('[data-ck]',box).forEach(x=>x.onclick=()=>{k=x.dataset.ck;$$('[data-ck]',box).forEach(y=>y.classList.toggle('on',y===x));draw()})});
+  const s2=v=>{if(v<2){toast('Minimum sale is $2','bad');return}const f=fee(v),px=S.cx.p[k],q=Math.min(w.b[k],v/px);
+    reviewUI(box,{hero:`<div class="amt"><b style="font-size:34px">${fusd(v-f)}</b><span>to your cash</span></div>`,rows:[['Sell',famt(k,q)],[k+' price',fusd(px)],['Fee',fusd(f)],['You get',fusd(v-f)]],cta:'Sell now',back:s1,
+      confirm:()=>{w.b[k]-=q;if(w.b[k]<1e-12)w.b[k]=0;earn(v-f);wlog('Sold',k,q,v);doneUI(box,'Sold',`${fusd(v-f)} added to your cash`)}})};
+  s1()}
+function convertFlow(k0){const w=mainW();const ks=CXK.filter(x=>w.b[x]>0);if(!ks.length){toast('Buy some crypto first','bad');return}let a=ks.includes(k0)?k0:ks[0],b=a==='BTC'?'ETH':'BTC';const box=flowBox();
+  const s1=()=>amountUI(box,{title:'Convert',top:`<div class="lab-l" style="margin-top:4px">From</div>${coinPicker(ks,a).replace(/data-ck/g,'data-ca')}<div class="lab-l" style="margin-top:8px">To</div>${coinPicker(CXK,b).replace(/data-ck/g,'data-cb')}`,max:()=>(w.b[a]||0)*S.cx.p[a],sub:v=>`${famt(a,v/S.cx.p[a])} → ${famt(b,v*.99/S.cx.p[b])}`,next:s2,
+    wire:draw=>{$$('[data-ca]',box).forEach(x=>x.onclick=()=>{a=x.dataset.ca;if(a===b)b=CXK.find(z=>z!==a);s1()});$$('[data-cb]',box).forEach(x=>x.onclick=()=>{if(x.dataset.cb===a)return;b=x.dataset.cb;$$('[data-cb]',box).forEach(y=>y.classList.toggle('on',y===x));draw()})}});
+  const s2=v=>{if(v<1){toast('Minimum is $1','bad');return}const qa=Math.min(w.b[a],v/S.cx.p[a]),qb=v*.99/S.cx.p[b];
+    reviewUI(box,{hero:`<div class="amt"><div class="row">${cxIcon(a,40)}<span style="font-size:22px">→</span>${cxIcon(b,40)}</div><b style="font-size:30px">${famt(b,qb)}</b></div>`,rows:[['From',famt(a,qa)],['To',famt(b,qb)],['Rate',`1 ${a} = ${famt(b,S.cx.p[a]/S.cx.p[b])}`],['Fee','1%']],cta:'Convert now',back:s1,
+      confirm:()=>{w.b[a]-=qa;if(w.b[a]<1e-12)w.b[a]=0;w.b[b]=(w.b[b]||0)+qb;wlog('Converted',b,qb,v,`from ${a}`);doneUI(box,'Converted',`You now have ${famt(b,w.b[b])}`)}})};
+  s1()}
+function doSend(src,k,q,fee,toId,ext){src.b[k]=Math.max(0,(src.b[k]||0)-q-fee);if(src.b[k]<1e-12)src.b[k]=0;const dst=toId?wById(toId):null;if(dst)dst.b[k]=(dst.b[k]||0)+q;wlog('Sent',k,q,q*S.cx.p[k],`${src.n} → ${dst?dst.n:shortA(ext)}`)}
+function sendFlow(o={}){
+  let k=o.k,from=o.from,to=o.to||null,ext='';const box=flowBox();
+  const s1=()=>{
+    const ks=CXK.filter(x=>allW().some(w=>(w.b[x]||0)>CX[x].fee));
+    if(!ks.length){box.innerHTML=`${fhead('Send')}<div class="cbcard" style="margin-top:10px"><b>Nothing to send yet</b><span class="mute small">Buy some crypto first, then send it to your other wallets or a hardware wallet.</span></div><button class="btn wide" style="margin-top:14px" id="gb">Buy crypto</button>`;$('#gb',box).onclick=()=>buyFlow();return}
+    if(!ks.includes(k))k=ks[0];
+    const srcs=allW().filter(w=>(w.b[k]||0)>CX[k].fee);if(!srcs.find(w=>w.id===from))from=srcs[0].id;
+    const dsts=allW().filter(w=>w.id!==from);if(to!=='ext'&&!dsts.find(w=>w.id===to))to=dsts[0]?dsts[0].id:'ext';
+    const wb=(w,sel)=>`<button data-wk="${w.id}" class="${sel===w.id?'on':''}">${w.m?hwIcon(HWM[w.m].f,20):''}${esc(w.n)}</button>`;
+    box.innerHTML=`${fhead('Send')}<div class="field"><label>Asset</label>${coinPicker(ks,k)}</div>
+      <div class="field" style="margin-top:12px"><label>From</label><div class="picker" data-g="f">${srcs.map(w=>wb(w,from)).join('')}</div><span class="mute small">Available ${famt(k,wById(from).b[k]||0)}</span></div>
+      <div class="field" style="margin-top:12px"><label>To</label><div class="picker" data-g="t">${dsts.map(w=>wb(w,to)).join('')}<button data-wk="ext" class="${to==='ext'?'on':''}">↗ External address</button></div></div>
+      ${to==='ext'?`<input class="tinp" id="exa" style="margin-top:10px" placeholder="Paste a ${CX[k].n} address" value="${esc(ext)}" autocomplete="off" autocapitalize="off" spellcheck="false"><p class="mute small" style="margin-top:6px">Coins sent to an outside address leave the game for good.</p>`:''}
+      <button class="btn wide go" style="margin-top:16px">Continue</button>`;
+    $$('[data-ck]',box).forEach(x=>x.onclick=()=>{k=x.dataset.ck;s1()});
+    $$('[data-g=f] [data-wk]',box).forEach(x=>x.onclick=()=>{from=x.dataset.wk;s1()});
+    $$('[data-g=t] [data-wk]',box).forEach(x=>x.onclick=()=>{to=x.dataset.wk;s1()});
+    const ea=$('#exa',box);if(ea)ea.oninput=()=>{ext=ea.value.trim()};
+    $('.go',box).onclick=()=>{if(to==='ext'&&ext.length<20){toast('Paste a full address','bad');return}s2()};
+  };
+  const s2=()=>{const src=wById(from),f=CX[k].fee;amountUI(box,{title:'Send '+k,back:s1,max:()=>Math.max(0,((src.b[k]||0)-f)*S.cx.p[k]),sub:v=>`${famt(k,v/S.cx.p[k])} · network fee ${famt(k,f)}`,cta:'Preview',next:v=>s3(v)})};
+  const s3=v=>{const src=wById(from),f=CX[k].fee,q=Math.min(v/S.cx.p[k],Math.max(0,(src.b[k]||0)-f)),dst=to==='ext'?null:wById(to);
+    reviewUI(box,{hero:`<div class="amt">${cxIcon(k,48)}<b style="font-size:32px">${famt(k,q)}</b><span>${fusd(q*S.cx.p[k])}</span></div>`,back:s2,
+      rows:[['From',esc(src.n)],['To',dst?esc(dst.n):`<span class="num">${esc(shortA(ext))}</span>`],['Network fee',famt(k,f)],['Total',famt(k,q+f)]],
+      note:src.m?'This comes from a hardware wallet. You will unlock it and approve the transaction on the device.':'',
+      cta:src.m?'Continue on device':'Send now',
+      confirm:()=>{if(src.m){closeSheet();setTimeout(()=>deviceSheet(src,{k,q,fee:f,to:dst?dst.id:null,ext}),320);return}doSend(src,k,q,f,dst?dst.id:null,ext);doneUI(box,'Sent',`${famt(k,q)} is on its way to ${dst?esc(dst.n):'that address'}`)}})};
+  s1();
+}
+function receiveFlow(o={}){let k=o.k||'BTC',wid=o.w||mainW().id;const box=flowBox();
+  const draw=async()=>{const w=wById(wid),ad=addrOf(w,k);save(true);
+    box.innerHTML=`${fhead('Receive')}<div class="field"><label>Asset</label>${coinPicker(CXK,k)}</div><div class="field" style="margin-top:10px"><label>Into</label><div class="picker">${allW().map(x=>`<button data-wk="${x.id}" class="${x.id===wid?'on':''}">${esc(x.n)}</button>`).join('')}</div></div>
+      <div style="display:grid;place-items:center;margin:16px 0"><div class="qrc" style="box-shadow:0 0 0 1px var(--line)"></div></div><div class="addr">${ad}</div><button class="btn wide" id="cpa" style="margin-top:12px">Copy address</button>
+      <p class="mute small" style="margin-top:10px">Only send ${CX[k].n} (${k}) to this address. In this simulation, coins arrive from your own wallets with Send.</p>`;
+    $$('[data-ck]',box).forEach(x=>x.onclick=()=>{k=x.dataset.ck;draw()});$$('[data-wk]',box).forEach(x=>x.onclick=()=>{wid=x.dataset.wk;draw()});
+    $('#cpa',box).onclick=()=>{try{navigator.clipboard.writeText(ad).then(()=>toast('Address copied','good'),()=>toast('Press and hold the address to copy'))}catch(e){toast('Press and hold the address to copy')}};
+    try{await loadQR();const q=qrcode(0,'M');q.addData(ad);q.make();const qc=$('.qrc',box);if(qc)qc.innerHTML=q.createSvgTag({cellSize:4,margin:0,scalable:true})}catch(e){const qc=$('.qrc',box);if(qc)qc.remove()}};
+  draw()}
+function assetSheet(k){
+  let rg=wrange==='LIVE'?'1D':wrange;const el=h('<div class="cb"></div>');
+  const draw=()=>{const px=S.cx.p[k],ser=series(k,rg),c=ser[ser.length-1]/ser[0]-1,q=hold(k),ws=allW().filter(w=>w.b[k]>0);
+    el.innerHTML=`<div class="row">${cxIcon(k,44)}<div><b style="font-size:18px">${CX[k].n}</b><div class="mute small">${k}</div></div></div>
+      <div class="cbbal"><b class="pb">${fusd(px)}</b><em class="${c>=0?'up':'dn'}">${c>=0?'↗':'↘'} ${(Math.abs(c)*100).toFixed(2)}% ${RLBL[rg]}</em></div>
+      <div class="cbchart"></div><div class="ranges">${RNG.map(r=>`<button data-r="${r[0]}" class="${rg===r[0]?'on':''}">${r[0]}</button>`).join('')}</div>
+      ${actsHTML()}
+      <div class="cbcard"><span class="mute small">Your balance</span><b style="font-size:22px">${fusd(q*px)}</b><span class="mute small">${famt(k,q)}</span>${ws.map(w=>`<div class="row" style="justify-content:space-between;font-size:14px;margin-top:4px"><span>${esc(w.n)}</span><b>${famt(k,w.b[k])}</b></div>`).join('')}</div>
+      <div><h2 class="cbh2">About ${CX[k].n}</h2><p class="mute" style="font-size:14px;line-height:1.5;margin-top:6px">${CX[k].a}</p></div>
+      <div class="rv"><div><span>Market cap</span><b>${fk(px*CX[k].s)}</b></div><div><span>Circulating supply</span><b>${(CX[k].s/1e6).toLocaleString('en-US',{maximumFractionDigits:1})}M ${k}</b></div><div><span>24h change</span><b class="${chg24(k)>=0?'up':'dn'}">${pct(chg24(k))}</b></div></div>`;
+    lineChart($('.cbchart',el),ser,c>=0?'#05a660':'#d6334b',v=>{$('.pb',el).textContent=fusd(v==null?S.cx.p[k]:v)});
+    $$('[data-r]',el).forEach(b=>b.onclick=()=>{rg=b.dataset.r;draw()});wireActs(el,k);
+  };
+  draw();let n=0;const t=()=>{if(!$('.cbchart[data-s]',el)&&++n%2===0&&document.body.contains(el)){const sc=el.parentElement&&el.parentElement.scrollTop;draw();if(el.parentElement)el.parentElement.scrollTop=sc}};tickSubs.add(t);sheet(el,()=>tickSubs.delete(t));
+}
+function walletSheet(w){const el=h('<div class="cb"></div>');
+  const draw=()=>{const ks=CXK.filter(k=>w.b[k]>0);
+    el.innerHTML=`<div class="cbbal"><span>${w.k==='acct'?'Exchange account':'Self-custody wallet'}</span><b>${fusd(wVal(w))}</b><em class="mute">${esc(w.n)}</em></div>
+      <div class="grid2"><button class="btn" data-a="send">Send</button><button class="btn ghost" data-a="recv">Receive</button></div>
+      <div>${ks.length?ks.map(k=>`<div class="cbrow">${cxIcon(k)}<span><b>${CX[k].n}</b><small>${famt(k,w.b[k])}</small></span><span class="r"><b>${fusd(w.b[k]*S.cx.p[k])}</b></span></div>`).join(''):'<p class="mute small">This wallet is empty. Receive or send coins into it.</p>'}</div>
+      ${w.k==='hot'?`<div class="cbcard"><b>Recovery phrase</b><span class="mute small">Anyone with these 12 words controls this wallet. Tap to reveal.</span><div class="seedgrid">${w.seed.map((s,i)=>`<span><i>${i+1}</i>${s}</span>`).join('')}</div></div>`:''}
+      <div class="grid2"><button class="btn ghost sm" data-a="ren">Rename</button>${w.k==='hot'?`<button class="btn ghost sm" data-a="del">Delete wallet</button>`:''}</div>`;
+    $('[data-a=send]',el).onclick=()=>sendFlow({from:w.id});$('[data-a=recv]',el).onclick=()=>receiveFlow({w:w.id});
+    const sg=$('.seedgrid',el);if(sg)sg.onclick=()=>sg.classList.toggle('show');
+    $('[data-a=ren]',el).onclick=()=>renameSheet(w);
+    const dl=$('[data-a=del]',el);if(dl)dl.onclick=()=>{if(wVal(w)>0.01){toast('Move the coins out before deleting','bad');return}confirmSheet('Delete this wallet?','It is empty, so nothing is lost.','Delete',()=>{S.wl=S.wl.filter(x=>x!==w);save(true);go('wallet',true)},true)};
+  };draw();sheet(el)}
+function renameSheet(w){const c=h(`<div class="confirm"><h3>Rename</h3><input class="tinp" id="rn" maxlength="28" value="${esc(w.n)}" autocomplete="off"><button class="btn wide">Save</button></div>`);$('button',c).onclick=()=>{const v=$('#rn',c).value.trim();if(v){w.n=v;save(true)}closeSheet();go('wallet',true)};sheet(c)}
+function createWalletFlow(){const box=flowBox(),seed=seedGen(12);let name='Wallet '+(S.wl.length);
+  const s1=()=>{box.innerHTML=`${fhead('New wallet')}<div class="field" style="margin-top:8px"><label for="wn">Name</label><input class="tinp" id="wn" maxlength="28" value="${esc(name)}" autocomplete="off"></div><button class="btn wide go" style="margin-top:16px">Continue</button>`;$('.go',box).onclick=()=>{name=$('#wn',box).value.trim()||name;s2()}};
+  const s2=()=>{box.innerHTML=`${fhead('Recovery phrase',1)}<p class="mute small" style="margin:6px 0 12px">Write these 12 words down in order. They are the only way to restore this wallet. Tap to reveal.</p><div class="seedgrid">${seed.map((s,i)=>`<span><i>${i+1}</i>${s}</span>`).join('')}</div><button class="btn wide go" style="margin-top:16px">I wrote it down</button>`;
+    $('.fb',box).onclick=s1;const sg=$('.seedgrid',box);sg.onclick=()=>sg.classList.add('show');$('.go',box).onclick=()=>s3(0,[ri(0,3),ri(4,7),ri(8,11)])};
+  const s3=(step,idx)=>{const i=idx[step],opts=[seed[i],...seedGen(6).filter(x=>x!==seed[i]).slice(0,3)].sort(()=>Math.random()-.5);
+    box.innerHTML=`${fhead('Check your phrase',1)}<p class="mute" style="margin:10px 0 14px;text-align:center">Which word is <b style="color:var(--txt)">#${i+1}</b>?</p><div class="grid2">${opts.map(o=>`<button class="btn ghost" data-o="${o}">${o}</button>`).join('')}</div><p class="mute small" style="text-align:center;margin-top:12px">${step+1} of 3</p>`;
+    $('.fb',box).onclick=s2;$$('[data-o]',box).forEach(b=>b.onclick=()=>{if(b.dataset.o!==seed[i]){toast('Not that one. Check your phrase.','bad');vib(60);s2();return}if(step<2)s3(step+1,idx);else{S.wl.push({id:'w'+hex(6),n:name,k:'hot',b:{},seed,ad:{},t:Date.now()});save(true);doneUI(box,'Wallet created',`${esc(name)} is ready. Send coins to it from your account.`);if(cur==='wallet')setTimeout(()=>{if(!sheetClose)go('wallet',true)},50)}})};
+  s1()}
+
+/* ---------- hardware wallet device simulator ---------- */
+const HWR=new Map();
+function hwRT(d){let r=HWR.get(d.id);if(!r){r={st:d.wiped?'wiped':!d.ok?(d.pin?'seed':'setup0'):'pinun',sel:0,buf:'',dig:0,pg:0,pend:null,tries:0,tmp:'',msg:'',next:'',rest:0};HWR.set(d.id,r)}return r}
+function hwBody(f){return f==='stick'?`<div class="hw stick"><button class="phys bl" aria-label="Left button"></button><button class="phys br" aria-label="Right button"></button><div class="scr"></div><div class="cover"></div></div>`:f==='sq'?`<div class="hw sq"><div class="scr"></div><button class="phys bl" aria-label="Left button"></button><button class="phys br" aria-label="Right button"></button><span class="brandmark">●</span></div>`:`<div class="hw touch"><div class="scr"></div></div>`}
+function deviceSheet(d,pend){
+  const M=HWM[d.m],f=M.f,r=hwRT(d),touch=f==='touch';
+  if(pend){r.pend=pend;if(r.st==='home'||r.st==='app')r.st='confirm',r.pg=0}
+  const el=h(`<div class="cb">${fhead(esc(d.n))}<div class="hwstage">${hwBody(f)}</div><p class="hwhint">${touch?'Tap the screen to use it.':f==='stick'?'Tap the two buttons on top to move. Tap the screen to press both buttons.':'Use the two buttons. Tap the screen to press both.'}</p><div class="dvinfo cb"></div></div>`);
+  const scr=$('.scr',el),apps=[...CXK,'LOCK'];
+  const go_=(st,extra)=>{r.st=st;Object.assign(r,extra||{});paint()};
+  const say=(m,next,ms)=>{r.st='msg';r.msg=m;r.next=next;paint();setTimeout(()=>{if(r.st==='msg'){r.st=r.next;paint()}},ms||1300)};
+  const unlocked=()=>!['pinun','setup0','pinset','pinconf','seed','ready','wiped','msg'].includes(r.st);
+  function submitPin(){const b=r.buf;r.buf='';r.dig=0;
+    if(r.st==='pinset'){r.tmp=b;go_('pinconf')}
+    else if(r.st==='pinconf'){if(b===r.tmp){d.pin=b;save(true);if(r.rest){r.rest=0;d.ok=1;d.wiped=0;save(true);say('Wallet restored','home')}else go_('seed',{pg:0})}else say('PINs did not match','pinset')}
+    else if(r.st==='pinun'){if(b===d.pin){r.tries=0;vib(15);go_(r.pend?'confirm':'home',{pg:0,sel:0})}else{r.tries++;vib(80);if(r.tries>=5){d.wiped=1;d.ok=0;save(true);say('Too many wrong PINs. Device wiped.','wiped',1800)}else say(`Wrong PIN · ${5-r.tries} tries left`,'pinun')}}}
+  function exec(){const p=r.pend,dst=p.to?wById(p.to):null;if((d.b[p.k]||0)<p.q+p.fee-1e-12){r.pend=null;say('Not enough funds','home');return}doSend(d,p.k,p.q,p.fee,p.to,p.ext);r.pend=null;vib([20,40,20]);burst(null,null,30,['#2156f5','#05a660','#fff']);toast(`Signed and sent ${famt(p.k,p.q)}`,'good');say('Transaction signed','home')}
+  function key(a){vib(6);const s=r.st;
+    if(s==='setup0'){if(a==='B')go_('pinset');return}
+    if(s==='pinset'||s==='pinconf'||s==='pinun'){if(a==='L')r.dig=(r.dig+9)%10;else if(a==='R')r.dig=(r.dig+1)%10;else{r.buf+=r.dig;r.dig=0;if(r.buf.length>=4){submitPin();return}}paint();return}
+    if(s==='seed'){if(a==='L')r.pg=Math.max(0,r.pg-1);else if(a==='R')r.pg=Math.min(5,r.pg+1);else if(r.pg===5){go_('ready');return}paint();return}
+    if(s==='ready'){if(a==='B'){d.ok=1;save(true);go_('home',{sel:0})}return}
+    if(s==='home'){if(a==='L')r.sel=(r.sel+apps.length-1)%apps.length;else if(a==='R')r.sel=(r.sel+1)%apps.length;else{if(apps[r.sel]==='LOCK'){go_('pinun');return}go_('app')}paint();return}
+    if(s==='app'){if(a==='B')go_('home');return}
+    if(s==='confirm'){const last=4;if(a==='L')r.pg=Math.max(0,r.pg-1);else if(a==='R')r.pg=Math.min(last+1,r.pg+1);else if(r.pg===last){exec();return}else if(r.pg===last+1){r.pend=null;say('Transaction rejected','home');return}paint();return}
+  }
+  function screen(){const s=r.st,p=r.pend;
+    const dots=`<div class="dots">${[0,1,2,3].map(i=>i<r.buf.length?'●':'○').join(' ')}</div>`;
+    if(s==='msg')return `<b>${r.msg}</b>`;
+    if(s==='wiped')return `<b>Device wiped</b><small>Restore it with your 24 words</small>`;
+    if(s==='setup0')return touch?`<b>Welcome</b><small>${M.n}</small><button data-a="go" class="tb">Get started</button>`:`<small>${M.n}</small><b>Welcome</b><small>Press both buttons</small>`;
+    if(s==='pinset'||s==='pinconf'||s==='pinun'){const t=s==='pinset'?'Choose a PIN':s==='pinconf'?'Confirm PIN':'Enter PIN';
+      return touch?`<small>${t}</small>${dots}<div class="kp">${[1,2,3,4,5,6,7,8,9].map(n=>`<button data-a="n${n}">${n}</button>`).join('')}<button data-a="del">⌫</button><button data-a="n0">0</button><button data-a="ok">✓</button></div>`:`<small>${t}</small>${dots}<b class="dg">‹ ${r.dig} ›</b>`}
+    if(s==='seed'){const per=4,w=d.seed.slice(r.pg*per,r.pg*per+per);return `<small>Words ${r.pg*per+1}–${r.pg*per+per} of 24</small><div class="sw">${w.map((x,i)=>`<span>${r.pg*per+i+1}. ${x}</span>`).join('')}</div>${touch?`<div class="row" style="gap:6px;justify-content:center">${r.pg?'<button data-a="pp" class="tb">Back</button>':''}<button data-a="${r.pg===5?'done':'np'}" class="tb">${r.pg===5?'I wrote them down':'Next'}</button></div>`:`<small>${r.pg===5?'Both buttons: done':'‹ ›'}</small>`}`}
+    if(s==='ready')return touch?`<b>Ready</b><small>Your wallet is set up</small><button data-a="rdy" class="tb">Open</button>`:`<b>Your device is ready</b><small>Press both buttons</small>`;
+    if(s==='home'){if(touch)return `<div class="tg">${CXK.map(k=>`<button data-a="ap${k}"><span style="color:${CX[k].c}">${CX[k].g}</span>${k}<small>${(d.b[k]||0)>0?famt(k,d.b[k]).split(' ')[0]:'0'}</small></button>`).join('')}</div><button data-a="lock" class="tb ghost">Lock</button>`;
+      const k=apps[r.sel];return k==='LOCK'?`<small>‹ Settings ›</small><b>Lock device</b>`:`<small>‹ ${r.sel+1}/${apps.length} ›</small><b class="gl" style="color:${CX[k].c}">${CX[k].g}</b><b>${CX[k].n}</b>`}
+    if(s==='app'){const k=touch?r.ak:apps[r.sel];return `<b class="gl" style="color:${CX[k].c}">${CX[k].g}</b><b>${famt(k,d.b[k]||0)}</b><small>${fusd((d.b[k]||0)*S.cx.p[k])}</small><small class="ad">${shortA(addrOf(d,k))}</small>${touch?'<button data-a="home" class="tb">Back</button>':'<small>Both buttons: back</small>'}`}
+    if(s==='confirm'&&p){const pages=[['Review','transaction'],['Amount',famt(p.k,p.q)],['To',shortA(p.to?addrOf(wById(p.to),p.k):p.ext)],['Fee',famt(p.k,p.fee)],['Accept','and send'],['Reject','transaction']];
+      if(touch)return `<small>Send</small><b>${famt(p.k,p.q)}</b><small>to ${esc(shortA(p.to?addrOf(wById(p.to),p.k):p.ext))}</small><small>fee ${famt(p.k,p.fee)}</small><button class="tb hold" data-hold="1"><i></i><span>Hold to sign</span></button><button data-a="rej" class="tb ghost">Reject</button>`;
+      const pg=pages[r.pg];return `<small>${r.pg>0?'‹ ':''}${pg[0]}${r.pg<5?' ›':''}</small><b>${pg[1]}</b>${r.pg===4?'<small>Both buttons to sign</small>':r.pg===5?'<small>Both buttons to reject</small>':''}`}
+    return `<b>${M.n}</b>`}
+  function info(){const ib=$('.dvinfo',el),ks=CXK.filter(k=>d.b[k]>0);
+    ib.innerHTML=`<div class="cbbal"><span>${d.wiped?'Wiped · restore to access':unlocked()?'Unlocked':'Locked'}</span><b>${fusd(wVal(d))}</b></div>
+      ${ks.map(k=>`<div class="cbrow">${cxIcon(k)}<span><b>${CX[k].n}</b><small>${famt(k,d.b[k])}</small></span><span class="r"><b>${fusd(d.b[k]*S.cx.p[k])}</b></span></div>`).join('')||'<p class="mute small">No coins on this device yet. Deposit some for cold storage.</p>'}
+      <div class="grid2"><button class="btn" data-x="dep">Deposit</button><button class="btn ghost" data-x="snd">Send out</button><button class="btn ghost sm" data-x="seed">Recovery phrase</button><button class="btn ghost sm" data-x="ren">Rename</button></div>
+      ${d.wiped?'<button class="btn wide" data-x="rest">Restore from recovery phrase</button>':''}`;
+    $('[data-x=dep]',ib).onclick=()=>sendFlow({to:d.id});
+    $('[data-x=snd]',ib).onclick=()=>{if(d.wiped){toast('Restore the device first','bad');return}sendFlow({from:d.id})};
+    $('[data-x=ren]',ib).onclick=()=>renameSheet(d);
+    $('[data-x=seed]',ib).onclick=()=>{if(!unlocked()){toast('Unlock the device first','bad');vib(40);return}const c=h(`<div class="confirm"><h3>Recovery phrase</h3><p class="mute small">24 words. Tap to reveal. Anyone with these words owns this device's coins.</p><div class="seedgrid">${d.seed.map((s,i)=>`<span><i>${i+1}</i>${s}</span>`).join('')}</div><button class="btn wide">Close</button></div>`);$('.seedgrid',c).onclick=e=>e.currentTarget.classList.add('show');$('button',c).onclick=closeSheet;sheet(c)};
+    const rs_=$('[data-x=rest]',ib);if(rs_)rs_.onclick=()=>restoreFlow(d);
+  }
+  function paint(){scr.className='scr st-'+r.st;scr.innerHTML=screen();info();
+    $$('[data-a]',scr).forEach(b=>b.onclick=e=>{e.stopPropagation();vib(6);const a=b.dataset.a;
+      if(a==='go')go_('pinset');else if(/^n\d$/.test(a)){r.buf+=a[1];if(r.buf.length>=4)submitPin();else paint()}else if(a==='del'){r.buf=r.buf.slice(0,-1);paint()}else if(a==='ok'){if(r.buf.length>=4)submitPin()}
+      else if(a==='np'){r.pg++;paint()}else if(a==='pp'){r.pg--;paint()}else if(a==='done')go_('ready');else if(a==='rdy'){d.ok=1;save(true);go_('home')}
+      else if(a.startsWith('ap')){r.ak=a.slice(2);go_('app')}else if(a==='home')go_('home');else if(a==='lock')go_('pinun');else if(a==='rej'){r.pend=null;say('Rejected','home')}});
+    const hb=$('[data-hold]',scr);if(hb){let tm;const st=e=>{e.preventDefault();e.stopPropagation();hb.classList.add('on');vib(10);tm=setTimeout(exec,1200)},en=()=>{hb.classList.remove('on');clearTimeout(tm)};hb.addEventListener('pointerdown',st);hb.addEventListener('pointerup',en);hb.addEventListener('pointerleave',en);hb.addEventListener('pointercancel',en)}}
+  if(!touch){$('.bl',el).onclick=e=>{e.stopPropagation();key('L')};$('.br',el).onclick=e=>{e.stopPropagation();key('R')};scr.onclick=()=>key('B')}
+  paint();
+  const t=()=>{if(r.st==='home'||r.st==='app')paint();else info()};tickSubs.add(t);
+  sheet(el,()=>{tickSubs.delete(t);if(d.ok&&!d.wiped&&r.st!=='msg')r.st='pinun';else if(d.ok&&r.st==='msg')r.st='pinun';r.buf='';r.pend=null;if(cur==='wallet')setTimeout(()=>{if(!sheetClose)go('wallet',true)},300)});
+}
+function restoreFlow(d){const box=flowBox(),idx=[ri(0,7),ri(8,15),ri(16,23)];
+  const s=step=>{const i=idx[step],opts=[d.seed[i],...seedGen(8).filter(x=>x!==d.seed[i]).slice(0,3)].sort(()=>Math.random()-.5);
+    box.innerHTML=`${fhead('Restore '+esc(d.n))}<p class="mute" style="margin:10px 0 14px;text-align:center">Enter word <b style="color:var(--txt)">#${i+1}</b> of your recovery phrase</p><div class="grid2">${opts.map(o=>`<button class="btn ghost" data-o="${o}">${o}</button>`).join('')}</div><p class="mute small" style="text-align:center;margin-top:12px">${step+1} of 3 · you saw these words when you set the device up</p>`;
+    $$('[data-o]',box).forEach(b=>b.onclick=()=>{if(b.dataset.o!==d.seed[i]){toast('Wrong word','bad');vib(60);return}if(step<2)s(step+1);else{d.wiped=0;d.ok=0;const r=hwRT(d);r.st='pinset';r.rest=1;r.buf='';save(true);closeSheet();setTimeout(()=>deviceSheet(d),320);toast('Phrase accepted · choose a new PIN','good')}})};
+  s(0)}
+function resetSheet(){const hv=S.hw.reduce((a,d)=>a+wVal(d),0);
+  const c=h(`<div class="confirm"><h3>Start over?</h3><p class="mute small">This wipes your cash, collection, coins, wallets and Blacksite ledger. Your hardware wallets can come with you${S.hw.length?`: they hold ${fmt(hv)} right now`:''}.</p><button class="btn wide" id="rk">Start over · keep hardware wallets</button><button class="btn red wide" id="ra">Wipe everything</button><button class="btn ghost wide" id="rc">Cancel</button></div>`);
+  const doR=keep=>{const t=S.t,hw=S.hw,cx=S.cx,prof=S.prof;S=DEF();S.t=t+1;S.prof=prof;S.cx=cx;if(keep)S.hw=hw;HWR.clear();writeLocal();cloudDirty=true;cloudPush();updBal(true);closeSheet();go('home',true);toast(keep?'Fresh start · your hardware wallets came with you':'Fresh start · $10,000','good')};
+  $('#rk',c).onclick=()=>doR(true);$('#ra',c).onclick=()=>doR(false);$('#rc',c).onclick=closeSheet;sheet(c)}
+
+const VIEWS={home:homeView,casino:casinoView,trade:tradeView,wallet:walletView,lab:labView,shop:shopView};
 
 /* ---------- boot ---------- */
 (function boot(){
   if(S.t){const away=Math.min(Date.now()-S.t,8*3600e3)/1000,r=rentPerSec();
     if(away>60){S.lab.heat=Math.max(0,S.lab.heat-away*0.07);if(r>0){const a=r*away;S.cash+=a;setTimeout(()=>toast(`Rent collected while you were away · ${fmt(a)}`,'good'),700)}}}
-  for(const c of S.coins)if(!c.ic)c.ic=mkIcon(c.name);if(!S.prof.av)S.prof.av=mkIcon('');renderPfb();$('#pfb').onclick=()=>{vib(8);profileSheet()};
+  cxInit();for(const c of S.coins)if(!c.ic)c.ic=mkIcon(c.name);if(!S.prof.av)S.prof.av=mkIcon('');renderPfb();$('#pfb').onclick=()=>{vib(8);profileSheet()};
   writeLocal();updBal(true);go('home',true);
   setTimeout(cloudInit,50);
 })();
