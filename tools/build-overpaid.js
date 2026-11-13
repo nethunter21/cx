@@ -1,12 +1,12 @@
-// Builds the installable home-screen version of Noir Capital into /noir
-// from the single source file noir-capital.html, and renders the app icons.
-// Usage: node tools/build-noir.js
+// Builds the installable home-screen version of Overpaid into /overpaid
+// from the single source file overpaid.html, and renders the app icons.
+// Usage: node tools/build-overpaid.js
 const fs = require('fs');
 const path = require('path');
 
 const root = path.join(__dirname, '..');
-const src = fs.readFileSync(path.join(root, 'noir-capital.html'), 'utf8');
-const out = path.join(root, 'noir');
+const src = fs.readFileSync(path.join(root, 'overpaid.html'), 'utf8');
+const out = path.join(root, 'overpaid');
 fs.mkdirSync(out, { recursive: true });
 
 const head = `<!doctype html>
@@ -17,8 +17,8 @@ const head = `<!doctype html>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Noir">
-<meta name="application-name" content="Noir Capital">
+<meta name="apple-mobile-web-app-title" content="Overpaid">
+<meta name="application-name" content="Overpaid">
 <meta name="theme-color" content="#060608">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
@@ -31,8 +31,8 @@ const head = `<!doctype html>
 fs.writeFileSync(path.join(out, 'index.html'), head + src + '\n</body>\n</html>\n');
 
 fs.writeFileSync(path.join(out, 'manifest.webmanifest'), JSON.stringify({
-  name: 'Noir Capital',
-  short_name: 'Noir',
+  name: 'Overpaid',
+  short_name: 'Overpaid',
   description: 'A fake-money rich-life simulator.',
   start_url: './',
   scope: './',
@@ -64,5 +64,5 @@ fs.writeFileSync(path.join(out, 'icon.svg'), svg);
     await p.close();
   }
   await b.close();
-  console.log('built noir/');
+  console.log('built overpaid/');
 })();
