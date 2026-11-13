@@ -63,8 +63,8 @@ main{position:relative;z-index:2;flex:1;overflow-y:auto;overflow-x:hidden;-webki
 .view{animation:vin .45s cubic-bezier(.2,.8,.2,1)}
 @keyframes vin{from{opacity:0;transform:translateY(14px) scale(.985)}}
 
-nav.dock{position:relative;z-index:6;display:grid;grid-template-columns:repeat(6,1fr);gap:2px;padding-block:8px;padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px));border-top:1px solid var(--line);background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(16px)}
-.dock button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;border-radius:12px;color:var(--mute);font-size:10px;font-weight:600;letter-spacing:.03em;transition:color .25s,transform .2s}
+nav.dock{position:relative;z-index:6;display:grid;grid-template-columns:repeat(7,1fr);gap:2px;padding-block:8px;padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px));border-top:1px solid var(--line);background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(16px)}
+.dock button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;border-radius:12px;color:var(--mute);font-size:9.5px;font-weight:600;letter-spacing:0;transition:color .25s,transform .2s}
 .dock button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
 .dock button.on{color:var(--txt)}
 .dock button.on svg{transform:translateY(-2px) scale(1.12);filter:drop-shadow(0 0 8px var(--acc))}
@@ -520,88 +520,90 @@ details.how b{color:var(--txt)}
 .thm{display:flex;gap:8px;flex-wrap:wrap}
 .thm button{width:42px;height:42px;border-radius:12px;border:2px solid transparent;box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
 .thm button.on{border-color:#fff}
-/* ============ WALLET (light exchange theme) ============ */
-#app[data-zone=wallet],.sheet[data-zone=wallet]{--bg:#ffffff;--panel:#ffffff;--panel2:#f3f5f8;--line:#e6e9ef;--txt:#0a0b0d;--mute:#5b616e;--acc:#2156f5;--acc2:#2156f5;--glow:rgba(33,86,245,.16);--up:#05a660;--dn:#d6334b;color-scheme:light}
+/* ============ WALLET (dark exchange theme) ============ */
+#app[data-zone=wallet],.sheet[data-zone=wallet]{--bg:#0a0b0d;--panel:#141519;--panel2:#1e2025;--line:#2a2d35;--txt:#ffffff;--mute:#8a919e;--acc:#578bfa;--acc2:#578bfa;--glow:rgba(87,139,250,.18);--up:#2ebd85;--dn:#f0616d;color-scheme:dark}
 #app[data-zone=wallet] #grain,#app[data-zone=wallet] #aura{display:none}
-#app[data-zone=wallet] .logo .brandw{background:linear-gradient(180deg,#0a0b0d,#2156f5);-webkit-background-clip:text;background-clip:text}
-#app[data-zone=wallet] .bal{background:#f3f5f8;border-color:#e6e9ef;box-shadow:none}
-#app[data-zone=wallet] nav.dock{background:rgba(255,255,255,.92)}
-#app[data-zone=wallet] .dock button.on svg{filter:none;color:var(--acc)}
+#app[data-zone=wallet] .bal{background:var(--panel2);border-color:var(--line);box-shadow:none}
+#app[data-zone=wallet] nav.dock{background:rgba(10,11,13,.94)}
 #app[data-zone=wallet] .dock button.on{color:var(--acc)}
-.sheet[data-zone=wallet]{background:#fff;border-top:0;box-shadow:0 -10px 40px rgba(0,0,0,.2)}
+#app[data-zone=wallet] .dock button.on svg{filter:none}
+.sheet[data-zone=wallet]{background:var(--panel);border-top:1px solid var(--line);box-shadow:0 -10px 40px rgba(0,0,0,.6)}
 .sheet[data-zone=wallet]::before{display:none}
-.sheet[data-zone=wallet] .grab{background:#d9dde4}
-#app[data-zone=wallet] .btn,.sheet[data-zone=wallet] .btn{background:var(--acc);color:#fff;box-shadow:none;border-radius:999px;height:52px;font-weight:600}
+#app[data-zone=wallet] .btn,.sheet[data-zone=wallet] .btn{background:var(--acc);color:#0a0b0d;box-shadow:none;border-radius:999px;height:52px;font-weight:600}
 #app[data-zone=wallet] .btn::after,.sheet[data-zone=wallet] .btn::after{display:none}
-#app[data-zone=wallet] .btn.ghost,.sheet[data-zone=wallet] .btn.ghost{background:#eef0f3;color:var(--txt);border:0}
+#app[data-zone=wallet] .btn.ghost,.sheet[data-zone=wallet] .btn.ghost{background:var(--panel2);color:var(--txt);border:0}
 #app[data-zone=wallet] .btn.sm,.sheet[data-zone=wallet] .btn.sm{height:40px;padding:0 16px;font-size:14px}
-.sheet[data-zone=wallet] .btn.red{background:var(--dn)}
-.sheet[data-zone=wallet] .chip{background:#fff;border-color:var(--line);color:var(--txt)}
-.sheet[data-zone=wallet] .tinp{background:#f3f5f8;border-color:var(--line)}
+.sheet[data-zone=wallet] .btn.red{background:var(--dn);color:#fff}
+.sheet[data-zone=wallet] .chip{background:var(--panel);border-color:var(--line);color:var(--txt)}
+.sheet[data-zone=wallet] .tinp{background:var(--panel2);border-color:var(--line)}
 .cb{display:flex;flex-direction:column;gap:18px}
 .cbt{font-size:30px;font-weight:700;letter-spacing:-.02em;font-family:var(--f-body);padding-top:8px}
-.seg{display:flex;background:#eef0f3;border-radius:999px;padding:4px;gap:2px}
+.seg{display:flex;background:var(--panel2);border-radius:999px;padding:4px;gap:2px}
 .seg button{flex:1;height:38px;border-radius:999px;font-size:14px;font-weight:600;color:var(--mute);transition:all .2s}
-.seg button.on{background:#fff;color:var(--txt);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.seg button.on{background:color-mix(in srgb,var(--txt) 13%,var(--panel2));color:var(--txt)}
 .cbbal span{font-size:14px;color:var(--mute);font-weight:500}
 .cbbal b{display:block;font-size:clamp(34px,10vw,44px);font-weight:700;letter-spacing:-.025em;margin:2px 0;font-variant-numeric:tabular-nums}
 .cbbal em{font-style:normal;font-size:14px;font-weight:600}
 .cbchart{position:relative;height:180px;touch-action:none;margin:0 -4px}
 .cbchart svg{width:100%;height:100%;display:block}
-.cbdot{position:absolute;width:12px;height:12px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 5px rgba(33,86,245,.14);transform:translate(-50%,-50%);pointer-events:none}
-.cbline{position:absolute;top:0;bottom:0;width:1px;background:#cfd4dc;pointer-events:none}
+.cbdot{position:absolute;width:12px;height:12px;border-radius:50%;border:2px solid var(--bg);box-shadow:0 0 0 5px rgba(87,139,250,.18);transform:translate(-50%,-50%);pointer-events:none}
+.cbline{position:absolute;top:0;bottom:0;width:1px;background:#3a3e48;pointer-events:none}
 .ranges{display:flex;justify-content:space-between}
 .ranges button{padding:7px 11px;border-radius:999px;font-size:13px;font-weight:600;color:var(--mute)}
-.ranges button.on{background:#eef3ff;color:var(--acc)}
+.ranges button.on{background:rgba(87,139,250,.16);color:var(--acc)}
 .acts{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
 .acts button{display:flex;flex-direction:column;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--txt)}
 .acts i{width:52px;height:52px;border-radius:50%;background:var(--acc);display:grid;place-items:center;transition:transform .15s}
 .acts button:active i{transform:scale(.9)}
-.acts svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.acts svg{width:22px;height:22px;stroke:#0a0b0d;fill:none;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
 .cbh2{font-size:20px;font-weight:700;letter-spacing:-.01em;margin-bottom:4px;font-family:var(--f-body)}
-.cbrow{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 0;width:100%;text-align:left;border-bottom:1px solid var(--line)}
+.cbrow{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 0;width:100%;text-align:left;border-bottom:1px solid var(--line);color:var(--txt)}
 .cbrow:last-child{border-bottom:0}
 .cbrow b{display:block;font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cbrow small{display:block;font-size:13px;color:var(--mute);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cbrow .r{text-align:right}
 .cbrow .r small.up{color:var(--up)}.cbrow .r small.dn{color:var(--dn)}
-.cxi{display:inline-grid;place-items:center;border-radius:50%;background:var(--c);color:#fff;font-weight:700;flex:0 0 auto;font-family:var(--f-body);line-height:1;box-shadow:inset 0 -2px 0 rgba(0,0,0,.12)}
+.cxi{display:inline-grid;place-items:center;border-radius:50%;background:var(--c);color:#fff;font-weight:700;flex:0 0 auto;font-family:var(--f-body);line-height:1;box-shadow:inset 0 -2px 0 rgba(0,0,0,.15)}
 .movers{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding:2px}
 .movers::-webkit-scrollbar{display:none}
-.mv{flex:0 0 124px;border:1px solid var(--line);border-radius:16px;padding:12px;text-align:left;display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.mv{flex:0 0 124px;border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:12px;text-align:left;display:flex;flex-direction:column;gap:6px;align-items:flex-start;color:var(--txt)}
 .mv b{font-size:15px}.mv span{font-size:13px;color:var(--mute)}
 .pill{display:inline-block;padding:3px 8px;border-radius:999px;font-size:12px;font-weight:700}
-.pill.up{background:#e6f7ef;color:var(--up)}.pill.dn{background:#fdecee;color:var(--dn)}
-.cbcard{border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:6px;text-align:left;width:100%;background:#fff;color:var(--txt)}
-button.cbcard:active{background:#f7f8fa}
+.pill.up{background:rgba(46,189,133,.14);color:var(--up)}.pill.dn{background:rgba(240,97,109,.14);color:var(--dn)}
+.pill.warn{background:rgba(240,97,109,.14);color:var(--dn)}
+.cbcard{border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:6px;text-align:left;width:100%;background:var(--panel);color:var(--txt)}
+button.cbcard:active{background:var(--panel2)}
+.cashc{background:linear-gradient(135deg,rgba(46,189,133,.16),rgba(87,139,250,.1) 60%,var(--panel));gap:12px}
+.frz{background:linear-gradient(135deg,rgba(120,190,255,.2),rgba(240,97,109,.12));border-color:rgba(160,210,255,.5)}
+.frz b{color:#bfe3ff}
 .fh{display:grid;grid-template-columns:40px 1fr 40px;align-items:center;margin-bottom:8px}
 .fh b{text-align:center;font-size:17px;font-weight:700}
-.sheet[data-zone=wallet] .back{background:#f3f5f8;border:0}
-.sheet[data-zone=wallet] .back svg{stroke:#0a0b0d}
+.sheet[data-zone=wallet] .back{background:var(--panel2);border:0}
 .amt{display:flex;flex-direction:column;align-items:center;gap:6px;padding:18px 0 8px;text-align:center}
 .amt b{font-size:clamp(44px,15vw,64px);font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
 .amt span{font-size:14px;color:var(--mute)}
 .keys{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:10px 0 12px}
 .keys button{height:54px;font-size:24px;font-weight:600;border-radius:14px;color:var(--txt)}
-.keys button:active{background:#eef0f3}
+.keys button:active{background:var(--panel2)}
 .rv{display:flex;flex-direction:column}
 .rv div{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);font-size:15px}
 .rv div span{color:var(--mute)}
 .rv div b{font-weight:600;text-align:right;overflow-wrap:anywhere}
 .okc{width:84px;height:84px;border-radius:50%;background:var(--up);display:grid;place-items:center;margin:24px auto 8px;animation:pop .5s cubic-bezier(.2,1.6,.4,1)}
-.okc svg{width:44px;height:44px;stroke:#fff;stroke-width:3.2;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:30;stroke-dashoffset:30;animation:draw .45s .25s forwards}
+.okc svg{width:44px;height:44px;stroke:#0a0b0d;stroke-width:3.2;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:30;stroke-dashoffset:30;animation:draw .45s .25s forwards}
 @keyframes draw{to{stroke-dashoffset:0}}
 .seedgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;filter:blur(7px);transition:filter .3s;cursor:pointer}
 .seedgrid.show{filter:none}
 .seedgrid span{padding:8px;border-radius:10px;background:var(--panel2);font-size:13px;font-family:var(--f-num);color:var(--txt)}
 .seedgrid span i{font-style:normal;color:var(--mute);margin-right:4px}
-.addr{font-family:var(--f-num);font-size:13px;word-break:break-all;background:#f3f5f8;border-radius:12px;padding:12px;-webkit-user-select:all;user-select:all}
+.addr{font-family:var(--f-num);font-size:13px;word-break:break-all;background:var(--panel2);border-radius:12px;padding:12px;-webkit-user-select:all;user-select:all}
 .picker{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px}
 .picker::-webkit-scrollbar{display:none}
-.picker button{flex:0 0 auto;display:flex;align-items:center;gap:8px;padding:7px 14px 7px 8px;border-radius:999px;border:1px solid var(--line);font-size:14px;font-weight:600;color:var(--txt);background:#fff}
-.picker button.on{border-color:var(--acc);background:#eef3ff;color:var(--acc)}
+.picker button{flex:0 0 auto;display:flex;align-items:center;gap:8px;padding:7px 14px 7px 8px;border-radius:999px;border:1px solid var(--line);font-size:14px;font-weight:600;color:var(--txt);background:var(--panel)}
+.picker button.on{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 16%,var(--panel));color:var(--acc)}
+.qrc{width:156px;height:156px;border-radius:18px;background:#fff;padding:8px;display:grid;place-items:center}
 /* hardware devices */
-.hwstage{display:grid;place-items:center;padding:34px 0 26px;background:radial-gradient(60% 70% at 50% 40%,#eef1f6,#fafbfc);border-radius:22px}
+.hwstage{display:grid;place-items:center;padding:34px 0 26px;background:radial-gradient(60% 70% at 50% 40%,#22252c,#121317);border-radius:22px;border:1px solid var(--line)}
 .hw{position:relative;box-shadow:0 22px 34px -12px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.18)}
 .hw .phys{position:absolute;background:#2a2b30;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 2px 3px rgba(0,0,0,.4);transition:transform .08s}
 .hw .phys::before{content:"";position:absolute;inset:-12px}
@@ -645,6 +647,107 @@ button.cbcard:active{background:#f7f8fa}
 .hwhint{font-size:12px;color:var(--mute);text-align:center;margin:-6px 0 0}
 .pfb img,.pfav img,.socav img{width:100%;height:100%;object-fit:cover;display:block}
 
+/* ============ SOCIAL ============ */
+#app[data-zone=social],.sheet[data-zone=social]{--bg:#000000;--panel:#0c0c0c;--panel2:#161616;--line:#262626;--txt:#f5f5f5;--mute:#a8a8a8;--acc:#ff3d7f;--acc2:#ffb347;--glow:rgba(255,61,127,.22)}
+#app[data-zone=social] #aura{opacity:.2}
+#app[data-zone=social] #grain{display:none}
+.sheet[data-zone=social] .post{border-bottom:0;margin:0}
+.sch{display:flex;align-items:center;justify-content:space-between;padding:8px 0 10px}
+.slogo{font-family:var(--f-lux);font-style:italic;font-weight:600;font-size:36px;line-height:1;background:linear-gradient(90deg,#ffb347,#ff3d7f 50%,#a64dff);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:4px}
+.sicons{display:flex;gap:18px}
+.sicons button{position:relative;width:28px;height:28px}
+.sicons svg{width:27px;height:27px;stroke:var(--txt);fill:none;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+.sicons i{position:absolute;top:-4px;right:-7px;min-width:17px;height:17px;border-radius:9px;background:#ff3040;color:#fff;font-size:10px;font-style:normal;font-weight:700;display:grid;place-items:center;padding:0 4px;box-shadow:0 0 0 2px var(--bg)}
+.stories{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;padding:14px 2px 14px;border-bottom:1px solid var(--line);margin-bottom:6px}
+.stories::-webkit-scrollbar{display:none}
+.st{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:5px;width:70px;font-size:11px;color:var(--txt)}
+.st .ring{width:68px;height:68px;border-radius:50%;padding:3px;background:conic-gradient(from 200deg,#ffb347,#ff3d7f,#a64dff,#ffb347)}
+.st .ring.seen{background:#363636}
+.st .ring>span{display:block;width:100%;height:100%;border-radius:50%;overflow:hidden;border:3px solid #000;background:#111}
+.st .ring svg,.st .ring img{width:100%;height:100%;object-fit:cover;display:block}
+.st b{font-weight:400;max-width:70px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.post{margin:0 0 14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.post header{display:flex;align-items:center;gap:10px;padding:8px 0}
+.pav{width:34px;height:34px;border-radius:50%;overflow:hidden;flex:0 0 auto;box-shadow:0 0 0 2px #000,0 0 0 3.5px #ff3d7f;display:block}
+.pav svg,.pav img{width:100%;height:100%;object-fit:cover;display:block}
+.post header div{flex:1;min-width:0;line-height:1.25}
+.post header b{font-size:13.5px;font-weight:600}
+.post header small{display:block;font-size:11.5px;color:var(--mute)}
+.vf{display:inline-grid;place-items:center;width:14px;height:14px;border-radius:50%;background:#3897f0;color:#fff;font-size:9px;font-style:normal;margin-left:4px;vertical-align:1px}
+.pmw{position:relative;margin-inline:-16px;overflow:hidden}
+.pm{position:relative;aspect-ratio:1;width:100%;overflow:hidden}
+.pm.art{height:auto}
+.pmx{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;color:#fff;overflow:hidden}
+.pmx .big{font-family:var(--f-disp);font-weight:800;font-size:clamp(50px,17vw,96px);letter-spacing:-.03em;line-height:.95;position:relative;text-shadow:0 10px 40px rgba(0,0,0,.35)}
+.pmx .lbl2{font-family:var(--f-num);font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.85;position:relative}
+.pmx .q{font-family:var(--f-lux);font-style:italic;font-size:clamp(32px,10vw,52px);font-weight:600;text-shadow:0 6px 24px rgba(0,0,0,.5);position:relative;line-height:1.05}
+.pmx .ico{width:96px;height:96px;border-radius:28px;overflow:hidden;box-shadow:0 14px 30px rgba(0,0,0,.45)}
+.pmx .ico svg{width:100%;height:100%;display:block}
+.pmtag{position:absolute;left:12px;bottom:12px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.55);font-size:11px;font-weight:600;color:#fff;backdrop-filter:blur(6px);z-index:2}
+.heartpop{position:absolute;left:50%;top:50%;width:120px;height:120px;margin:-60px 0 0 -60px;pointer-events:none;opacity:0;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='white' d='M12 20.5s-7.5-4.6-7.5-10.4A4.2 4.2 0 0 1 12 7.4a4.2 4.2 0 0 1 7.5 2.7c0 5.8-7.5 10.4-7.5 10.4z'/></svg>") center/contain no-repeat;filter:drop-shadow(0 6px 20px rgba(0,0,0,.4));z-index:3}
+.heartpop.on{animation:hpop .95s ease-out}
+@keyframes hpop{0%{opacity:0;transform:scale(.3)}15%{opacity:1;transform:scale(1.15)}30%{transform:scale(.95)}45%{transform:scale(1)}80%{opacity:1}100%{opacity:0;transform:scale(1)}}
+.pact{display:flex;align-items:center;gap:16px;padding:10px 0 6px}
+.pact button svg{width:26px;height:26px;stroke:var(--txt);fill:none;stroke-width:1.8;display:block;stroke-linejoin:round;stroke-linecap:round}
+.pact button[data-like].on svg{fill:#ff3040;stroke:#ff3040;animation:pop .35s}
+.pact button[data-save].on svg{fill:var(--txt)}
+.pact span{flex:1}
+.ptxt{font-size:13.5px;line-height:1.4;display:flex;flex-direction:column;gap:3px;align-items:flex-start}
+.ptxt p{overflow-wrap:anywhere}
+.ptxt button{color:var(--mute);font-size:13.5px;padding:0}
+.ptxt small{color:var(--mute);font-size:11px;text-transform:uppercase;letter-spacing:.03em}
+.sprof{display:flex;flex-direction:column;gap:14px;padding-top:10px}
+.sph{display:flex;align-items:center;gap:18px}
+.sph .bigav{width:88px;height:88px;border-radius:50%;padding:3px;background:conic-gradient(from 200deg,#ffb347,#ff3d7f,#a64dff,#ffb347);flex:0 0 auto}
+.sph .bigav>span{display:block;width:100%;height:100%;border-radius:50%;overflow:hidden;border:3px solid #000}
+.sph .bigav svg,.sph .bigav img{width:100%;height:100%;object-fit:cover;display:block}
+.cnt{flex:1;display:grid;grid-template-columns:repeat(3,1fr);text-align:center;min-width:0}
+.cnt b{display:block;font-size:17px;font-weight:700}
+.cnt span{font-size:12.5px;color:var(--mute)}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-inline:-16px}
+.pgrid button{aspect-ratio:1;max-width:100%;position:relative;overflow:hidden;display:block}
+.pgrid .pm{position:absolute;inset:0;aspect-ratio:auto;height:100%}
+.pgrid .pmx .big{font-size:24px}.pgrid .pmx .q{font-size:14px}.pgrid .pmx .ico{width:30px;height:30px;border-radius:9px}.pgrid .pmx .lbl2{font-size:7px;letter-spacing:.08em}.pgrid .pmtag{display:none}
+.gl2{position:absolute;right:6px;bottom:6px;font-size:11px;font-weight:700;color:#fff;text-shadow:0 1px 4px #000;z-index:2}
+.nrow{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center;padding:8px 0;font-size:13.5px;line-height:1.35}
+.nrow .pav{width:44px;height:44px}
+.nrow small{color:var(--mute)}
+.nthumb{width:44px;height:44px;border-radius:4px;overflow:hidden;position:relative;display:block}
+.nthumb .pm{position:absolute;inset:0;aspect-ratio:auto;height:100%}
+.nthumb .pmx *{display:none}
+.deal{border:1px solid rgba(255,179,71,.4);background:linear-gradient(135deg,rgba(255,179,71,.14),rgba(255,61,127,.08));border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px;margin-bottom:8px}
+.storyov{position:fixed;inset:0;z-index:82;background:#000;display:flex;flex-direction:column;animation:fade .2s;color:#fff}
+.sbars{display:flex;gap:3px;padding:calc(10px + env(safe-area-inset-top,0px)) 10px 8px}
+.sbars i{flex:1;height:2.5px;border-radius:2px;background:rgba(255,255,255,.3);overflow:hidden}
+.sbars i b{display:block;height:100%;width:0;background:#fff}
+.sbars i.done b{width:100%}
+.shd{display:flex;align-items:center;gap:10px;padding:0 12px 10px;font-size:13px}
+.shd .pav{width:32px;height:32px}
+.sx{width:36px;height:36px;font-size:18px;color:#fff}
+.sframe{flex:1;position:relative;overflow:hidden;border-radius:12px;margin:0 6px calc(14px + env(safe-area-inset-bottom,0px))}
+.sframe .pm{position:absolute;inset:0;aspect-ratio:auto;height:100%}
+.cmts{display:flex;flex-direction:column;gap:14px;max-height:52vh;overflow:auto}
+.cmt{display:grid;grid-template-columns:32px minmax(0,1fr);gap:10px;font-size:13.5px;line-height:1.35}
+.cmt .pav{width:32px;height:32px;box-shadow:none}
+.cin{display:flex;gap:8px;align-items:center}
+.pmprev{margin-inline:-16px}
+.dock button.badge{position:relative}
+.dock button.badge::after{content:"";position:absolute;top:4px;left:calc(50% + 8px);width:8px;height:8px;border-radius:50%;background:#ff3040;box-shadow:0 0 0 2px var(--bg)}
+/* balance pill as a currency switch */
+button.bal{cursor:pointer}
+.bal .cxi{box-shadow:none}
+.balk:empty{display:none}
+.logo svg{flex:0 0 auto}
+.logo .brandw{min-width:0;overflow:hidden;white-space:nowrap}
+.balk{font-style:normal;font-size:9px;font-weight:800;letter-spacing:.1em;color:var(--mute);padding-left:2px}
+.balk.dn{color:var(--dn)}
+#frzov{position:fixed;inset:0;z-index:75;display:grid;place-items:center;padding:24px;background:radial-gradient(70% 60% at 50% 40%,rgba(120,190,255,.28),rgba(5,10,20,.92));backdrop-filter:blur(6px);animation:fade .3s;color:#fff}
+.frzbox{max-width:360px;width:100%;text-align:center;display:flex;flex-direction:column;gap:12px}
+.frzi{font-size:64px;line-height:1;animation:pop .6s cubic-bezier(.2,1.6,.4,1);text-shadow:0 0 30px #9fd6ff}
+.frzbox h2{font-family:var(--f-disp);font-weight:800;font-size:34px;color:#cfeaff}
+.frzbox p{font-size:14px;line-height:1.5;color:rgba(255,255,255,.85)}
+.curchip{margin-top:8px}
+
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
 
@@ -654,7 +757,7 @@ button.cbcard:active{background:#f7f8fa}
   <div class="bar">
     <div class="logo" id="logo"><span class="brandw">OVERPAID</span></div>
     <button class="pfb" id="pfb" aria-label="Open profile"></button>
-    <div class="bal" id="bal"><span class="dot"></span><b id="balv" class="num">$0</b></div>
+    <button class="bal" id="bal" aria-label="Choose what you play with"><span class="dot" id="balc"></span><b id="balv" class="num">$0</b><i class="balk" id="balk">CASH</i></button>
   </div>
   <main id="main"></main>
   <nav class="dock" id="dock">
@@ -662,6 +765,7 @@ button.cbcard:active{background:#f7f8fa}
     <button data-v="casino"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.3"/><circle cx="16" cy="16" r="1.3"/><circle cx="12" cy="12" r="1.3"/></svg>Casino</button>
     <button data-v="trade"><svg viewBox="0 0 24 24"><path d="M3 17l5-6 4 4 8-9"/><path d="M15 6h5v5"/></svg>Trade</button>
     <button data-v="wallet"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="3"/><path d="M3 10h18"/><circle cx="16.5" cy="15" r="1.3"/><path d="M6 6l9-3 1 3"/></svg>Wallet</button>
+    <button data-v="social"><svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-7.5-10.4A4.2 4.2 0 0 1 12 7.4a4.2 4.2 0 0 1 7.5 2.7c0 5.8-7.5 10.4-7.5 10.4z"/></svg>Social</button>
     <button data-v="lab"><svg viewBox="0 0 24 24"><path d="M12 3c-5 0-8 3.5-8 8 0 3 1.5 5 3 6v3h10v-3c1.5-1 3-3 3-6 0-4.5-3-8-8-8z"/><circle cx="9" cy="11" r="1.6"/><circle cx="15" cy="11" r="1.6"/><path d="M10 20v-2M14 20v-2"/></svg>Blacksite</button>
     <button data-v="shop"><svg viewBox="0 0 24 24"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg>Maison</button>
   </nav>
@@ -703,9 +807,10 @@ $('#logo').insertAdjacentHTML('afterbegin',LOGO(110));
 const KEY='noircap.v2';
 const DEF=()=>({v:2,cash:10000,bet:10,owned:{},pos:{},coins:[],stats:{w:0,won:0,best:0,bestM:0,games:0,rugs:0,launched:0},daily:0,t:0,qb:100,tf:1,guide:1,
   lab:{dirty:0,heat:0,ops:{air:1},cd:{},q:[],led:[],raids:0,washed:0,drained:0,fixer:0},
+  cur:'USD',kyc:{frz:0,x:0,n:0,why:''},soc:{fol:120,fg:186,posts:[],notif:[],np:0,since:Date.now()},
   cx:null,wl:[{id:'main',n:'Trading account',k:'acct',b:{}}],hw:[],wtx:[],
   tr:[],pc:{th:'neon',pat:'glow',usd:1,mc:1,cap:''},prof:{name:'',handle:'',av:null,sign:{text:'OVERPAID',st:'neon',col:'#ff4fd8',rot:1,sp:1},soc:{},pri:'ig'}});
-function merge(d){const b=DEF();const o=Object.assign(b,d||{});o.stats=Object.assign(DEF().stats,(d&&d.stats)||{});o.lab=Object.assign(DEF().lab,(d&&d.lab)||{});o.prof=Object.assign(DEF().prof,(d&&d.prof)||{});o.prof.sign=Object.assign(DEF().prof.sign,o.prof.sign||{});o.prof.soc=o.prof.soc||{};o.pc=Object.assign(DEF().pc,(d&&d.pc)||{});if(!Array.isArray(o.tr))o.tr=[];if(!Array.isArray(o.wl)||!o.wl.length)o.wl=DEF().wl;if(!Array.isArray(o.hw))o.hw=[];if(!Array.isArray(o.wtx))o.wtx=[];
+function merge(d){const b=DEF();const o=Object.assign(b,d||{});o.stats=Object.assign(DEF().stats,(d&&d.stats)||{});o.lab=Object.assign(DEF().lab,(d&&d.lab)||{});o.prof=Object.assign(DEF().prof,(d&&d.prof)||{});o.prof.sign=Object.assign(DEF().prof.sign,o.prof.sign||{});o.prof.soc=o.prof.soc||{};o.pc=Object.assign(DEF().pc,(d&&d.pc)||{});if(!Array.isArray(o.tr))o.tr=[];if(!Array.isArray(o.wl)||!o.wl.length)o.wl=DEF().wl;if(!Array.isArray(o.hw))o.hw=[];if(!Array.isArray(o.wtx))o.wtx=[];o.kyc=Object.assign({frz:0,x:0,n:0,why:''},(d&&d.kyc)||{});o.soc=Object.assign(DEF().soc,(d&&d.soc)||{});
   if(!Array.isArray(o.coins)||(o.coins[0]&&!o.coins[0].k))o.coins=[];
   for(const id in o.pos){if(!o.coins.find(c=>c.id===id))delete o.pos[id]}
   return o}
@@ -748,15 +853,18 @@ setInterval(writeLocal,10000);
 /* ---------- money ---------- */
 let shown=S.cash,balRaf=0;
 function updBal(instant){
-  const el=$('#balv'),target=S.cash,from=shown;cancelAnimationFrame(balRaf);
+  const el=$('#balv'),target=activeBal(),from=shown;cancelAnimationFrame(balRaf);balChip();
   if(instant){shown=target;el.textContent=fmt(target,target<1e5);return}
   const t0=performance.now(),d=500;
   const f=now=>{const k=Math.min(1,(now-t0)/d),e=1-Math.pow(1-k,3);shown=from+(target-from)*e;el.textContent=fmt(shown,shown<1e5);if(k<1)balRaf=requestAnimationFrame(f)};
   balRaf=requestAnimationFrame(f);
   const b=$('#bal');b.classList.remove('flash-up','flash-dn');void b.offsetWidth;if(target!==from)b.classList.add(target>from?'flash-up':'flash-dn');
 }
-function spend(x){if(!(x>0)||x>S.cash+1e-9){toast('Not enough cash','bad');const b=$('#bal');b.classList.add('shake');setTimeout(()=>b.classList.remove('shake'),500);return false}S.cash-=x;updBal();save(true);return true}
-function earn(x){S.cash+=x;updBal();save(true)}
+function noFunds(m){toast(m||'Not enough balance','bad');const b=$('#bal');b.classList.add('shake');setTimeout(()=>b.classList.remove('shake'),500);return false}
+function spendCash(x){if(!(x>0)||x>S.cash+1e-9)return noFunds('Not enough cash. Cash out some crypto in Wallet.');S.cash-=x;updBal();save(true);return true}
+function spend(x){const k=curK();if(k==='USD')return spendCash(x);if(!(x>0))return false;if(frozen()){noFunds('Your exchange account is frozen');kycSheet();return false}const w=mainW(),q=x/S.cx.p[k];if(q>(w.b[k]||0)+1e-12)return noFunds(`Not enough ${k} in your trading account`);const tq=takeCoin(w,k,q);updBal();save(true);if(tq>0)setTimeout(()=>kycCheck(tq*S.cx.p[k],'played with'),300);return true}
+function earnCash(x){S.cash+=x;updBal();save(true)}
+function earn(x){const k=curK();if(k==='USD')return earnCash(x);addCoin(mainW(),k,x/S.cx.p[k],0);updBal();save(true)}
 function bet(x){if(!(x>=0.01)){toast('Set a bet first','bad');return false}if(!spend(x))return false;S.stats.w+=x;S.stats.games++;return true}
 function win(amount,b,mult){
   earn(amount);S.stats.won+=amount;const profit=amount-b;
@@ -998,39 +1106,44 @@ function signals(c){
   return s;
 }
 
-/* ---------- blacksite data ---------- */
+/* ---------- blacksite data: everything dirty is crypto ---------- */
 const OPS=[
- {id:'air',n:'Fake Airdrop',d:'Spam a “claim free tokens” page at fresh wallets.',cost:0,lo:400,hi:2600,heat:5,cd:20,ok:.9},
- {id:'mint',n:'Ghost Mint',d:'Clone a hyped NFT drop page for one night.',cost:25000,lo:4000,hi:30000,heat:10,cd:45,ok:.82},
- {id:'srv',n:'Server Hijack',d:'Take over a big community’s announcement channel.',cost:180000,lo:40000,hi:280000,heat:18,cd:90,ok:.75},
- {id:'whale',n:'Whale Hunt',d:'A months-long con on one very rich wallet.',cost:1500000,lo:350000,hi:3200000,heat:30,cd:180,ok:.65},
- {id:'heist',n:'Exchange Heist',d:'Hit the hot wallet of a fictional exchange.',cost:20000000,lo:5e6,hi:6e7,heat:55,cd:420,ok:.5},
+ {id:'air',n:'Fake Airdrop',d:'Spam a “claim free tokens” page at fresh wallets.',cost:0,lo:400,hi:2600,heat:5,cd:20,ok:.9,k:['SOL','USDC']},
+ {id:'mint',n:'Ghost Mint',d:'Clone a hyped NFT drop page for one night.',cost:25000,lo:4000,hi:30000,heat:10,cd:45,ok:.82,k:['ETH','SOL']},
+ {id:'srv',n:'Server Hijack',d:'Take over a big community’s announcement channel.',cost:180000,lo:40000,hi:280000,heat:18,cd:90,ok:.75,k:['ETH','SOL','USDC']},
+ {id:'whale',n:'Whale Hunt',d:'A months-long con on one very rich wallet.',cost:1500000,lo:350000,hi:3200000,heat:30,cd:180,ok:.65,k:['BTC','ETH']},
+ {id:'heist',n:'Exchange Heist',d:'Hit the hot wallet of a fictional exchange.',cost:20000000,lo:5e6,hi:6e7,heat:55,cd:420,ok:.5,k:['BTC','ETH','USDC','XMR']},
 ];
 const WASH=[
- {id:'cas',n:'Casino Chips',d:'Buy chips at Velvet, cash out as “winnings”.',fee:.1,sec:8,risk:.8,max:150000},
- {id:'mix',n:'Blender Mixer',d:'Pool with thousands of coins, come out the other side.',fee:.08,sec:15,risk:.6,max:1e6},
- {id:'hop',n:'Chain Hop',d:'Bridge across five chains in a row.',fee:.05,sec:25,risk:.9,max:5e6},
- {id:'shell',n:'Shell Company',d:'Invoice yourself for “consulting services”.',fee:.15,sec:40,risk:.35,max:5e7},
- {id:'art',n:'Art Flip',d:'Buy a painting from yourself for millions.',fee:.2,sec:60,risk:.2,max:1e10},
+ {id:'mix',n:'Blender Mixer',d:'Pool with thousands of coins and come out the other side.',fee:.08,sec:15,risk:.6,out:'same'},
+ {id:'hop',n:'Chain Hop',d:'Bridge across five chains and back.',fee:.05,sec:25,risk:.85,out:'same'},
+ {id:'xmr',n:'Monero Swap',d:'Swap into Monero and let the trail go cold.',fee:.04,sec:30,risk:.25,out:'XMR'},
+ {id:'cas',n:'Casino Chips',d:'Buy chips at Velvet, cash out as “winnings”.',fee:.1,sec:8,risk:.8,out:'cash',max:150000},
+ {id:'shell',n:'Shell Company',d:'Invoice yourself for “consulting services”.',fee:.15,sec:40,risk:.35,out:'cash',max:5e7},
+ {id:'art',n:'Art Flip',d:'Buy a painting from yourself for millions.',fee:.2,sec:60,risk:.2,out:'cash'},
 ];
 function led(ty,a,n){S.lab.led.unshift({t:Date.now(),ty,a,h:'0x'+hex(10),n:n||''});if(S.lab.led.length>60)S.lab.led.pop()}
 function heatAdd(x){S.lab.heat=clamp(S.lab.heat+x,0,100);if(S.lab.heat>=100)raid()}
-function flagRisk(m){return clamp(S.lab.heat/100*m.risk*0.5,0,.95)}
+function flagRisk(m){return clamp(S.lab.heat/100*m.risk*0.5+.02,0,.95)}
+function dirtyW(){let w=S.wl.find(x=>x.id==='dirty');if(!w){w={id:'dirty',n:'Burner wallet',k:'hot',b:{},tn:{},seed:seedGen(12),ad:{},t:Date.now()};S.wl.push(w)}return w}
+function washTake(w,k,a){w.b[k]=Math.max(0,(w.b[k]||0)-a);w.tn=w.tn||{};w.tn[k]=Math.max(0,(w.tn[k]||0)-a);if(w.b[k]<1e-12)w.b[k]=0;if(w.tn[k]<1e-12)w.tn[k]=0}
 function raid(){
-  const L=S.lab,lost=L.dirty+L.q.reduce((a,q)=>a+q.a,0),fine=S.cash*0.2;
-  L.dirty=0;L.q=[];S.cash-=fine;L.heat=30;L.raids++;led('RAID',lost+fine,'Assets seized');updBal();save(true);closeSheet();
-  const el=h(`<div id="raid"><div><h2>RAIDED</h2><p>Fictional feds kicked the door in. Seized ${fmt(lost)} of dirty funds and fined you ${fmt(fine)}. Keep your heat under 100.</p><p style="opacity:.8;margin-top:18px">Tap to continue</p></div></div>`);
+  const L=S.lab;let lost=0;
+  for(const w of S.wl)for(const k of CXK){const t=taintQ(w,k);if(t>0){lost+=t*S.cx.p[k];washTake(w,k,t)}}
+  lost+=L.q.reduce((a,q)=>a+q.usd,0);L.q=[];const fine=S.cash*0.2;S.cash-=fine;L.heat=30;L.raids++;
+  S.kyc.frz=Date.now()+15*60e3;S.kyc.why='Raid on your Blacksite operation';
+  led('RAID',lost+fine,'tainted coins seized');updBal();save(true);closeSheet();
+  const el=h(`<div id="raid"><div><h2>RAIDED</h2><p>Fictional feds kicked the door in. They seized ${fmt(lost)} of tainted crypto from your software wallets, fined you ${fmt(fine)} and froze your exchange account for 15 minutes. Your hardware wallets were never found.</p><p style="opacity:.8;margin-top:18px">Tap to continue</p></div></div>`);
   document.body.append(el);vib([200,100,200]);el.onclick=()=>{el.remove();if(cur==='lab')go('lab',true)};
 }
 function labTick(){
-  const L=S.lab;L.heat=Math.max(0,L.heat-0.07);
-  const now=Date.now();
-  for(const q of L.q.slice()){if(q.end<=now){L.q.splice(L.q.indexOf(q),1);
-    if(Math.random()<q.fr){led('SEIZED',q.a,q.n+' flagged');toast(`${q.n} got flagged. ${fmt(q.a)} frozen.`,'bad');heatAdd(12)}
-    else{const v=q.a*(1-q.fee);S.cash+=v;L.washed+=v;led('CLEAN',v,'via '+q.n);updBal();toast(`Washed · ${fmt(v)} clean cash`,'good')}
-    save(true)}}
+  const L=S.lab;L.heat=Math.max(0,L.heat-0.07);const now=Date.now();
+  for(const q of L.q.slice()){if(q.end>now)continue;L.q.splice(L.q.indexOf(q),1);
+    if(Math.random()<q.fr){led('SEIZED',q.usd,q.n+' flagged');toast(`${q.n} got flagged. ${fmt(q.usd)} frozen.`,'bad');heatAdd(12)}
+    else if(q.out==='cash'){S.cash+=q.v;L.washed+=q.v;led('CLEAN',q.v,'cash via '+q.n);updBal();toast(`Washed · ${fmt(q.v)} clean cash`,'good')}
+    else{const w=wById(q.w)||dirtyW();addCoin(w,q.ok,q.oq,0);const v=q.oq*S.cx.p[q.ok];L.washed+=v;led('CLEAN',v,`${famt(q.ok,q.oq)} clean`);toast(`Washed · ${famt(q.ok,q.oq)} now clean in ${esc(w.n)}`,'good')}
+    save(true)}
 }
-
 /* ---------- main tick ---------- */
 let tickSubs=new Set(),cur='home',tab='new',sub=null;
 function mtick(){
@@ -1045,7 +1158,7 @@ function mtick(){
   if(others.length<20&&Math.random()<.1){const c=mkCoin({mc:rnd(3500,7000)});warm(c,6);S.coins.push(c);if(cur==='trade'&&tab==='new')toast(`New pair · $${esc(c.tk)}`)}
   if(others.length>24){const v=others.filter(c=>!S.pos[c.id]).sort((a,b)=>a.p-b.p)[0];if(v)S.coins.splice(S.coins.indexOf(v),1)}
   const r=rentPerSec();if(r>0){S.cash+=r;if(cur==='home'||Math.random()<.2)updBal(true)}
-  labTick();cxTick();
+  labTick();cxTick();kycTick();socTick();if(curK()!=='USD')updBal(true);
   for(const f of tickSubs)f();
   save(false);
 }
@@ -1059,7 +1172,7 @@ function go(v,force){
   if(cleanup){try{cleanup()}catch(e){}cleanup=null}
   closeSheet();cur=v;sub=null;
   $('#app').dataset.zone=v;
-  document.documentElement.style.background=document.body.style.background=v==='wallet'?'#ffffff':'#060608';
+  document.documentElement.style.background=document.body.style.background=v==='wallet'?'#0a0b0d':v==='social'?'#000000':'#060608';
   $$('#dock button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
   main.innerHTML='';main.scrollTop=0;
   const el=h('<div class="view"></div>');main.append(el);
@@ -1092,7 +1205,7 @@ function homeView(el){
     <div class="card stat"><span>Assets</span><b>${fmt(assetValue())}</b></div>
     <div class="card stat"><span>Bags</span><b id="hp">${fmt(posValue())}</b></div>
     <div class="card stat"><span>Crypto</span><b id="hcx">${fmt(cryptoValue())}</b></div>
-    <div class="card stat" style="grid-column:1/-1"><span>Dirty wallet</span><b style="color:#ffb000" id="hd">${fmt(S.lab.dirty)}</b></div>
+    <div class="card stat" style="grid-column:1/-1"><span>Tainted crypto</span><b style="color:#ffb000" id="hd">${fmt(dirtyTotal())}</b></div>
   </div>
   <div class="sec">
     <button class="btn wide" id="daily" ${ready?'':'disabled'}>${ready?'Collect allowance · '+fmt(dailyAmt()):'Allowance in '+fmtDur(4*3600e3-(Date.now()-S.daily))}</button>
@@ -1130,11 +1243,11 @@ function homeView(el){
     <button class="btn ghost wide sm" id="reset">Start over</button>
   </div>`;
   $$('.portal',el).forEach(b=>b.onclick=()=>{vib(8);if(b.dataset.g==='launch'){tab='launch';go('trade')}else go(b.dataset.g)});
-  $('#daily',el).onclick=()=>{const a=dailyAmt();S.daily=Date.now();earn(a);burst(null,null,60);toast('Allowance collected · '+fmt(a),'good');go('home',true)};
-  const m=$('#mom',el);if(m)m.onclick=()=>{earn(2500);toast('Mom sent $2,500. She is disappointed.','good');go('home',true)};
+  $('#daily',el).onclick=()=>{const a=dailyAmt();S.daily=Date.now();earnCash(a);burst(null,null,60);toast('Allowance collected · '+fmt(a),'good');go('home',true)};
+  const m=$('#mom',el);if(m)m.onclick=()=>{earnCash(2500);toast('Mom sent $2,500. She is disappointed.','good');go('home',true)};
   $('#xfer',el).onclick=saveCodeSheet;$('#gopf',el).onclick=profileSheet;
   $('#reset',el).onclick=resetSheet;
-  const t=()=>{$('#nw',el).textContent=fmt(netWorth());$('#hc',el).textContent=fmt(S.cash);$('#hp',el).textContent=fmt(posValue());$('#hd',el).textContent=fmt(S.lab.dirty);$('#hcx',el).textContent=fmt(cryptoValue());$('#savebox',el).innerHTML=saveLine()};
+  const t=()=>{$('#nw',el).textContent=fmt(netWorth());$('#hc',el).textContent=fmt(S.cash);$('#hp',el).textContent=fmt(posValue());$('#hd',el).textContent=fmt(dirtyTotal());$('#hcx',el).textContent=fmt(cryptoValue());$('#savebox',el).innerHTML=saveLine()};
   tickSubs.add(t);return()=>tickSubs.delete(t);
 }
 const dailyAmt=()=>Math.round(clamp(netWorth()*0.03,2500,2e6));
@@ -1164,10 +1277,10 @@ const GAMES=[
 ];
 function casinoView(el){
   const feed=Array.from({length:14},()=>{const g=pick(GAMES),m=Math.random()<.2?rnd(10,400):rnd(1.2,9);return `<span>${pick(NAMES)} hit <b>${m.toFixed(2)}×</b> on ${g.n}</span>`}).join('');
-  el.innerHTML=`<div class="cas-h"><span class="eyebrow">Originals · ${GAMES.length} games · play money</span><h1>Velvet<em>.</em>casino</h1></div>
+  el.innerHTML=`<div class="cas-h"><span class="eyebrow">Originals · ${GAMES.length} games · play money</span><h1>Velvet<em>.</em>casino</h1><button class="chip on curchip" id="curchip">Playing with ${curK()==='USD'?'cash':CX[curK()].n} ▾</button></div>
   <div class="ticker"><div class="tr">${feed}</div></div>
   <div class="games" style="margin-top:12px">${GAMES.map((g,i)=>`<button class="gcard" data-id="${g.id}" style="--gc:${g.c[0]};animation:vin .5s ${i*35}ms both"><div class="bgc" style="background:radial-gradient(100% 70% at 50% 15%,${g.c[0]}cc,transparent 70%),linear-gradient(170deg,${g.c[1]},#07061a)"></div><div class="pat" style="background:${PATS[i%4]}"></div><div class="gl" style="animation-delay:${i*-0.3}s">${g.g}</div><b>${g.n}</b><small>Velvet original</small></button>`).join('')}</div>`;
-  $$('.gcard',el).forEach(b=>b.onclick=()=>{vib(10);openGame(b.dataset.id)});
+  $$('.gcard',el).forEach(b=>b.onclick=()=>{vib(10);openGame(b.dataset.id)});$('#curchip',el).onclick=curSheet;
 }
 function openGame(id){
   if(cleanup){try{cleanup()}catch(e){}cleanup=null}
@@ -1181,7 +1294,7 @@ function betBox(root){
   const el=h(`<div class="field"><label>Bet amount</label><div class="inp"><span>$</span><input inputmode="decimal" value="${S.bet}" aria-label="Bet amount"><button data-k="h">½</button><button data-k="d">2×</button><button data-k="m">Max</button></div></div>`);
   const inp=$('input',el);
   inp.onchange=()=>{S.bet=Math.max(0,+(parseFloat(inp.value)||0).toFixed(2));inp.value=S.bet;save()};
-  $$('button',el).forEach(b=>b.onclick=()=>{let v=parseFloat(inp.value)||0;v=b.dataset.k==='h'?v/2:b.dataset.k==='d'?v*2:S.cash;v=Math.max(0.1,Math.min(+v.toFixed(2),Math.floor(S.cash*100)/100||0.1));inp.value=v;S.bet=v;save();vib(6)});
+  $$('button',el).forEach(b=>b.onclick=()=>{let v=parseFloat(inp.value)||0;v=b.dataset.k==='h'?v/2:b.dataset.k==='d'?v*2:activeBal();v=Math.max(0.1,Math.min(+v.toFixed(2),Math.floor(activeBal()*100)/100||0.1));inp.value=v;S.bet=v;save();vib(6)});
   root.append(el);
   return {get:()=>{const v=+(parseFloat(inp.value)||0).toFixed(2);S.bet=v;return v},lock:b=>{inp.disabled=b;$$('button',el).forEach(x=>x.disabled=b)}};
 }
@@ -1370,7 +1483,7 @@ G.blackjack=root=>{
     if(m>0)win(b*m,b,m);else vib(50);toast(msg+(m>0?' · '+fmt(b*m):''),m>1?'good':m===0?'bad':'');
     acts.hidden=true;btn.hidden=false;bb.lock(false)}
   btn.onclick=()=>{b=bb.get();if(!bet(b))return;P=[draw1(),draw1()];D=[draw1(),draw1()];hide=true;on=true;render();bb.lock(true);
-    if(val(P)===21||val(D)===21){btn.hidden=true;setTimeout(settle,500);return}acts.hidden=false;btn.hidden=true;$('.dbl',acts).disabled=S.cash<b};
+    if(val(P)===21||val(D)===21){btn.hidden=true;setTimeout(settle,500);return}acts.hidden=false;btn.hidden=true;$('.dbl',acts).disabled=activeBal()<b};
   $('.hit',acts).onclick=()=>{if(!on)return;P.push(draw1());render();vib(8);$('.dbl',acts).disabled=true;if(val(P)>=21)setTimeout(settle,400)};
   $('.std',acts).onclick=()=>{if(on)settle()};
   $('.dbl',acts).onclick=()=>{if(!on||!bet(b))return;b*=2;P.push(draw1());render();on=false;setTimeout(settle,450)};
@@ -1393,7 +1506,7 @@ G.roulette=root=>{
   let bets={},rot=0,busy=false;
   const sum=()=>Object.values(bets).reduce((a,b)=>a+b,0);
   const paint=()=>{$$('.rc',root).forEach(c=>{const v=bets[c.dataset.k];c.querySelector('em')?.remove();if(v)c.append(h(`<em>${v>=1000?(v/1000).toFixed(1)+'k':+v.toFixed(2)}</em>`))});$('.rt',root).textContent=fmt(sum(),true)};
-  $$('.rc',root).forEach(c=>c.onclick=()=>{if(busy)return;const v=bb.get();if(!(v>0))return;if(sum()+v>S.cash){toast('Not enough cash','bad');return}bets[c.dataset.k]=(bets[c.dataset.k]||0)+v;vib(6);paint()});
+  $$('.rc',root).forEach(c=>c.onclick=()=>{if(busy)return;const v=bb.get();if(!(v>0))return;if(sum()+v>activeBal()){toast('Not enough balance','bad');return}bets[c.dataset.k]=(bets[c.dataset.k]||0)+v;vib(6);paint()});
   $('.rcl',root).onclick=()=>{if(busy)return;bets={};paint()};
   $('.rsp',root).onclick=()=>{if(busy)return;const t=sum();if(!t){toast('Tap the board to place chips','bad');return}if(!bet(t))return;busy=true;$$('.rc.hit',root).forEach(x=>x.classList.remove('hit'));
     const idx=ri(0,36),n=ORD[idx],center=(idx+.5)*360/37;const cur_=((rot%360)+360)%360;rot+=360*6+((360-center-cur_+720)%360);cv.style.transform=`rotate(${rot}deg)`;$('.rr',root).textContent='…';
@@ -1493,8 +1606,8 @@ function sell(c,frac,quiet){const p=S.pos[c.id];if(!p||p.q<=0){toast('You have n
   if(c.kc){c.kc.c=c.p;c.kc.l=Math.min(c.kc.l,c.p);c.kc.v+=usd}rec({c,cost:p.c*frac,out:usd,emc:p.c/p.q*SUP,xmc:c.p*SUP,t0:p.t0||Date.now()});p.c*=(1-frac);p.q-=q;if(frac>=1||p.q*c.p<0.01)delete S.pos[c.id];earn(usd);mark(c,'S');ev(c,'you',`You sold ${fmt(usd)}`);vib(12);if(!quiet)toast(`Sold for ${fmt(usd)}`,'good');save(true)}
 function tradeView(el){
   el.innerHTML=`<div class="th"><h1>pulse<span class="mute">/</span>terminal</h1><label class="qb"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg><span class="mute">$</span><input inputmode="decimal" id="qb" value="${S.qb}" aria-label="Quick buy amount"></label></div>
-  <div class="ttabs"><button data-t="new">New pairs</button><button data-t="hot">Trending</button><button data-t="pos">My bags</button><button data-t="launch">Launch a coin</button></div><div id="tbody"></div>`;
-  $('#qb',el).onchange=e=>{S.qb=Math.max(1,parseFloat(e.target.value)||100);e.target.value=S.qb;save()};
+  <button class="chip on curchip" id="curchip" style="margin:0 0 8px">Paying with ${curK()==='USD'?'cash':CX[curK()].n} ▾</button><div class="ttabs"><button data-t="new">New pairs</button><button data-t="hot">Trending</button><button data-t="pos">My bags</button><button data-t="launch">Launch a coin</button></div><div id="tbody"></div>`;
+  $('#qb',el).onchange=e=>{S.qb=Math.max(1,parseFloat(e.target.value)||100);e.target.value=S.qb;save()};$('#curchip',el).onclick=curSheet;
   const body=$('#tbody',el);
   const setTab=t=>{tab=t;$$('.ttabs button',el).forEach(b=>b.classList.toggle('on',b.dataset.t===t));render(true)};
   $$('.ttabs button',el).forEach(b=>b.onclick=()=>setTab(b.dataset.t));
@@ -1536,7 +1649,7 @@ function launchTab(body){
     <div class="field"><label for="lname">Coin name</label><input class="tinp" id="lname" maxlength="22" placeholder="Turbo Hamster" autocomplete="off"></div>
     <div class="field"><label for="ltick">Ticker</label><input class="tinp" id="ltick" maxlength="6" placeholder="THAM" autocomplete="off" style="text-transform:uppercase"></div>
     <div class="field"><div class="row" style="justify-content:space-between"><label>Logo · background colour</label><button class="chip" id="lsh" type="button">Shuffle logo</button></div><div class="hues">${[0,30,55,120,165,195,230,265,300,330].map(x=>`<button data-h="${x}" style="background:linear-gradient(135deg,hsl(${x} 85% 58%),hsl(${(x+60)%360} 80% 40%))" aria-label="Colour ${x}"></button>`).join('')}</div></div>
-    <div class="card small mute">You keep <b style="color:var(--txt)">30% of the supply</b> as your dev bag. Buy ads to pull buyers in and push the price up. When the chart is hot, cash out: sell slowly for clean money, or hard-rug for a bigger payout that lands in your Blacksite dirty wallet. All simulated.</div>
+    <div class="card small mute">You keep <b style="color:var(--txt)">30% of the supply</b> as your dev bag. Buy ads to pull buyers in and push the price up. When the chart is hot, cash out: sell slowly for clean money, or hard-rug for a bigger payout that lands as tainted SOL in your Burner wallet. All simulated.</div>
     <button class="btn wide" id="ldo">Deploy coin · $1,000</button></div>`;
   $$('.trow',body).forEach(r=>r.onclick=()=>{const c=coinById(r.dataset.id);if(c)coinSheet(c)});
   const nm=$('#lname',body),tk=$('#ltick',body);
@@ -1600,7 +1713,7 @@ function coinSheet(c){
       <li>A <b>D</b> marker means the dev wallet sold. Rugs almost always follow dev selling.</li></ul></details>`;
     drawChart($('canvas',el),c,S.tf);
     $$('[data-tf]',el).forEach(b=>b.onclick=()=>{S.tf=+b.dataset.tf;save();draw()});
-    $$('[data-b]',el).forEach(b=>b.onclick=()=>{const k=b.dataset.b;const v=k==='q'?S.qb:k==='max'?Math.floor(S.cash*100)/100:+k;if(v>0)buy(c,v);draw()});
+    $$('[data-b]',el).forEach(b=>b.onclick=()=>{const k=b.dataset.b;const v=k==='q'?S.qb:k==='max'?Math.floor(activeBal()*100)/100:+k;if(v>0)buy(c,v);draw()});
     $$('[data-s]',el).forEach(b=>b.onclick=()=>{sell(c,+b.dataset.s);draw()});
     const cb=$('[data-card]',el);if(cb)cb.onclick=()=>pnlSheet(openTrade(c));
     $$('[data-tp]',el).forEach(b=>b.onclick=()=>{const pp=S.pos[c.id];if(pp){pp.tp=+b.dataset.tp;save(true);toast(pp.tp?`Take profit set at +${pp.tp*100}%`:'Take profit off');draw()}});
@@ -1625,7 +1738,7 @@ function coinSheet(c){
   sheet(el,()=>tickSubs.delete(light));
 }
 function studioHTML(c){
-  if(c.rug)return `<div class="studio"><h3>Rug complete</h3><p class="mute small" style="margin-top:4px">You pulled $${esc(c.tk)}. The funds went to your dirty wallet. Wash them in Blacksite to turn them into spendable cash.</p><button class="btn wide" style="margin-top:10px" data-gol>Open Blacksite</button></div>`;
+  if(c.rug)return `<div class="studio"><h3>Rug complete</h3><p class="mute small" style="margin-top:4px">You pulled $${esc(c.tk)}. The payout sits in your Burner wallet as tainted SOL. Wash it in Blacksite before it touches your exchange account, or you risk a freeze.</p><button class="btn wide" style="margin-top:10px" data-gol>Open Blacksite</button></div>`;
   const step=c.hype>5||c.p*SUP>12000?3:2;
   return `<div class="studio">
     <div class="stepper"><div class="done"><b>1 · Launch ✓</b>Live on the curve</div><div class="${step===2?'now':'done'}"><b>2 · Shill</b>Buy ads below</div><div class="${step===3?'now':''}"><b>3 · Cash out</b>Sell or rug</div></div>
@@ -1637,7 +1750,7 @@ function studioHTML(c){
     <div class="eyebrow" style="margin:16px 0 6px">Step 3 · Cash out · dev bag ${(c.dev*100).toFixed(1)}% of supply</div>
     <div class="cashout">
       <div class="co"><span class="eyebrow">Soft sell</span><b class="v sv">${fmt(softValue(c))}</b><p>Sell 25% of your dev bag. Clean cash. The price dips and buyers get nervous.</p><button class="btn ghost sm" data-soft ${c.dev<.005?'disabled':''}>Sell 25%</button></div>
-      <div class="co hard"><span class="eyebrow" style="color:var(--dn)">Hard rug</span><b class="v rv">${fmt(rugValue(c))}</b><p>Dump the whole bag and pull the liquidity. The coin dies. Money lands in your dirty wallet. +18 heat.</p></div>
+      <div class="co hard"><span class="eyebrow" style="color:var(--dn)">Hard rug</span><b class="v rv">${fmt(rugValue(c))}</b><p>Dump the whole bag and pull the liquidity. The coin dies. Paid out as tainted SOL in your Burner wallet. +18 heat.</p></div>
     </div>
     <button class="rugbtn"><i></i><span>HOLD 1.3s TO RUG PULL</span></button>
     <p class="mute small" style="margin-top:6px;text-align:center">Tip: rug when hype is high and the chart is green.</p>
@@ -1650,77 +1763,86 @@ function wireStudio(c,el,redraw){
   $$('[data-ad]',el).forEach(b=>b.onclick=()=>{const [n,cost,hy]=ADS[+b.dataset.ad];if(!spend(cost))return;const got=hy*rnd(.5,1.5);c.hype+=got;c.hold+=Math.round(got*rnd(1,4));
     const r=b.getBoundingClientRect();burst(r.left+r.width/2,r.top,25,['#ff9f2e','#ff4fd0','#7af0ff']);
     if(Math.random()<.1&&cost>=10000){c.p*=.85;ev(c,'dev','Your promoter dumped on the buyers');toast(`${n} took the money and dumped`,'bad')}else{ev(c,'whale',`${n} is live · +${got.toFixed(0)} hype`);toast(`${n} · +${got.toFixed(0)} hype`,'good')}redraw()});
-  const sb=$('[data-soft]',el);if(sb)sb.onclick=()=>{const v=softValue(c);if(v<=0)return;c.dev*=.75;const L=Math.max(4000,c.p*SUP*(c.grad?.8:.5));c.p*=Math.exp(-Math.min(.5,v/L));c.dsT=Date.now();c.devSold++;mark(c,'D');ev(c,'dev',`You sold 25% of the dev bag (${fmt(v)})`);earn(v);toast(`Soft sold · ${fmt(v)} clean`,'good');redraw()};
+  const sb=$('[data-soft]',el);if(sb)sb.onclick=()=>{const v=softValue(c);if(v<=0)return;c.dev*=.75;const L=Math.max(4000,c.p*SUP*(c.grad?.8:.5));c.p*=Math.exp(-Math.min(.5,v/L));c.dsT=Date.now();c.devSold++;mark(c,'D');ev(c,'dev',`You sold 25% of the dev bag (${fmt(v)})`);earnCash(v);toast(`Soft sold · ${fmt(v)} clean`,'good');redraw()};
   const rb=$('.rugbtn',el);if(rb){let tm;const start=e=>{e.preventDefault();rb.classList.add('hold');vib(20);tm=setTimeout(()=>{hardRug(c);redraw()},1300)},end=()=>{rb.classList.remove('hold');clearTimeout(tm)};
     rb.addEventListener('pointerdown',start);rb.addEventListener('pointerup',end);rb.addEventListener('pointerleave',end);rb.addEventListener('pointercancel',end);rb.oncontextmenu=e=>e.preventDefault()}
 }
 function hardRug(c){if(c.rug||!c.mine)return;const usd=rugValue(c);c.dev=0;c.rug=true;c.rugT=Date.now();c.p*=0.012;c.hype=0;c.ph='dead';c.phT=99;mark(c,'R');ev(c,'rug',`You pulled the rug · ${fmt(usd)} to dirty wallet`);
-  S.stats.rugs++;S.lab.dirty+=usd;led('RUG',usd,'$'+c.tk);heatAdd(18);save(true);
-  vib([80,40,120]);bigWin(1,usd,'RUGGED');toast(`Rugged $${esc(c.tk)} · ${fmt(usd)} sent to your dirty wallet`,'good')}
+  S.stats.rugs++;{const q=usd/S.cx.p.SOL;addCoin(dirtyW(),'SOL',q,q)}led('RUG',usd,'$'+c.tk+' · SOL');heatAdd(18);save(true);
+  vib([80,40,120]);bigWin(1,usd,'RUGGED');toast(`Rugged $${esc(c.tk)} · ${fmt(usd)} paid out as tainted SOL`,'good')}
 
 /* ================= BLACKSITE ================= */
-let washSel='mix';
+let washSel='mix',washSrc='',washPct=1;
 function heatState(h_){return h_>=80?['WANTED','#ff1f3d']:h_>=55?['HOT','#ff6a00']:h_>=25?['WARM','#ffb000']:['COLD','#62e3ff']}
+function taintSources(){const out=[];for(const w of allW())for(const k of CXK){const t=taintQ(w,k);if(t*S.cx.p[k]>=1)out.push({w,k,t,id:w.id+':'+k})}return out}
+const mmss=ms=>{const s=Math.max(0,Math.ceil(ms/1000));return (s/60|0)+':'+String(s%60).padStart(2,'0')};
 function labView(el){
   const L=S.lab;
-  el.innerHTML=`<div class="lab-h"><span class="eyebrow" style="color:var(--acc2)">// district 05 · fiction · play money</span><h1 class="glitch" data-t="BLACKSITE">BLACKSITE</h1><p class="mute small">Drain fake wallets, wash the money, stay under the radar. Nothing here is real.</p></div>
-  <div class="device"><div class="screen"><div class="sr"><span>DIRTY WALLET</span><span class="hs_">COLD</span></div><div class="big ld">$0</div><div class="sr"><span>HEAT</span><span class="hp_">0%</span></div><div class="blk">${'<i></i>'.repeat(20)}</div><div class="tick">&gt; ${'0x'+hex(16)} synced</div></div><div class="dbtns"><i></i><i></i></div></div>
+  el.innerHTML=`<div class="lab-h"><span class="eyebrow" style="color:var(--acc2)">// district 06 · fiction · play money</span><h1 class="glitch" data-t="BLACKSITE">BLACKSITE</h1><p class="mute small">Drain fake wallets for crypto, wash it, and keep it away from the exchange until it is clean. Nothing here is real.</p></div>
+  <div class="device"><div class="screen"><div class="sr"><span>DIRTY CRYPTO</span><span class="hs_">COLD</span></div><div class="big ld">$0</div><div class="sr"><span>HEAT</span><span class="hp_">0%</span></div><div class="blk">${'<i></i>'.repeat(20)}</div><div class="tick xs">&gt; exchange ok</div></div><div class="dbtns"><i></i><i></i></div></div>
   <div class="card heat" style="margin-top:12px"><div class="row" style="justify-content:space-between"><span class="lab-l">Heat · cools about 4 per minute</span><span class="hstate"></span></div><div class="hbar"><b></b></div>
-    <p class="mute small">At 100 heat you get raided: you lose all dirty money and 20% of your cash.</p>
+    <p class="mute small">At 100 heat you get raided: tainted coins in your software wallets are seized, you lose 20% of your cash and the exchange freezes you.</p>
     <div class="grid2"><button class="btn ghost sm" id="burn">Burner wallets · $2,000 · −8</button><button class="btn ghost sm" id="fix">Hire a fixer · <span class="fixc"></span> · −35</button></div></div>
-  <div class="sec"><div class="sec-h"><h2 class="num" style="font-size:16px">01 · Drain ops</h2><span class="eyebrow">earn dirty money</span></div><div class="ops" style="display:flex;flex-direction:column;gap:8px"></div></div>
-  <div class="sec"><div class="sec-h"><h2 class="num" style="font-size:16px">02 · Wash</h2><span class="eyebrow">dirty → clean cash</span></div>
-    <div class="field"><label for="wa">Amount to wash</label><div class="inp"><span>$</span><input id="wa" inputmode="decimal" value="${Math.floor(L.dirty)}"><button data-wp=".25">25%</button><button data-wp=".5">50%</button><button data-wp="1">All</button></div></div>
+  <div class="sec"><div class="sec-h"><h2 class="num" style="font-size:16px">01 · Drain ops</h2><span class="eyebrow">loot lands as tainted crypto</span></div><div class="ops" style="display:flex;flex-direction:column;gap:8px"></div></div>
+  <div class="sec"><div class="sec-h"><h2 class="num" style="font-size:16px">02 · Wash</h2><span class="eyebrow">tainted → clean</span></div>
+    <span class="lab-l">Tainted coins</span><div class="srcs"></div>
+    <div class="pills pcts">${[[.25,'25%'],[.5,'50%'],[1,'All']].map(p=>`<button class="chip ${washPct===p[0]?'on':''}" data-pc="${p[0]}">${p[1]}</button>`).join('')}</div>
     <div class="wms" style="display:flex;flex-direction:column;gap:6px"></div>
     <div class="card small wprev"></div>
     <button class="btn wide" id="wgo">Start wash</button>
-    <button class="btn ghost wide sm" id="otc">Dump all on an OTC desk · instant · 40% cut · +20 heat</button>
+    <button class="btn ghost wide sm" id="otc">Dump all tainted coins on an OTC desk · 40% cut · +20 heat</button>
   </div>
   <div class="sec"><div class="sec-h"><h2 class="num" style="font-size:16px">03 · In the machine</h2><span class="eyebrow qn"></span></div><div class="queue" style="display:flex;flex-direction:column;gap:6px"></div></div>
-  <div class="sec"><div class="sec-h"><h2 class="num" style="font-size:16px">04 · Ledger</h2><span class="eyebrow">drained ${fmt(L.drained)} · washed ${fmt(L.washed)} · raids ${L.raids}</span></div><div class="ledger"></div></div>`;
-  const wa=$('#wa',el);
+  <div class="sec"><div class="sec-h"><h2 class="num" style="font-size:16px">04 · Exchange risk</h2><span class="eyebrow">compliance</span></div><div class="card kycc"></div></div>
+  <div class="sec"><div class="sec-h"><h2 class="num" style="font-size:16px">05 · Ledger</h2><span class="eyebrow">drained ${fmt(L.drained)} · washed ${fmt(L.washed)} · raids ${L.raids}</span></div><div class="ledger"></div></div>`;
   const renderOps=()=>{const now=Date.now();$('.ops',el).innerHTML=OPS.map(o=>{const own=L.ops[o.id],cd=Math.max(0,(L.cd[o.id]||0)-now)/1000,okp=Math.round(clamp(o.ok-L.heat/300,.1,.95)*100);
-    return `<div class="op ${own?'':'locked'}"><div style="min-width:0"><b>${o.n}</b><p>${o.d}</p><div class="meta"><span>loot ${fk(o.lo)}–${fk(o.hi)}</span><span>+${o.heat} heat</span><span>${okp}% success</span></div></div>
+    return `<div class="op ${own?'':'locked'}"><div style="min-width:0"><b>${o.n}</b><p>${o.d}</p><div class="meta"><span>loot ${fk(o.lo)}–${fk(o.hi)}</span><span>in ${o.k.join(' / ')}</span><span>+${o.heat} heat</span><span>${okp}% success</span></div></div>
       ${own?`<button class="btn sm" data-run="${o.id}" ${cd>0?'disabled':''}>${cd>0?Math.ceil(cd)+'s':'Run'}</button>`:`<button class="btn ghost sm" data-unl="${o.id}">Unlock ${fk(o.cost)}</button>`}${cd>0?`<i class="cdbar" style="width:${(1-cd/o.cd)*100}%"></i>`:''}</div>`}).join('');
     $$('[data-run]',el).forEach(b=>b.onclick=()=>runOp(OPS.find(o=>o.id===b.dataset.run)));
-    $$('[data-unl]',el).forEach(b=>b.onclick=()=>{const o=OPS.find(x=>x.id===b.dataset.unl);confirmSheet(`Unlock ${o.n}?`,`Costs ${fmt(o.cost)} of clean cash. Loot ${fmt(o.lo)} to ${fmt(o.hi)} per run, +${o.heat} heat each time.`,`Unlock for ${fmt(o.cost)}`,()=>{if(!spend(o.cost))return;L.ops[o.id]=1;led('UNLOCK',o.cost,o.n);save(true);toast(o.n+' unlocked','good');go('lab',true)})})};
-  const renderWash=()=>{$('.wms',el).innerHTML=WASH.map(m=>`<button class="wm ${washSel===m.id?'on':''}" data-w="${m.id}"><b>${m.n}</b><span>${(m.fee*100)|0}% fee · ${m.sec}s</span><p>${m.d} Max ${fk(m.max)} per wash · flag risk ${(flagRisk(m)*100).toFixed(0)}%</p></button>`).join('');
+    $$('[data-unl]',el).forEach(b=>b.onclick=()=>{const o=OPS.find(x=>x.id===b.dataset.unl);confirmSheet(`Unlock ${o.n}?`,`Costs ${fmt(o.cost)} of clean cash. Loot ${fmt(o.lo)} to ${fmt(o.hi)} per run, paid in ${o.k.join(' or ')}. +${o.heat} heat each time.`,`Unlock for ${fmt(o.cost)}`,()=>{if(!spendCash(o.cost))return;L.ops[o.id]=1;led('UNLOCK',o.cost,o.n);save(true);toast(o.n+' unlocked','good');go('lab',true)})})};
+  const src=()=>{const ss=taintSources();return ss.find(s=>s.id===washSrc)||ss[0]||null};
+  const renderSrc=()=>{const ss=taintSources(),s=src();$('.srcs',el).innerHTML=ss.length?`<div class="picker">${ss.map(x=>`<button data-src="${x.id}" class="${s&&s.id===x.id?'on':''}">${cxIcon(x.k,20)}${esc(x.w.n)} · ${famt(x.k,x.t)}</button>`).join('')}</div>`:'<p class="mute small">No tainted coins. Run a drain op or hard-rug a coin you launched.</p>';
+    $$('[data-src]',el).forEach(b=>b.onclick=()=>{washSrc=b.dataset.src;vib(6);renderSrc();prev()})};
+  const renderWash=()=>{$('.wms',el).innerHTML=WASH.map(m=>`<button class="wm ${washSel===m.id?'on':''}" data-w="${m.id}"><b>${m.n}</b><span>${(m.fee*100)|0}% fee · ${m.sec}s</span><p>${m.d} Comes out as ${m.out==='cash'?'clean cash':m.out==='XMR'?'clean XMR':'the same coin, clean'} · flag risk ${(flagRisk(m)*100).toFixed(0)}%</p></button>`).join('');
     $$('[data-w]',el).forEach(b=>b.onclick=()=>{washSel=b.dataset.w;vib(6);renderWash();prev()})};
-  const prev=()=>{const m=WASH.find(w=>w.id===washSel),a=Math.min(parseFloat(wa.value)||0,L.dirty);
-    $('.wprev',el).innerHTML=a>0?`Wash <b class="num">${fmt(Math.min(a,m.max))}</b> through ${m.n} → get <b class="num up">${fmt(Math.min(a,m.max)*(1-m.fee))}</b> clean in ${m.sec}s. <span class="dn">${(flagRisk(m)*100).toFixed(0)}% chance it gets flagged and frozen.</span> Lower your heat first to cut the risk.`:'Your dirty wallet is empty. Run a drain op or hard-rug a coin you launched.'};
-  wa.oninput=prev;
-  $$('[data-wp]',el).forEach(b=>b.onclick=()=>{wa.value=Math.floor(L.dirty*+b.dataset.wp);prev()});
-  $('#wgo',el).onclick=()=>{const m=WASH.find(w=>w.id===washSel);let a=Math.min(parseFloat(wa.value)||0,L.dirty);if(!(a>=1)){toast('Nothing to wash','bad');return}a=Math.min(a,m.max);
-    L.dirty-=a;const now=Date.now();L.q.push({id:hex(6),n:m.n,a,fee:m.fee,fr:flagRisk(m),start:now,end:now+m.sec*1000});led('WASH',a,'into '+m.n);save(true);vib(15);toast(`${fmt(a)} is in the ${m.n}`,'good');wa.value=Math.floor(L.dirty);renderAll()};
-  $('#otc',el).onclick=()=>{if(L.dirty<1){toast('Dirty wallet is empty','bad');return}const a=L.dirty,v=a*.6;confirmSheet('Dump on an OTC desk?',`Sell ${fmt(a)} of dirty funds instantly for ${fmt(v)} clean. Adds 20 heat.`,`Take ${fmt(v)}`,()=>{L.dirty=0;S.cash+=v;updBal();led('OTC',v,'instant dump');heatAdd(20);save(true);toast(`OTC paid ${fmt(v)}`,'good');renderAll()})};
+  const plan=()=>{const s=src();if(!s)return null;const m=WASH.find(w=>w.id===washSel);let a=s.t*washPct;if(m.max)a=Math.min(a,m.max/S.cx.p[s.k]);const usd=a*S.cx.p[s.k],outUsd=usd*(1-m.fee),ok=m.out==='same'?s.k:'XMR';return {s,m,a,usd,outUsd,ok}};
+  const prev=()=>{const p=plan();$('.wprev',el).innerHTML=p?`Wash <b class="num">${famt(p.s.k,p.a)}</b> (${fmt(p.usd)}) through ${p.m.n} → <b class="num up">${p.m.out==='cash'?fmt(p.outUsd)+' cash':famt(p.ok,p.outUsd/S.cx.p[p.ok])+' clean'}</b> in ${p.m.sec}s. <span class="dn">${(flagRisk(p.m)*100).toFixed(0)}% chance it gets flagged and frozen.</span>`:'Nothing to wash yet.'};
+  $$('[data-pc]',el).forEach(b=>b.onclick=()=>{washPct=+b.dataset.pc;$$('[data-pc]',el).forEach(x=>x.classList.toggle('on',x===b));prev()});
+  $('#wgo',el).onclick=()=>{const p=plan();if(!p||p.usd<1){toast('Nothing to wash','bad');return}washTake(p.s.w,p.s.k,p.a);const now=Date.now();
+    const q={id:hex(6),n:p.m.n,usd:p.usd,fee:p.m.fee,fr:flagRisk(p.m),start:now,end:now+p.m.sec*1000,out:p.m.out==='cash'?'cash':'coin',w:p.s.w.id,ok:p.ok};
+    if(q.out==='cash')q.v=p.outUsd;else q.oq=p.outUsd/S.cx.p[p.ok];
+    L.q.push(q);led('WASH',p.usd,`${famt(p.s.k,p.a)} into ${p.m.n}`);save(true);vib(15);toast(`${famt(p.s.k,p.a)} is in the ${p.m.n}`,'good');renderAll()};
+  $('#otc',el).onclick=()=>{const ss=taintSources();if(!ss.length){toast('No tainted coins','bad');return}const a=ss.reduce((x,s)=>x+s.t*S.cx.p[s.k],0),v=a*.6;
+    confirmSheet('Dump on an OTC desk?',`Sell ${fmt(a)} of tainted crypto instantly for ${fmt(v)} cash. Adds 20 heat.`,`Take ${fmt(v)}`,()=>{for(const s of ss)washTake(s.w,s.k,s.t);S.cash+=v;updBal();led('OTC',v,'instant dump');heatAdd(20);save(true);toast(`OTC paid ${fmt(v)}`,'good');renderAll()})};
   const fixCost=()=>Math.max(5000,Math.round(netWorth()*0.04));
-  $('#burn',el).onclick=()=>{if(L.heat<1){toast('You are ice cold already');return}if(!spend(2000))return;L.heat=Math.max(0,L.heat-8);led('FIXER',2000,'burner wallets');save(true);toast('Burner wallets rotated · −8 heat','good');renderAll()};
-  $('#fix',el).onclick=()=>{if(L.heat<1){toast('You are ice cold already');return}const f=fixCost();if(!spend(f))return;L.heat=Math.max(0,L.heat-35);L.fixer++;led('FIXER',f,'paid a fixer');save(true);toast('The fixer made some calls · −35 heat','good');renderAll()};
+  $('#burn',el).onclick=()=>{if(L.heat<1){toast('You are ice cold already');return}if(!spendCash(2000))return;L.heat=Math.max(0,L.heat-8);led('FIXER',2000,'burner wallets');save(true);toast('Burner wallets rotated · −8 heat','good');renderAll()};
+  $('#fix',el).onclick=()=>{if(L.heat<1){toast('You are ice cold already');return}const f=fixCost();if(!spendCash(f))return;L.heat=Math.max(0,L.heat-35);L.fixer++;led('FIXER',f,'paid a fixer');save(true);toast('The fixer made some calls · −35 heat','good');renderAll()};
   const renderQueue=()=>{const now=Date.now();$('.qn',el).textContent=L.q.length?L.q.length+' running':'idle';
-    $('.queue',el).innerHTML=L.q.length?L.q.map(q=>{const f=clamp((now-q.start)/(q.end-q.start),0,1);return `<div class="qitem"><div class="row" style="justify-content:space-between"><span>${esc(q.n)}</span><b>${fmt(q.a)} → ${fmt(q.a*(1-q.fee))}</b></div><div class="qbar"><b style="width:${f*100}%"></b></div><div class="row mute" style="justify-content:space-between;font-size:10.5px"><span>flag risk ${(q.fr*100).toFixed(0)}%</span><span>${Math.ceil((q.end-now)/1000)}s left</span></div></div>`}).join(''):'<div class="card mute small">Nothing washing right now.</div>'};
+    $('.queue',el).innerHTML=L.q.length?L.q.map(q=>{const f=clamp((now-q.start)/(q.end-q.start),0,1);return `<div class="qitem"><div class="row" style="justify-content:space-between"><span>${esc(q.n)}</span><b>${fmt(q.usd)} → ${q.out==='cash'?fmt(q.v)+' cash':famt(q.ok,q.oq)}</b></div><div class="qbar"><b style="width:${f*100}%"></b></div><div class="row mute" style="justify-content:space-between;font-size:10.5px"><span>flag risk ${(q.fr*100).toFixed(0)}%</span><span>${Math.ceil((q.end-now)/1000)}s left</span></div></div>`}).join(''):'<div class="card mute small">Nothing washing right now.</div>'};
+  const renderKyc=()=>{const K=S.kyc,tv=taintVal(mainW());$('.kycc',el).innerHTML=`<div class="row" style="justify-content:space-between"><b class="num">${frozen()?'<span class="dn">FROZEN · '+mmss(K.frz-Date.now())+'</span>':'<span class="up">ACCOUNT OK</span>'}</b><span class="mute small">${K.n||0} flags so far</span></div>
+    <p class="mute small" style="margin-top:6px">Sending tainted coins to your exchange account, playing with them, or cashing them out can get the account flagged and frozen. Tainted coins on the exchange right now: <b style="color:var(--txt)">${fmt(tv)}</b>. Wash first, then move them.</p>${frozen()?'<button class="btn sm wide" id="kres" style="margin-top:8px">Resolve the freeze</button>':''}`;const kr=$('#kres',el);if(kr)kr.onclick=kycSheet};
   const renderLed=()=>{$('.ledger',el).innerHTML=L.led.length?L.led.slice(0,30).map(r=>`<div class="lrow"><span class="ty ${r.ty}">${r.ty}</span><span class="hs">${r.h} · ${esc(r.n)}</span><b>${fk(r.a)} <span class="mute" style="font-weight:400">${ago(r.t)}</span></b></div>`).join(''):'<div class="lrow"><span></span><span class="mute">No entries yet. Your first op will show up here.</span><span></span></div>'};
-  const renderDev=()=>{const [st,col]=heatState(L.heat);$('.ld',el).textContent=fmt(L.dirty);$('.hs_',el).textContent=st;$('.hp_',el).textContent=L.heat.toFixed(0)+'%';
+  const renderDev=()=>{const [st,col]=heatState(L.heat);$('.ld',el).textContent=fmt(dirtyTotal());$('.hs_',el).textContent=st;$('.hp_',el).textContent=L.heat.toFixed(0)+'%';
     $$('.blk i',el).forEach((b,i)=>b.classList.toggle('on',i<Math.round(L.heat/5)));$('.blk',el).style.color=col;
     $('.hbar b',el).style.width=L.heat+'%';const hs=$('.hstate',el);hs.textContent=st+' · '+L.heat.toFixed(0);hs.style.color=col;$('.fixc',el).textContent=fk(fixCost());
-    $('.tick',el).textContent='> '+(Math.random()<.5?'mempool scan… ':'node sync… ')+'0x'+hex(14)};
-  const renderAll=()=>{renderOps();renderWash();prev();renderQueue();renderLed();renderDev()};
+    $('.xs',el).textContent=frozen()?'> exchange FROZEN '+mmss(S.kyc.frz-Date.now()):'> exchange ok · 0x'+hex(10)};
+  const renderAll=()=>{renderOps();renderSrc();renderWash();prev();renderQueue();renderKyc();renderLed();renderDev()};
   renderAll();
-  let n=0;const t=()=>{renderDev();renderQueue();if(++n%1===0){renderOps()}if(n%3===0){renderLed();renderWash();prev()}};
+  let n=0;const t=()=>{renderDev();renderQueue();renderOps();renderKyc();if(++n%4===0){renderLed();renderSrc();renderWash();prev()}};
   tickSubs.add(t);return()=>tickSubs.delete(t);
 }
 function runOp(o){
   const L=S.lab,now=Date.now();if((L.cd[o.id]||0)>now)return;
   L.cd[o.id]=now+o.cd*1000;
-  const okp=clamp(o.ok-L.heat/300,.1,.95),ok=Math.random()<okp;
-  const loot=ok?Math.round(Math.exp(rnd(Math.log(o.lo),Math.log(o.hi)))):0;
-  const n=ok?ri(3,6):ri(1,2);const parts_=[];let left=loot;for(let i=0;i<n;i++){const v=i===n-1?left:Math.round(left*rnd(.15,.45));left-=v;parts_.push(v)}
+  const okp=clamp(o.ok-L.heat/300,.1,.95),ok=Math.random()<okp,k=pick(o.k);
+  const loot=ok?Math.round(Math.exp(rnd(Math.log(o.lo),Math.log(o.hi)))):0,lq=loot/S.cx.p[k];
+  const n=ok?ri(3,6):ri(1,2);const parts_=[];let left=lq;for(let i=0;i<n;i++){const v=i===n-1?left:left*rnd(.15,.45);left-=v;parts_.push(v)}
   const lines=[`<span class="w">&gt; op ${o.n.toLowerCase()} · session ${hex(6)}</span>`,'&gt; routing through 7 proxies… <span class="g">ok</span>','&gt; deploying lure… <span class="g">ok</span>',`&gt; traffic incoming ▸ ${ri(200,9000).toLocaleString()} visitors`];
-  if(ok){parts_.forEach(v=>lines.push(`&gt; wallet ${addr()} ▸ <span class="g">drained ${fmt(v)}</span>`));lines.push('&gt; sweeping to dirty wallet… <span class="g">done</span>',`<span class="w">&gt; LOOT ${fmt(loot)} · heat +${o.heat}</span>`)}
+  if(ok){parts_.forEach(v=>lines.push(`&gt; wallet ${addr()} ▸ <span class="g">drained ${famt(k,v)}</span>`));lines.push('&gt; sweeping to burner wallet… <span class="g">done</span>',`<span class="w">&gt; LOOT ${famt(k,lq)} (${fmt(loot)}) · tainted · heat +${o.heat}</span>`)}
   else{lines.push(`&gt; wallet ${addr()} ▸ <span class="r">connection dropped</span>`,'&gt; victims are posting warnings… <span class="r">abort</span>',`<span class="r">&gt; OP FAILED · heat +${Math.round(o.heat*1.5)}</span>`)}
-  // apply first, animate after (closing early keeps the result)
-  if(ok){L.dirty+=loot;L.drained+=loot;led('DRAIN',loot,o.n)}else led('FAIL',0,o.n);
+  if(ok){addCoin(dirtyW(),k,lq,lq);L.drained+=loot;led('DRAIN',loot,`${o.n} · ${k}`)}else led('FAIL',0,o.n);
   save(true);
-  const el=h(`<div><div class="row" style="justify-content:space-between;margin-bottom:10px"><b class="num">${o.n}</b><span class="chip ${ok?'good':'bad'}">${ok?'running':'running'}</span></div><div class="term"></div><button class="btn wide" style="margin-top:12px" hidden>Back to Blacksite</button></div>`);
+  const el=h(`<div><div class="row" style="justify-content:space-between;margin-bottom:10px"><b class="num">${o.n}</b><span class="chip ${ok?'good':'bad'}">running</span></div><div class="term"></div><button class="btn wide" style="margin-top:12px" hidden>Back to Blacksite</button></div>`);
   const term=$('.term',el),done=$('button',el);let i=0,heatApplied=false;
   const applyHeat=()=>{if(heatApplied)return;heatApplied=true;heatAdd(ok?o.heat:Math.round(o.heat*1.5))};
   const iv=setInterval(()=>{if(!document.body.contains(el)){clearInterval(iv);applyHeat();return}term.innerHTML=lines.slice(0,++i).join('<br>')+'<br><span class="cur"></span>';vib(5);
@@ -1739,8 +1861,8 @@ function shopView(el){
       <div class="info"><span class="brand">${esc(it.brand)}</span><h3>${esc(it.name)}</h3><span class="meta">${esc(it.meta)}${it.rent?` · earns <span class="up">${fmt(it.rent*3600)}/h</span> rent`:''}</span>
       <div class="buy"><span class="price">${fmt(it.p)}</span><div class="row">${n?`<button class="lux-btn" data-sell="${it.id}">Sell</button>`:''}<button class="lux-btn fill" data-buy="${it.id}">Acquire</button></div></div></div></div>`}).join('');
     $$('[data-buy]',el).forEach(b=>b.onclick=()=>{const it=ITEM[b.dataset.buy];if(S.cash<it.p){toast(`You need ${fmt(it.p-S.cash)} more`,'bad');vib(40);return}
-      confirmSheet(`${esc(it.brand)} ${esc(it.name)}`,`Pay ${fmt(it.p)} from your cash balance. It shows up in your collection on Home.`,`Acquire for ${fmt(it.p)}`,()=>{if(!spend(it.p))return;S.owned[it.id]=(S.owned[it.id]||0)+1;save(true);rain(90,['#e8cf96','#fff3d6','#ffffff']);toast(`Delivered · ${esc(it.name)}`,'good');vib([30,30,60]);render()})});
-    $$('[data-sell]',el).forEach(b=>b.onclick=()=>{const it=ITEM[b.dataset.sell],v=it.p*0.85;confirmSheet(`Sell ${esc(it.name)}?`,`The dealer pays 85% of list: ${fmt(v)}.`,`Sell for ${fmt(v)}`,()=>{S.owned[it.id]--;if(S.owned[it.id]<=0)delete S.owned[it.id];earn(v);toast('Sold · '+fmt(v),'good');render()})});
+      confirmSheet(`${esc(it.brand)} ${esc(it.name)}`,`Pay ${fmt(it.p)} from your cash balance. It shows up in your collection on Home.`,`Acquire for ${fmt(it.p)}`,()=>{if(!spendCash(it.p))return;S.owned[it.id]=(S.owned[it.id]||0)+1;save(true);rain(90,['#e8cf96','#fff3d6','#ffffff']);toast(`Delivered · ${esc(it.name)}`,'good');vib([30,30,60]);render()})});
+    $$('[data-sell]',el).forEach(b=>b.onclick=()=>{const it=ITEM[b.dataset.sell],v=it.p*0.85;confirmSheet(`Sell ${esc(it.name)}?`,`The dealer pays 85% of list: ${fmt(v)}.`,`Sell for ${fmt(v)}`,()=>{S.owned[it.id]--;if(S.owned[it.id]<=0)delete S.owned[it.id];earnCash(v);toast('Sold · '+fmt(v),'good');render()})});
   };
   $$('.lux-tabs button',el).forEach(b=>b.onclick=()=>{shopCat=b.dataset.c;vib(6);render()});render();
 }
@@ -1977,24 +2099,24 @@ function walletView(el){
   };
   render();let n=0;const t=()=>{if(++n%3===0&&!sheetClose)render()};tickSubs.add(t);return()=>tickSubs.delete(t);
 }
-function assetRow(k,mine){const q=hold(k),c=chg24(k);return `<button class="cbrow" data-k="${k}">${cxIcon(k)}<span><b>${CX[k].n}</b><small>${mine?famt(k,q):k}</small></span><span class="r"><b>${fusd(mine?q*S.cx.p[k]:S.cx.p[k])}</b><small class="${c>=0?'up':'dn'}">${c>=0?'↗':'↘'} ${(Math.abs(c)*100).toFixed(2)}%</small></span></button>`}
+function assetRow(k,mine){const q=hold(k),c=chg24(k);return `<button class="cbrow" data-k="${k}">${cxIcon(k)}<span><b>${CX[k].n}</b><small>${mine?famt(k,q):k}${mine&&allW().some(w=>taintQ(w,k)>0)?' · <span class="dn">tainted</span>':''}</small></span><span class="r"><b>${fusd(mine?q*S.cx.p[k]:S.cx.p[k])}</b><small class="${c>=0?'up':'dn'}">${c>=0?'↗':'↘'} ${(Math.abs(c)*100).toFixed(2)}%</small></span></button>`}
 function paneHome(p){
   const tot=cryptoValue(),ser=pSeries(wrange),ch=ser?ser[ser.length-1]-ser[0]:0,chp=ser&&ser[0]?ch/ser[0]:0,mine=CXK.filter(k=>hold(k)>0).sort((a,b)=>hold(b)*S.cx.p[b]-hold(a)*S.cx.p[a]);
   const movers=CXK.filter(k=>k!=='USDC').sort((a,b)=>Math.abs(chg24(b))-Math.abs(chg24(a)));
-  p.innerHTML=`<div class="cbbal"><span>Crypto balance</span><b class="pb">${fusd(tot)}</b>${ser?`<em class="pc ${ch>=0?'up':'dn'}">${ch>=0?'↗':'↘'} ${fusd(Math.abs(ch))} (${(Math.abs(chp)*100).toFixed(2)}%) ${RLBL[wrange]}</em>`:''}</div>
+  p.innerHTML=`${frozen()?`<button class="cbcard frz" id="frz"><b>❄ Exchange account frozen · ${mmss(S.kyc.frz-Date.now())}</b><span class="small mute">${esc(S.kyc.why)}. Tap to resolve.</span></button>`:''}${dirtyTotal()>1?`<div class="cbcard" style="border-color:rgba(240,97,109,.45)"><b class="dn">${fusd(dirtyTotal())} of tainted crypto</b><span class="small mute">Wash it in Blacksite before it touches your trading account or the casino, or the exchange can freeze you.</span></div>`:''}<div class="cbbal"><span>Crypto balance</span><b class="pb">${fusd(tot)}</b>${ser?`<em class="pchg ${ch>=0?'up':'dn'}">${ch>=0?'↗':'↘'} ${fusd(Math.abs(ch))} (${(Math.abs(chp)*100).toFixed(2)}%) ${RLBL[wrange]}</em>`:''}</div>
     ${ser?`<div class="cbchart"></div><div class="ranges">${RNG.map(r=>`<button data-r="${r[0]}" class="${wrange===r[0]?'on':''}">${r[0]}</button>`).join('')}</div>`:`<div class="cbcard"><b style="font-size:17px">Buy your first crypto</b><span class="mute small">Use your Overpaid cash to buy Bitcoin, Ethereum, Solana, Monero and more. Move it to your own wallets or a hardware wallet.</span></div>`}
     ${actsHTML()}
-    <div class="cbcard" style="flex-direction:row;justify-content:space-between;align-items:center"><div><span class="mute small">Cash available</span><b style="display:block;font-size:19px">${fusd(S.cash)}</b></div><button class="btn sm" data-act="buy">Buy crypto</button></div>
+    <div class="cbcard cashc"><div class="row" style="justify-content:space-between"><div><span class="mute small">Cash · the Maison only takes cash</span><b style="display:block;font-size:26px;letter-spacing:-.02em">${fusd(S.cash)}</b></div><span class="cxi" style="--c:#2ebd85;width:44px;height:44px;font-size:22px">$</span></div><div class="grid2"><button class="btn sm" data-act="buy">Buy crypto</button><button class="btn ghost sm" id="coall">Cash out</button></div></div>
     ${mine.length?`<div><h2 class="cbh2">Your assets</h2>${mine.map(k=>assetRow(k,1)).join('')}</div>`:''}
     <div><h2 class="cbh2">Top movers</h2><div class="movers">${movers.map(k=>{const c=chg24(k);return `<button class="mv" data-k="${k}">${cxIcon(k,32)}<b>${k}</b><span>${fusd(S.cx.p[k])}</span><span class="pill ${c>=0?'up':'dn'}">${c>=0?'↗':'↘'} ${(Math.abs(c)*100).toFixed(2)}%</span></button>`}).join('')}</div></div>
     <div><h2 class="cbh2">Prices</h2>${CXK.map(k=>assetRow(k,0)).join('')}</div>
     ${S.wtx.length?`<div><h2 class="cbh2">Recent activity</h2>${S.wtx.slice(0,8).map(t=>`<div class="cbrow">${cxIcon(t.k)}<span><b>${t.ty} ${t.k}</b><small>${esc(t.n)||ago(t.t)+' ago'}</small></span><span class="r"><b>${famt(t.k,t.q)}</b><small>${fusd(t.usd)}</small></span></div>`).join('')}</div>`:''}`;
-  if(ser){const box=$('.cbchart',p),pb=$('.pb',p),pc=$('.pc',p);lineChart(box,ser,ch>=0?'#05a660':'#d6334b',(v,i,n)=>{if(v==null){pb.textContent=fusd(tot);return}pb.textContent=fusd(v)});
+  if(ser){const box=$('.cbchart',p),pb=$('.pb',p);lineChart(box,ser,ch>=0?'#05a660':'#d6334b',(v,i,n)=>{if(v==null){pb.textContent=fusd(tot);return}pb.textContent=fusd(v)});
     $$('[data-r]',p).forEach(b=>b.onclick=()=>{wrange=b.dataset.r;vib(5);paneHome(p)})}
-  wireActs(p);$$('[data-k]',p).forEach(b=>b.onclick=()=>assetSheet(b.dataset.k));
+  wireActs(p);$$('[data-k]',p).forEach(b=>b.onclick=()=>assetSheet(b.dataset.k));const ca=$('#coall',p);if(ca)ca.onclick=cashOutSheet;const fz=$('#frz',p);if(fz)fz.onclick=kycSheet;
 }
 function paneWallets(p){
-  p.innerHTML=`${S.wl.map(w=>{const ks=CXK.filter(k=>w.b[k]>0);return `<button class="cbcard" data-w="${w.id}"><div class="row" style="justify-content:space-between"><b style="font-size:16px">${esc(w.n)}</b><span class="pill ${w.k==='acct'?'up':''}" style="background:#eef3ff;color:var(--acc)">${w.k==='acct'?'Exchange account':'Self-custody'}</span></div><b style="font-size:24px;letter-spacing:-.02em">${fusd(wVal(w))}</b><div class="row" style="gap:4px">${ks.map(k=>cxIcon(k,22)).join('')||'<span class="mute small">Empty</span>'}</div></button>`}).join('')}
+  p.innerHTML=`${S.wl.map(w=>{const ks=CXK.filter(k=>w.b[k]>0);return `<button class="cbcard" data-w="${w.id}"><div class="row" style="justify-content:space-between"><b style="font-size:16px">${esc(w.n)}</b><span class="pill" style="background:color-mix(in srgb,var(--acc) 16%,transparent);color:var(--acc)">${w.k==='acct'?'Exchange account':'Self-custody'}</span></div><b style="font-size:24px;letter-spacing:-.02em">${fusd(wVal(w))}</b>${taintVal(w)>1?`<span class="pill warn" style="align-self:flex-start">${fusd(taintVal(w))} tainted</span>`:''}<div class="row" style="gap:4px">${ks.map(k=>cxIcon(k,22)).join('')||'<span class="mute small">Empty</span>'}</div></button>`}).join('')}
     <button class="btn wide" id="nw">Create a new wallet</button>
     <p class="mute small">The exchange account is where buys and sells land. Self-custody wallets come with their own 12-word recovery phrase. Move coins between them with Send.</p>`;
   $$('[data-w]',p).forEach(b=>b.onclick=()=>walletSheet(wById(b.dataset.w)));$('#nw',p).onclick=createWalletFlow;
@@ -2004,7 +2126,7 @@ function paneHW(p){
     <h2 class="cbh2">Get a hardware wallet</h2>
     ${Object.entries(HWM).map(([id,m])=>`<div class="cbrow">${hwIcon(m.f)}<span><b>${m.n}</b><small>${m.d}</small></span><button class="btn sm" data-buy="${id}">${fusd(m.p).replace('.00','')}</button></div>`).join('')}`;
   $$('[data-d]',p).forEach(b=>b.onclick=()=>deviceSheet(wById(b.dataset.d)));
-  $$('[data-buy]',p).forEach(b=>b.onclick=()=>{const m=HWM[b.dataset.buy];confirmSheet(`Buy a ${m.n}?`,`Costs ${fusd(m.p)} of cash. It arrives sealed. You set the PIN and write down the recovery phrase on the device.`,`Buy for ${fusd(m.p)}`,()=>{if(!spend(m.p))return;const d={id:'hw'+hex(6),m:b.dataset.buy,n:'My '+m.n.split(' ').slice(1).join(' '),pin:null,seed:seedGen(24),b:{},ad:{},ok:0,t:Date.now()};S.hw.push(d);save(true);toast('Delivered · unbox it and set it up','good');setTimeout(()=>deviceSheet(d),350)})});
+  $$('[data-buy]',p).forEach(b=>b.onclick=()=>{const m=HWM[b.dataset.buy];confirmSheet(`Buy a ${m.n}?`,`Costs ${fusd(m.p)} of cash. It arrives sealed. You set the PIN and write down the recovery phrase on the device.`,`Buy for ${fusd(m.p)}`,()=>{if(!spendCash(m.p))return;const d={id:'hw'+hex(6),m:b.dataset.buy,n:'My '+m.n.split(' ').slice(1).join(' '),pin:null,seed:seedGen(24),b:{},ad:{},ok:0,t:Date.now()};S.hw.push(d);save(true);toast('Delivered · unbox it and set it up','good');setTimeout(()=>deviceSheet(d),350)})});
 }
 function fhead(title,back){return `<div class="fh">${back?'<button class="back fb" aria-label="Back"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>':'<span></span>'}<b>${title}</b><span></span></div>`}
 function amountUI(box,o){
@@ -2024,22 +2146,25 @@ function buyFlow(k0){let k=k0||'BTC';const box=flowBox(),fee=v=>Math.max(.99,v*.
   const s1=()=>amountUI(box,{title:'Buy',top:coinPicker(CXK,k),max:()=>S.cash,sub:v=>`≈ ${famt(k,Math.max(0,v-fee(v))/S.cx.p[k])}`,next:s2,wire:draw=>$$('[data-ck]',box).forEach(x=>x.onclick=()=>{k=x.dataset.ck;$$('[data-ck]',box).forEach(y=>y.classList.toggle('on',y===x));draw()})});
   const s2=v=>{if(v<2){toast('Minimum purchase is $2','bad');return}const f=fee(v),px=S.cx.p[k],q=(v-f)/px;
     reviewUI(box,{hero:`<div class="amt">${cxIcon(k,48)}<b style="font-size:34px">${famt(k,q)}</b><span>${CX[k].n}</span></div>`,rows:[['Pay with','Overpaid cash'],[k+' price',fusd(px)],['Purchase',fusd(v-f)],['Fee',fusd(f)],['Total',fusd(v)],['Lands in',esc(mainW().n)]],cta:'Buy now',back:s1,
-      confirm:()=>{if(!spend(v))return;mainW().b[k]=(mainW().b[k]||0)+q;wlog('Bought',k,q,v);doneUI(box,'Purchase complete',`You bought ${famt(k,q)}`)}})};
+      confirm:()=>{if(!spendCash(v))return;addCoin(mainW(),k,q,0);wlog('Bought',k,q,v);doneUI(box,'Purchase complete',`You bought ${famt(k,q)}`)}})};
   s1()}
 function sellFlow(k0){const w=mainW();let ks=CXK.filter(x=>w.b[x]>0);if(!ks.length){toast('Nothing to sell in your exchange account','bad');return}let k=ks.includes(k0)?k0:ks[0];const box=flowBox(),fee=v=>Math.max(.99,v*.0149);
   const s1=()=>amountUI(box,{title:'Sell',top:coinPicker(ks,k),max:()=>(w.b[k]||0)*S.cx.p[k],sub:v=>`${famt(k,v/S.cx.p[k])} of ${famt(k,w.b[k]||0)}`,next:s2,wire:draw=>$$('[data-ck]',box).forEach(x=>x.onclick=()=>{k=x.dataset.ck;$$('[data-ck]',box).forEach(y=>y.classList.toggle('on',y===x));draw()})});
   const s2=v=>{if(v<2){toast('Minimum sale is $2','bad');return}const f=fee(v),px=S.cx.p[k],q=Math.min(w.b[k],v/px);
     reviewUI(box,{hero:`<div class="amt"><b style="font-size:34px">${fusd(v-f)}</b><span>to your cash</span></div>`,rows:[['Sell',famt(k,q)],[k+' price',fusd(px)],['Fee',fusd(f)],['You get',fusd(v-f)]],cta:'Sell now',back:s1,
-      confirm:()=>{w.b[k]-=q;if(w.b[k]<1e-12)w.b[k]=0;earn(v-f);wlog('Sold',k,q,v);doneUI(box,'Sold',`${fusd(v-f)} added to your cash`)}})};
+      confirm:()=>{if(frozen()){kycSheet();return}const tq=takeCoin(w,k,q);earnCash(v-f);wlog('Sold',k,q,v);if(tq>0)setTimeout(()=>kycCheck(tq*S.cx.p[k],'cashed out'),500);doneUI(box,'Sold',`${fusd(v-f)} added to your cash`)}})};
   s1()}
 function convertFlow(k0){const w=mainW();const ks=CXK.filter(x=>w.b[x]>0);if(!ks.length){toast('Buy some crypto first','bad');return}let a=ks.includes(k0)?k0:ks[0],b=a==='BTC'?'ETH':'BTC';const box=flowBox();
   const s1=()=>amountUI(box,{title:'Convert',top:`<div class="lab-l" style="margin-top:4px">From</div>${coinPicker(ks,a).replace(/data-ck/g,'data-ca')}<div class="lab-l" style="margin-top:8px">To</div>${coinPicker(CXK,b).replace(/data-ck/g,'data-cb')}`,max:()=>(w.b[a]||0)*S.cx.p[a],sub:v=>`${famt(a,v/S.cx.p[a])} → ${famt(b,v*.99/S.cx.p[b])}`,next:s2,
     wire:draw=>{$$('[data-ca]',box).forEach(x=>x.onclick=()=>{a=x.dataset.ca;if(a===b)b=CXK.find(z=>z!==a);s1()});$$('[data-cb]',box).forEach(x=>x.onclick=()=>{if(x.dataset.cb===a)return;b=x.dataset.cb;$$('[data-cb]',box).forEach(y=>y.classList.toggle('on',y===x));draw()})}});
   const s2=v=>{if(v<1){toast('Minimum is $1','bad');return}const qa=Math.min(w.b[a],v/S.cx.p[a]),qb=v*.99/S.cx.p[b];
     reviewUI(box,{hero:`<div class="amt"><div class="row">${cxIcon(a,40)}<span style="font-size:22px">→</span>${cxIcon(b,40)}</div><b style="font-size:30px">${famt(b,qb)}</b></div>`,rows:[['From',famt(a,qa)],['To',famt(b,qb)],['Rate',`1 ${a} = ${famt(b,S.cx.p[a]/S.cx.p[b])}`],['Fee','1%']],cta:'Convert now',back:s1,
-      confirm:()=>{w.b[a]-=qa;if(w.b[a]<1e-12)w.b[a]=0;w.b[b]=(w.b[b]||0)+qb;wlog('Converted',b,qb,v,`from ${a}`);doneUI(box,'Converted',`You now have ${famt(b,w.b[b])}`)}})};
+      confirm:()=>{if(frozen()){kycSheet();return}const tq=takeCoin(w,a,qa);addCoin(w,b,qb,qa>0?qb*tq/qa:0);wlog('Converted',b,qb,v,`from ${a}`);doneUI(box,'Converted',`You now have ${famt(b,w.b[b])}`)}})};
   s1()}
-function doSend(src,k,q,fee,toId,ext){src.b[k]=Math.max(0,(src.b[k]||0)-q-fee);if(src.b[k]<1e-12)src.b[k]=0;const dst=toId?wById(toId):null;if(dst)dst.b[k]=(dst.b[k]||0)+q;wlog('Sent',k,q,q*S.cx.p[k],`${src.n} → ${dst?dst.n:shortA(ext)}`)}
+function doSend(src,k,q,fee,toId,ext){const ta=takeCoin(src,k,q+fee),tq=q+fee>0?ta*q/(q+fee):0,dst=toId?wById(toId):null;let lost=0;
+  if(k==='USDC'&&tq>0&&Math.random()<.5){lost=tq;toast(`The USDC issuer froze ${famt(k,tq)} of tainted coins`,'bad');led('SEIZED',tq,'USDC blacklisted')}
+  if(dst)addCoin(dst,k,q-lost,tq-lost);wlog('Sent',k,q,q*S.cx.p[k],`${src.n} → ${dst?dst.n:shortA(ext)}`);
+  if(dst&&dst.k==='acct'&&tq-lost>0)setTimeout(()=>kycCheck((tq-lost)*S.cx.p[k],'deposited'),600)}
 function sendFlow(o={}){
   let k=o.k,from=o.from,to=o.to||null,ext='';const box=flowBox();
   const s1=()=>{
@@ -2066,7 +2191,7 @@ function sendFlow(o={}){
       rows:[['From',esc(src.n)],['To',dst?esc(dst.n):`<span class="num">${esc(shortA(ext))}</span>`],['Network fee',famt(k,f)],['Total',famt(k,q+f)]],
       note:src.m?'This comes from a hardware wallet. You will unlock it and approve the transaction on the device.':'',
       cta:src.m?'Continue on device':'Send now',
-      confirm:()=>{if(src.m){closeSheet();setTimeout(()=>deviceSheet(src,{k,q,fee:f,to:dst?dst.id:null,ext}),320);return}doSend(src,k,q,f,dst?dst.id:null,ext);doneUI(box,'Sent',`${famt(k,q)} is on its way to ${dst?esc(dst.n):'that address'}`)}})};
+      confirm:()=>{if(src.k==='acct'&&frozen()){kycSheet();return}if(src.m){closeSheet();setTimeout(()=>deviceSheet(src,{k,q,fee:f,to:dst?dst.id:null,ext}),320);return}doSend(src,k,q,f,dst?dst.id:null,ext);doneUI(box,'Sent',`${famt(k,q)} is on its way to ${dst?esc(dst.n):'that address'}`)}})};
   s1();
 }
 function receiveFlow(o={}){let k=o.k||'BTC',wid=o.w||mainW().id;const box=flowBox();
@@ -2097,13 +2222,13 @@ function walletSheet(w){const el=h('<div class="cb"></div>');
   const draw=()=>{const ks=CXK.filter(k=>w.b[k]>0);
     el.innerHTML=`<div class="cbbal"><span>${w.k==='acct'?'Exchange account':'Self-custody wallet'}</span><b>${fusd(wVal(w))}</b><em class="mute">${esc(w.n)}</em></div>
       <div class="grid2"><button class="btn" data-a="send">Send</button><button class="btn ghost" data-a="recv">Receive</button></div>
-      <div>${ks.length?ks.map(k=>`<div class="cbrow">${cxIcon(k)}<span><b>${CX[k].n}</b><small>${famt(k,w.b[k])}</small></span><span class="r"><b>${fusd(w.b[k]*S.cx.p[k])}</b></span></div>`).join(''):'<p class="mute small">This wallet is empty. Receive or send coins into it.</p>'}</div>
+      <div>${ks.length?ks.map(k=>`<div class="cbrow">${cxIcon(k)}<span><b>${CX[k].n}</b><small>${famt(k,w.b[k])}${taintQ(w,k)>0?' · <span class="dn">'+famt(k,taintQ(w,k))+' tainted</span>':''}</small></span><span class="r"><b>${fusd(w.b[k]*S.cx.p[k])}</b></span></div>`).join(''):'<p class="mute small">This wallet is empty. Receive or send coins into it.</p>'}</div>
       ${w.k==='hot'?`<div class="cbcard"><b>Recovery phrase</b><span class="mute small">Anyone with these 12 words controls this wallet. Tap to reveal.</span><div class="seedgrid">${w.seed.map((s,i)=>`<span><i>${i+1}</i>${s}</span>`).join('')}</div></div>`:''}
       <div class="grid2"><button class="btn ghost sm" data-a="ren">Rename</button>${w.k==='hot'?`<button class="btn ghost sm" data-a="del">Delete wallet</button>`:''}</div>`;
     $('[data-a=send]',el).onclick=()=>sendFlow({from:w.id});$('[data-a=recv]',el).onclick=()=>receiveFlow({w:w.id});
     const sg=$('.seedgrid',el);if(sg)sg.onclick=()=>sg.classList.toggle('show');
     $('[data-a=ren]',el).onclick=()=>renameSheet(w);
-    const dl=$('[data-a=del]',el);if(dl)dl.onclick=()=>{if(wVal(w)>0.01){toast('Move the coins out before deleting','bad');return}confirmSheet('Delete this wallet?','It is empty, so nothing is lost.','Delete',()=>{S.wl=S.wl.filter(x=>x!==w);save(true);go('wallet',true)},true)};
+    const dl=$('[data-a=del]',el);if(dl)dl.onclick=()=>{const v=wVal(w);confirmSheet('Delete this wallet?',v>0.01?`It still holds ${fusd(v)}. Deleting it without moving the coins out loses them for good.`:'It is empty, so nothing is lost.',v>0.01?`Delete and lose ${fusd(v)}`:'Delete wallet',()=>{S.wl=S.wl.filter(x=>x!==w);save(true);toast('Wallet deleted');go('wallet',true)},true)};
   };draw();sheet(el)}
 function renameSheet(w){const c=h(`<div class="confirm"><h3>Rename</h3><input class="tinp" id="rn" maxlength="28" value="${esc(w.n)}" autocomplete="off"><button class="btn wide">Save</button></div>`);$('button',c).onclick=()=>{const v=$('#rn',c).value.trim();if(v){w.n=v;save(true)}closeSheet();go('wallet',true)};sheet(c)}
 function createWalletFlow(){const box=flowBox(),seed=seedGen(12);let name='Wallet '+(S.wl.length);
@@ -2161,12 +2286,13 @@ function deviceSheet(d,pend){
     ib.innerHTML=`<div class="cbbal"><span>${d.wiped?'Wiped · restore to access':unlocked()?'Unlocked':'Locked'}</span><b>${fusd(wVal(d))}</b></div>
       ${ks.map(k=>`<div class="cbrow">${cxIcon(k)}<span><b>${CX[k].n}</b><small>${famt(k,d.b[k])}</small></span><span class="r"><b>${fusd(d.b[k]*S.cx.p[k])}</b></span></div>`).join('')||'<p class="mute small">No coins on this device yet. Deposit some for cold storage.</p>'}
       <div class="grid2"><button class="btn" data-x="dep">Deposit</button><button class="btn ghost" data-x="snd">Send out</button><button class="btn ghost sm" data-x="seed">Recovery phrase</button><button class="btn ghost sm" data-x="ren">Rename</button></div>
-      ${d.wiped?'<button class="btn wide" data-x="rest">Restore from recovery phrase</button>':''}`;
+      ${d.wiped?'<button class="btn wide" data-x="rest">Restore from recovery phrase</button>':''}<button class="btn ghost wide sm" data-x="rm">Remove device</button>`;
     $('[data-x=dep]',ib).onclick=()=>sendFlow({to:d.id});
     $('[data-x=snd]',ib).onclick=()=>{if(d.wiped){toast('Restore the device first','bad');return}sendFlow({from:d.id})};
     $('[data-x=ren]',ib).onclick=()=>renameSheet(d);
     $('[data-x=seed]',ib).onclick=()=>{if(!unlocked()){toast('Unlock the device first','bad');vib(40);return}const c=h(`<div class="confirm"><h3>Recovery phrase</h3><p class="mute small">24 words. Tap to reveal. Anyone with these words owns this device's coins.</p><div class="seedgrid">${d.seed.map((s,i)=>`<span><i>${i+1}</i>${s}</span>`).join('')}</div><button class="btn wide">Close</button></div>`);$('.seedgrid',c).onclick=e=>e.currentTarget.classList.add('show');$('button',c).onclick=closeSheet;sheet(c)};
     const rs_=$('[data-x=rest]',ib);if(rs_)rs_.onclick=()=>restoreFlow(d);
+    $('[data-x=rm]',ib).onclick=()=>{const v=wVal(d);confirmSheet('Remove this device?',v>0.01?`It holds ${fusd(v)}. Removing it without sending the coins out loses them.`:'It is empty, so nothing is lost.',v>0.01?`Remove and lose ${fusd(v)}`:'Remove device',()=>{S.hw=S.hw.filter(x=>x!==d);HWR.delete(d.id);save(true);toast('Device removed');go('wallet',true)},true)};
   }
   function paint(){scr.className='scr st-'+r.st;scr.innerHTML=screen();info();
     $$('[data-a]',scr).forEach(b=>b.onclick=e=>{e.stopPropagation();vib(6);const a=b.dataset.a;
@@ -2186,16 +2312,222 @@ function restoreFlow(d){const box=flowBox(),idx=[ri(0,7),ri(8,15),ri(16,23)];
   s(0)}
 function resetSheet(){const hv=S.hw.reduce((a,d)=>a+wVal(d),0);
   const c=h(`<div class="confirm"><h3>Start over?</h3><p class="mute small">This wipes your cash, collection, coins, wallets and Blacksite ledger. Your hardware wallets can come with you${S.hw.length?`: they hold ${fmt(hv)} right now`:''}.</p><button class="btn wide" id="rk">Start over · keep hardware wallets</button><button class="btn red wide" id="ra">Wipe everything</button><button class="btn ghost wide" id="rc">Cancel</button></div>`);
-  const doR=keep=>{const t=S.t,hw=S.hw,cx=S.cx,prof=S.prof;S=DEF();S.t=t+1;S.prof=prof;S.cx=cx;if(keep)S.hw=hw;HWR.clear();writeLocal();cloudDirty=true;cloudPush();updBal(true);closeSheet();go('home',true);toast(keep?'Fresh start · your hardware wallets came with you':'Fresh start · $10,000','good')};
+  const doR=keep=>{const t=S.t,hw=S.hw,cx=S.cx,prof=S.prof,soc=S.soc;S=DEF();S.t=t+1;S.prof=prof;S.cx=cx;S.soc=soc;if(keep)S.hw=hw;HWR.clear();writeLocal();cloudDirty=true;cloudPush();updBal(true);closeSheet();go('home',true);toast(keep?'Fresh start · your hardware wallets came with you':'Fresh start · $10,000','good')};
   $('#rk',c).onclick=()=>doR(true);$('#ra',c).onclick=()=>doR(false);$('#rc',c).onclick=closeSheet;sheet(c)}
 
-const VIEWS={home:homeView,casino:casinoView,trade:tradeView,wallet:walletView,lab:labView,shop:shopView};
+/* ---------- coin balances with taint tracking ---------- */
+function addCoin(w,k,q,tq){w.b[k]=(w.b[k]||0)+q;if(tq>0){w.tn=w.tn||{};w.tn[k]=(w.tn[k]||0)+tq}}
+function takeCoin(w,k,q){const b=w.b[k]||0;if(b<=0)return 0;const t=(w.tn&&w.tn[k])||0,tq=Math.min(t,q*Math.min(1,t/b));w.b[k]=Math.max(0,b-q);if(w.b[k]<1e-12)w.b[k]=0;if(t){w.tn[k]=Math.max(0,t-tq);if(w.tn[k]<1e-12||!w.b[k])w.tn[k]=0}return tq}
+const taintQ=(w,k)=>Math.min(w.b[k]||0,(w.tn&&w.tn[k])||0);
+const taintVal=w=>S.cx?CXK.reduce((a,k)=>a+taintQ(w,k)*S.cx.p[k],0):0;
+const dirtyTotal=()=>S.cx?allW().reduce((a,w)=>a+taintVal(w),0):0;
+
+/* ---------- what you play with: cash or a coin from the trading account ---------- */
+const curK=()=>S.cur&&S.cur!=='USD'&&S.cx&&CX[S.cur]?S.cur:'USD';
+function activeBal(){const k=curK();return k==='USD'?S.cash:(mainW().b[k]||0)*S.cx.p[k]}
+function balChip(){const k=curK(),c=$('#balc'),l=$('#balk');if(!c)return;
+  if(k==='USD'){c.className='dot';c.innerHTML='';c.removeAttribute('style')}else{c.className='';c.innerHTML=cxIcon(k,18)}
+  l.textContent=k!=='USD'&&frozen()?'FROZEN':'';l.classList.toggle('dn',k!=='USD'&&frozen())}
+function curSheet(){
+  const w=mainW(),k0=curK();
+  const el=h(`<div class="cb"><div class="sec-h"><h3 style="font-family:var(--f-disp);font-size:20px">Play with</h3><span class="eyebrow">casino · terminal · launchpad</span></div>
+    <p class="mute small">Bets, memecoin buys and ads are paid from this balance. Winnings come back in the same currency. The Maison and hardware wallets always take cash.</p>
+    <div>${[['USD','Cash',S.cash,null],...CXK.map(k=>[k,CX[k].n,(w.b[k]||0)*S.cx.p[k],w.b[k]||0])].map(([k,n,v,q])=>`<button class="cbrow" data-cur="${k}">${k==='USD'?'<span class="cxi" style="--c:#2ebd85;width:40px;height:40px;font-size:20px">$</span>':cxIcon(k)}<span><b>${n}${k===k0?' · <span class="up">active</span>':''}</b><small>${k==='USD'?'Cash balance':famt(k,q)+(taintQ(w,k)>0?' · <span class="dn">tainted</span>':'')}</small></span><span class="r"><b>${fmt(v)}</b></span></button>`).join('')}</div>
+    <button class="btn ghost wide" id="tow">Buy crypto in Wallet</button></div>`);
+  $$('[data-cur]',el).forEach(b=>b.onclick=()=>{const k=b.dataset.cur;if(k!=='USD'&&frozen()){kycSheet();return}S.cur=k;save(true);updBal(true);closeSheet();vib(10);toast(k==='USD'?'Playing with cash':`Playing with ${CX[k].n}`,'good');if(cur!=='wallet')go(cur,true)});
+  $('#tow',el).onclick=()=>go('wallet');sheet(el);
+}
+
+/* ---------- exchange compliance: tainted coins get you frozen ---------- */
+const frozen=()=>!!(S.kyc&&S.kyc.frz>Date.now());
+function kycCheck(usd,why){
+  if(!(usd>=25))return;const K=S.kyc;K.x=(K.x||0)+usd;
+  const p=clamp(.12+usd/15000+K.x/150000+S.lab.heat/250,0,.92);
+  if(Math.random()<p){K.frz=Date.now()+15*60e3;K.why=`${fmt(usd)} of tainted crypto ${why}`;K.n=(K.n||0)+1;led('FROZEN',usd,'exchange account');save(true);updBal(true);freezeAlert()}
+  else if(p>.25)toast(`Compliance noticed tainted coins · ${Math.round(p*100)}% flag risk on that one`,'bad');
+}
+function freezeAlert(){vib([120,60,120]);closeSheet();
+  const el=h(`<div id="frzov"><div class="frzbox"><div class="frzi">❄</div><h2>Account frozen</h2><p>Your exchange account was flagged: ${esc(S.kyc.why)}. Playing with crypto, selling, converting and sending from the account are locked for 15:00. When the review ends, the tainted coins are seized.</p><button class="btn wide" id="fr1">Resolve now</button><button class="btn ghost wide" id="fr2">Wait it out</button></div></div>`);
+  document.body.append(el);$('#fr1',el).onclick=()=>{el.remove();kycSheet()};$('#fr2',el).onclick=()=>el.remove();
+}
+function kycSheet(){
+  const K=S.kyc,w=mainW(),acct=wVal(w),tv=taintVal(w),fee=Math.max(5000,Math.round(acct*.1));
+  if(!frozen()){toast('Your account is not frozen','good');return}
+  const el=h(`<div class="confirm"><h3>Frozen · ${mmss(K.frz-Date.now())} left</h3><p class="mute small">${esc(K.why)}. Tainted coins on the account: ${fmt(tv)}.</p>
+    <button class="btn wide" id="k1">Pay a compliance lawyer · ${fmt(fee)} cash</button><p class="mute small">Unfreezes now. Tainted coins on the account are still seized.</p>
+    <button class="btn ghost wide" id="k2">Appeal · 30% chance it clears early</button><p class="mute small">If it fails, the freeze gets 10 minutes longer.</p>
+    <button class="btn ghost wide" id="k3">Wait it out</button></div>`);
+  $('#k1',el).onclick=()=>{if(!spendCash(fee))return;unfreeze('Lawyer sorted it out');closeSheet()};
+  $('#k2',el).onclick=()=>{if(K.ap&&Date.now()-K.ap<60000){toast('You can appeal once a minute','bad');return}K.ap=Date.now();if(Math.random()<.3){unfreeze('Appeal accepted')}else{K.frz+=10*60e3;toast('Appeal denied · +10 minutes','bad');save(true)}closeSheet()};
+  $('#k3',el).onclick=closeSheet;sheet(el);
+}
+function unfreeze(msg){const K=S.kyc,w=mainW();let lost=0;for(const k of CXK){const t=taintQ(w,k);if(t>0){lost+=t*S.cx.p[k];washTake(w,k,t)}}K.frz=0;K.x*=.5;if(lost>0)led('SEIZED',lost,'tainted coins on exchange');save(true);updBal(true);toast(`${msg} · account unfrozen${lost>0?` · ${fmt(lost)} of tainted coins seized`:''}`,lost>0?'bad':'good');if(cur==='wallet'||cur==='lab')go(cur,true)}
+function kycTick(){const K=S.kyc;if(K.frz&&Date.now()>K.frz)unfreeze('Review finished');K.x=(K.x||0)*.9995}
+function cashOutSheet(){
+  const w=mainW(),ks=CXK.filter(k=>w.b[k]>0);if(!ks.length){toast('No crypto in your trading account','bad');return}
+  const tot=ks.reduce((a,k)=>a+w.b[k]*S.cx.p[k],0),fee=Math.max(.99,tot*.0149),tv=taintVal(w),box=flowBox();
+  box.innerHTML=`${fhead('Cash out')}<div class="amt"><span class="cxi" style="--c:#2ebd85;width:52px;height:52px;font-size:26px">$</span><b style="font-size:40px">${fusd(Math.max(0,tot-fee))}</b><span>straight to your cash balance</span></div>
+    <div class="rv">${ks.map(k=>`<div><span>${famt(k,w.b[k])}</span><b>${fusd(w.b[k]*S.cx.p[k])}</b></div>`).join('')}<div><span>Fee 1.49%</span><b>${fusd(fee)}</b></div></div>
+    ${tv>0?`<p class="small dn" style="margin-top:10px">${fusd(tv)} of this is tainted. Cashing it out can get the account frozen.</p>`:''}
+    <button class="btn wide go" style="margin-top:14px">Cash out everything</button><button class="btn ghost wide" id="one" style="margin-top:8px">Cash out one coin</button>`;
+  $('#one',box).onclick=()=>sellFlow();
+  $('.go',box).onclick=()=>{if(frozen()){kycSheet();return}let tu=0;for(const k of ks)tu+=takeCoin(w,k,w.b[k])*S.cx.p[k];earnCash(Math.max(0,tot-fee));wlog('Cashed out','USDC',tot-fee,tot,'all crypto → cash');doneUI(box,'Cashed out',`${fusd(tot-fee)} added to your cash`);if(tu>0)kycCheck(tu,'cashed out')};
+}
+
+/* ================= SOCIAL · simulated photo feed ================= */
+const SNAMES=['luna.eth','ricosuave','bigsby','vroom.vroom','0xmarta','kenji.cap','pablo_vv','sirloin','dripdrop','yuki.fx','trenchrat','mamba.mentality','zedd.eth','kodak.blk','aria.lux','monaco.mike','sol.santi','cryptokween','degen.dani','hodl.hank','yacht.yara','richkid.ro','gwei.gabe','bagholder.bo'];
+const PLACES=['Monaco','Dubai Marina','Miami Beach','Mykonos','St. Tropez','Beverly Hills','Tokyo','Ibiza','Aspen','Lake Como','Mayfair','Maldives'];
+const BRANDS=['Velvet Energy','Noirwear','Aurum Watch Co.','Pulse Exchange','Marina Yacht Club','Glacier Water','Moonshot Apparel','Ivory Fragrances'];
+const CMTS=['🔥🔥🔥','sheeesh','how do I get on your level','drop the wallet address king','this is the way','LFG','teach me','rent free','bro is him','respect','sauce?','💎🙌','w','tag me next time','let me hold something','me in 2030','fake? 👀','congrats bro','unreal','what a flex','motivation','down bad seeing this','my landlord could never','🐐'];
+const PEOPLE=new Map();
+function person(n){let p=PEOPLE.get(n);if(!p){p={n,ic:mkIcon(''),v:Math.random()<.35};PEOPLE.set(n,p)}return p}
+let FEED=[],stab='feed';
+const myName=()=>cleanH(S.prof.handle)||(S.prof.name||'you').toLowerCase().replace(/\s+/g,'.');
+function genPost(){const u=pick(SNAMES),r=Math.random();let kind,data,cap;
+  if(r<.34){const it=pick(ITEMS);kind='item';data={id:it.id};cap=pick(['new toy','could not resist',`${it.name} season`,'treat yourself','delivered this morning','another one'])}
+  else if(r<.54){kind='pnl';data={tk:pick(BASE).toUpperCase().slice(0,4),ic:mkIcon(''),r:Math.random()<.2?rnd(.2,.8):Math.exp(rnd(Math.log(1.3),Math.log(60)))};cap=pick(['told you so','called it in the group chat','not financial advice','rent paid for the year','fading this was a mistake'])}
+  else if(r<.72){kind='win';data={g:pick(GAMES).n,m:+Math.exp(rnd(Math.log(5),Math.log(1000))).toFixed(2)};cap=pick(['the house always loses','one more spin','needed that','do not try this at home'])}
+  else{kind='vibe';data={h:ri(0,359),q:pick(['Monaco nights','Wheels up','Never selling','Sunday at the marina','Penthouse views','Back to the trenches','Rooftop season','Private terminal only'])};cap=pick(['',`views from ${pick(PLACES)}`,'grateful','we move'])}
+  return {id:hex(8),u,kind,data,cap,pl:pick(PLACES),t:Date.now()-ri(30,7200)*1000,likes:ri(40,90000),cm:ri(2,900),liked:false,saved:false}}
+function seeded(s){let x=s*9301+49297;return ()=>(x=(x*9301+49297)%233280)/233280}
+function skyline(h){const r=seeded(h+7);let s='';let x=0;while(x<300){const w=14+r()*30,ht=40+r()*120;s+=`<rect x="${x.toFixed(0)}" y="${(300-ht).toFixed(0)}" width="${w.toFixed(0)}" height="${ht.toFixed(0)}" fill="#0a0612" opacity=".85"/>`;for(let j=0;j<4;j++)if(r()<.6)s+=`<rect x="${(x+3+r()*(w-8)).toFixed(0)}" y="${(300-ht+8+r()*(ht-16)).toFixed(0)}" width="3" height="4" fill="#ffd98a" opacity=".8"/>`;x+=w+2}return s}
+function mediaHTML(p){const d=p.data||{};
+  switch(p.kind){
+    case 'item':{const it=ITEM[d.id];if(!it)return '<div class="pm"></div>';return `<div class="pm art" style="background:${BG(it.hue)}">${artHTML(it)}<span class="pmtag">${esc(it.brand)} · ${esc(it.name)}</span></div>`}
+    case 'pnl':{const up=d.r>=1,col=up?'#3dffb5':'#ff4f7a';return `<div class="pm" style="background:radial-gradient(80% 60% at 70% 20%,${up?'#0f6b4c':'#6b0f24'},#07070c 75%)"><div class="pmx"><span class="ico">${icFor('pi'+p.id,d.ic)}</span><span class="big" style="color:${col}">${up?'+':''}${((d.r-1)*100).toFixed(Math.abs(d.r-1)>=10?0:1)}%</span><span class="lbl2">$${esc(d.tk)} · ${up?'closed in profit':'took the L'}</span></div></div>`}
+    case 'win':return `<div class="pm" style="background:radial-gradient(80% 60% at 50% 30%,#8b6cff,#1a0e40 70%)"><div class="pmx"><span class="lbl2">${esc(d.g)}</span><span class="big" style="color:#ffe08a">${d.m}×</span><span class="lbl2">Velvet Casino</span></div></div>`;
+    case 'vibe':return `<div class="pm" style="background:linear-gradient(180deg,hsl(${d.h} 70% 58%),hsl(${(d.h+40)%360} 75% 38%) 58%,hsl(${(d.h+60)%360} 60% 12%))"><div class="pmx"><svg viewBox="0 0 300 300" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%"><circle cx="205" cy="118" r="44" fill="#fff3c4" opacity=".85"/>${skyline(d.h)}</svg><span class="q">${esc(d.q)}</span></div></div>`;
+    case 'nw':return `<div class="pm" style="background:radial-gradient(70% 60% at 50% 30%,#4a360f,#0d0a05 75%)"><div class="pmx"><span class="lbl2">Net worth</span><span class="big" style="background:linear-gradient(180deg,#fff7d6,#e8c26a 55%,#a8761a);-webkit-background-clip:text;background-clip:text;color:transparent">${fk(d.v)}</span><span class="lbl2">${esc(d.r)} · Overpaid</span></div></div>`;
+    case 'sign':return `<div class="pm" style="background:radial-gradient(70% 60% at 50% 50%,#1a0618,#030104)"><div class="pmx"><span class="q" style="font-family:'Monoton',var(--f-disp);font-style:normal;font-weight:400;font-size:clamp(30px,9vw,46px);color:#fff;text-shadow:0 0 6px #fff,0 0 18px ${d.c},0 0 40px ${d.c},0 0 80px ${d.c};padding:0 12px">${esc(d.t)}</span></div></div>`;
+    case 'ad':return `<div class="pm" style="background:linear-gradient(135deg,hsl(${d.h} 70% 50%),hsl(${(d.h+50)%360} 70% 25%))"><div class="pmx"><span class="lbl2">Paid partnership</span><span class="q" style="font-family:var(--f-disp);font-style:normal;font-weight:800">${esc(d.b)}</span><span class="lbl2">#ad</span></div></div>`;
+    default:return `<div class="pm" style="background:linear-gradient(135deg,hsl(${d.h||280} 70% 45%),#0b0612)"><div class="pmx"><span class="q" style="padding:0 18px">${esc(d.t||p.cap||'')}</span></div></div>`;
+  }}
+const SV_={heart:'<svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-7.5-10.4A4.2 4.2 0 0 1 12 7.4a4.2 4.2 0 0 1 7.5 2.7c0 5.8-7.5 10.4-7.5 10.4z"/></svg>',cmt:'<svg viewBox="0 0 24 24"><path d="M20.5 11.5a8.5 8.5 0 1 1-4-7.2l4 .7-.8 3.6a8.4 8.4 0 0 1 .8 2.9z"/></svg>',send:'<svg viewBox="0 0 24 24"><path d="M21 3L10 14M21 3l-7 18-4-7-7-4z"/></svg>',save:'<svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-5-6 5z"/></svg>'};
+const avFor=u=>u==='me'?avatarHTML():iconSVG(person(u).ic);
+const uName=u=>u==='me'?myName():u;
+function postHTML(p){const v=p.u!=='me'&&person(p.u).v;return `<article class="post" data-pid="${p.id}"><header><span class="pav">${p.u==='me'?avatarHTML():icFor('u'+p.u,person(p.u).ic)}</span><div><b>${esc(uName(p.u))}${v?'<i class="vf">✓</i>':''}</b><small>${p.kind==='ad'?'Paid partnership':esc(p.pl)}</small></div><span class="mute">⋯</span></header>
+  <div class="pmw">${mediaHTML(p)}<i class="heartpop"></i></div>
+  <div class="pact"><button data-like class="${p.liked?'on':''}" aria-label="Like">${SV_.heart}</button><button data-cmt aria-label="Comments">${SV_.cmt}</button><button data-share aria-label="Share">${SV_.send}</button><span></span><button data-save class="${p.saved?'on':''}" aria-label="Save">${SV_.save}</button></div>
+  <div class="ptxt"><b class="lk">${p.likes.toLocaleString('en-US')} likes</b>${p.cap?`<p><b>${esc(uName(p.u))}</b> ${esc(p.cap)}</p>`:''}<button data-cmt>View all ${(p.cmts?p.cmts.length:p.cm).toLocaleString('en-US')} comments</button><small>${ago(p.t)} ago</small></div></article>`}
+function findPost(id){return S.soc.posts.find(p=>p.id===id)||FEED.find(p=>p.id===id)}
+function wirePosts(root){
+  let lastTap=0,lastId='';
+  root.onclick=e=>{const art=e.target.closest('.post');if(!art)return;const p=findPost(art.dataset.pid);if(!p)return;
+    const like=()=>{p.liked=!p.liked;p.likes+=p.liked?1:-1;const b=$('[data-like]',art);b.classList.toggle('on',p.liked);$('.lk',art).textContent=p.likes.toLocaleString('en-US')+' likes';vib(8);if(p.u==='me')save(true)};
+    if(e.target.closest('[data-like]'))return like();
+    if(e.target.closest('[data-cmt]'))return commentsSheet(p);
+    if(e.target.closest('[data-share]')){toast('Link copied to share');return}
+    if(e.target.closest('[data-save]')){p.saved=!p.saved;$('[data-save]',art).classList.toggle('on',p.saved);toast(p.saved?'Saved to your collection':'Removed from saved');return}
+    if(e.target.closest('.pmw')){const now=Date.now();if(now-lastTap<320&&lastId===p.id){if(!p.liked)like();const hp=$('.heartpop',art);hp.classList.remove('on');void hp.offsetWidth;hp.classList.add('on')}lastTap=now;lastId=p.id}};
+}
+function genComment(){return {u:pick(SNAMES),t:pick(CMTS),at:Date.now()-ri(10,5000)*1000}}
+function commentsSheet(p){if(!p.cmts)p.cmts=Array.from({length:ri(4,9)},genComment);
+  const el=h(`<div class="cb"><div class="sec-h"><h3 style="font-size:17px;font-weight:700">Comments</h3><span class="eyebrow">${p.cmts.length}</span></div><div class="cmts"></div><div class="cin"><span class="pav" style="width:32px;height:32px">${avatarHTML()}</span><input class="tinp" id="cmi" maxlength="120" placeholder="Add a comment…" autocomplete="off"><button class="btn sm" id="cms">Post</button></div></div>`);
+  const draw=()=>{$('.cmts',el).innerHTML=p.cmts.map(c=>`<div class="cmt"><span class="pav">${c.u==='me'?avatarHTML():icFor('u'+c.u,person(c.u).ic)}</span><div><b>${esc(uName(c.u))}</b> ${esc(c.t)}<br><small class="mute">${ago(c.at)}</small></div></div>`).join('')||'<p class="mute small">No comments yet.</p>'};
+  $('#cms',el).onclick=()=>{const v=$('#cmi',el).value.trim();if(!v)return;p.cmts.push({u:'me',t:v,at:Date.now()});$('#cmi',el).value='';draw();if(p.u==='me')save(true);vib(8)};draw();sheet(el)}
+function notif(ty,u,pid,txt,amt){const So=S.soc;So.notif.unshift({id:hex(6),ty,u,pid,txt:txt||'',amt:amt||0,t:Date.now(),read:false,done:false});if(So.notif.length>50)So.notif.pop()}
+const KM={nw:1.6,item:1.35,pnl:1.2,win:1.1,sign:.9,text:.6,ad:.45};
+function mkOwnPost(ty,sel,cap){const base={id:hex(8),u:'me',cap,pl:pick(PLACES),t:Date.now(),likes:0,cmts:[],liked:false,saved:false,mine:1};
+  if(ty==='nw')return {...base,kind:'nw',data:{v:netWorth(),r:RANKS[rankOf(netWorth())][1]}};
+  if(ty==='item'){if(!sel||!ITEM[sel])return null;return {...base,kind:'item',data:{id:sel}}}
+  if(ty==='trade'){const t=S.tr.find(x=>x.id===sel);if(!t)return null;return {...base,kind:'pnl',data:{tk:t.tk,ic:t.ic,r:t.cost>0?t.out/t.cost:1}}}
+  if(ty==='win'){if(!(S.stats.bestM>1))return null;return {...base,kind:'win',data:{g:'My best hit',m:S.stats.bestM.toFixed(2)}}}
+  if(ty==='sign')return {...base,kind:'sign',data:{t:(S.prof.sign.text||'OVERPAID').slice(0,30),c:S.prof.sign.col}};
+  return {...base,kind:'text',data:{h:ri(0,359),t:cap||'Overpaid and proud'}}}
+function publishPost(p){const So=S.soc;let km=KM[p.kind]||1;if(p.kind==='item'){const it=ITEM[p.data.id];km+=Math.log10(it.p)/12}
+  p.tg=Math.round(So.fol*rnd(.1,.3)*km+rnd(5,30));So.posts.unshift(p);if(So.posts.length>30)So.posts.pop();So.np++;save(true);toast('Posted · the likes are coming in','good');vib([20,30,20]);burst(null,null,30,['#ffb347','#ff3d7f','#a64dff','#fff'])}
+function newPostSheet(pre){
+  const owned=Object.keys(S.owned).filter(k=>ITEM[k]&&S.owned[k]>0);
+  const opts=[['nw','Net worth'],['item','Collection'],['trade','Trade'],['win','Big win'],['sign','Club sign'],['text','Text']];
+  let ty=pre||'nw',sel=null,cap='';
+  const el=h('<div class="cb"></div>');
+  const draw=()=>{if(ty==='item'&&!sel)sel=owned[0]||null;if(ty==='trade'&&!S.tr.find(t=>t.id===sel))sel=S.tr[0]?S.tr[0].id:null;
+    const post=mkOwnPost(ty,sel,cap);
+    el.innerHTML=`${fhead('New post')}<div class="pills">${opts.map(o=>`<button class="chip ${ty===o[0]?'on':''}" data-ty="${o[0]}">${o[1]}</button>`).join('')}</div>
+      ${ty==='item'?(owned.length?`<div class="picker">${owned.map(k=>`<button data-sel="${k}" class="${sel===k?'on':''}">${esc(ITEM[k].name)}</button>`).join('')}</div>`:'<p class="mute small">You do not own anything yet. Visit the Maison.</p>'):''}
+      ${ty==='trade'?(S.tr.length?`<div class="picker">${S.tr.slice(0,10).map(t=>`<button data-sel="${t.id}" class="${sel===t.id?'on':''}">$${esc(t.tk)} ${pct(t.cost>0?t.out/t.cost-1:0)}</button>`).join('')}</div>`:'<p class="mute small">Close a trade in the terminal first.</p>'):''}
+      ${ty==='win'&&!post?'<p class="mute small">Win something in the casino first.</p>':''}
+      <div class="pmprev">${post?mediaHTML(post):''}</div>
+      <input class="tinp" id="pcap2" maxlength="120" placeholder="${ty==='text'?'What do you want to say?':'Write a caption…'}" value="${esc(cap)}" autocomplete="off">
+      <button class="btn wide" id="pshare" ${post?'':'disabled'}>Share</button>`;
+    $$('[data-ty]',el).forEach(b=>b.onclick=()=>{ty=b.dataset.ty;draw()});
+    $$('[data-sel]',el).forEach(b=>b.onclick=()=>{sel=b.dataset.sel;draw()});
+    $('#pcap2',el).oninput=e=>{cap=e.target.value};
+    $('#pshare',el).onclick=()=>{const p=mkOwnPost(ty,sel,cap.trim());if(!p)return;publishPost(p);closeSheet();stab='me';setTimeout(()=>go('social',true),300)}};
+  draw();sheet(el);
+}
+function storyView(list,start){
+  let ui=start,fi=0,tm=0,t0=0;const el=h(`<div class="storyov"><div class="sbars"></div><div class="shd"><span class="pav"></span><b></b><small class="mute"></small><span style="flex:1"></span><button class="sx" aria-label="Close">✕</button></div><div class="sframe"></div></div>`);
+  document.body.append(el);
+  const close=()=>{cancelAnimationFrame(tm);el.remove()};
+  const show=()=>{const s=list[ui];if(!s){close();return}const f=s.frames[fi];
+    $('.sbars',el).innerHTML=s.frames.map((_,i)=>`<i class="${i<fi?'done':''}"><b></b></i>`).join('');
+    $('.shd .pav',el).innerHTML=avFor(s.u);$('.shd b',el).textContent=uName(s.u);$('.shd small',el).textContent=ago(f.t||Date.now()-ri(60,40000)*1000);
+    $('.sframe',el).innerHTML=mediaHTML(f);t0=performance.now();cancelAnimationFrame(tm);
+    const bar=$$('.sbars i b',el)[fi];const loop=now=>{const k=(now-t0)/4500;bar.style.width=Math.min(100,k*100)+'%';if(k>=1)next();else tm=requestAnimationFrame(loop)};tm=requestAnimationFrame(loop)};
+  const next=()=>{const s=list[ui];if(fi<s.frames.length-1)fi++;else{s.seen=1;ui++;fi=0}show()};
+  const prevF=()=>{if(fi>0)fi--;else if(ui>0){ui--;fi=0}show()};
+  $('.sx',el).onclick=e=>{e.stopPropagation();close()};
+  $('.sframe',el).onclick=e=>{const r=e.currentTarget.getBoundingClientRect();(e.clientX-r.left<r.width/3?prevF:next)()};
+  let sy=null;el.addEventListener('touchstart',e=>{sy=e.touches[0].clientY},{passive:true});el.addEventListener('touchend',e=>{if(sy!=null&&e.changedTouches[0].clientY-sy>100)close();sy=null});
+  show();
+}
+let STORIES=null;
+function stories(){if(!STORIES)STORIES=SNAMES.slice().sort(()=>Math.random()-.5).slice(0,10).map(u=>({u,frames:Array.from({length:ri(1,3)},()=>{const g=genPost();return {...g,u}})}));return STORIES}
+function socialView(el){
+  if(!FEED.length)FEED=Array.from({length:18},genPost).sort((a,b)=>b.t-a.t);
+  const So=S.soc;
+  const render=()=>{const unread=So.notif.filter(n=>!n.read).length;
+    el.innerHTML=`<div class="sch"><span class="slogo">clout</span><div class="sicons"><button id="snew" aria-label="New post"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M12 8v8M8 12h8"/></svg></button><button id="sact" aria-label="Activity">${SV_.heart}${unread?`<i>${unread>99?'99+':unread}</i>`:''}</button></div></div>
+      <div class="seg">${[['feed','Feed'],['me','Profile'],['act','Activity']].map(t=>`<button data-st="${t[0]}" class="${stab===t[0]?'on':''}">${t[1]}</button>`).join('')}</div><div class="spane"></div>`;
+    $$('[data-st]',el).forEach(b=>b.onclick=()=>{stab=b.dataset.st;vib(6);render()});
+    $('#snew',el).onclick=()=>newPostSheet();$('#sact',el).onclick=()=>{stab='act';render()};
+    const p=$('.spane',el);
+    if(stab==='feed'){const st=stories(),mine=So.posts.slice(0,3);
+      p.innerHTML=`<div class="stories"><button class="st" data-sti="me"><span class="ring ${So.posts.length?'':'seen'}"><span>${avatarHTML()}</span></span><b>Your story</b></button>${st.map((s,i)=>`<button class="st" data-sti="${i}"><span class="ring ${s.seen?'seen':''}"><span>${icFor('u'+s.u,person(s.u).ic)}</span></span><b>${esc(s.u)}</b></button>`).join('')}</div>
+        <div class="feed2">${[...mine,...FEED].sort((a,b)=>b.t-a.t).map(postHTML).join('')}</div>`;
+      $$('[data-sti]',p).forEach(b=>b.onclick=()=>{const i=b.dataset.sti;if(i==='me'){if(!So.posts.length){newPostSheet();return}storyView([{u:'me',frames:So.posts.slice(0,3)}],0);return}storyView(st,+i)});
+      wirePosts($('.feed2',p));
+    }else if(stab==='me'){const nw=netWorth();
+      p.innerHTML=`<div class="sprof"><div class="sph"><span class="bigav"><span>${avatarHTML()}</span></span><div class="cnt"><div><b>${So.posts.length}</b><span>posts</span></div><div><b class="fol">${So.fol.toLocaleString('en-US')}</b><span>followers</span></div><div><b>${So.fg.toLocaleString('en-US')}</b><span>following</span></div></div></div>
+        <div><b>${esc(S.prof.name||myName())}</b><p class="mute small">@${esc(myName())} · ${RANKS[rankOf(nw)][1]} · ${fmt(nw)} net worth<br>Overpaid since ${new Date(S.soc.since).toLocaleDateString('en-US',{month:'short',year:'numeric'})}</p></div>
+        <div class="grid2"><button class="btn ghost sm" id="sedit">Edit profile</button><button class="btn sm" id="spost">New post</button></div>
+        ${So.posts.length?`<div class="pgrid">${So.posts.map(x=>`<button data-gp="${x.id}" aria-label="Open post">${mediaHTML(x)}<span class="gl2">♥ ${x.likes.toLocaleString('en-US')}</span></button>`).join('')}</div>`:`<div class="card small mute">Nothing posted yet. Flex your net worth, a purchase, a trade or a big win and watch the followers roll in. Brands start offering paid posts once you pass 800 followers.</div>`}</div>`;
+      $('#sedit',p).onclick=profileSheet;$('#spost',p).onclick=()=>newPostSheet();
+      $$('[data-gp]',p).forEach(b=>b.onclick=()=>{const x=findPost(b.dataset.gp);const c=h(`<div class="cb">${postHTML(x)}<button class="btn ghost wide sm" id="del">Delete post</button></div>`);wirePosts(c);$('#del',c).onclick=()=>{So.posts=So.posts.filter(y=>y!==x);save(true);closeSheet();go('social',true)};sheet(c)});
+    }else{So.notif.forEach(n=>n.read=true);save(false);
+      p.innerHTML=So.notif.length?So.notif.map(n=>{const x=n.pid?findPost(n.pid):null,th=x?`<span class="nthumb">${mediaHTML(x)}</span>`:'';
+        if(n.ty==='deal')return `<div class="deal"><b>${esc(n.u)} wants a paid post</b><span class="small mute">They pay ${fmt(n.amt)} cash for one sponsored post. Some followers might not like it.</span>${n.done?`<span class="small up">${n.done==='y'?'Accepted · paid':'Declined'}</span>`:`<div class="grid2"><button class="btn sm" data-deal="${n.id}">Accept · ${fk(n.amt)}</button><button class="btn ghost sm" data-no="${n.id}">Decline</button></div>`}</div>`;
+        const txt=n.ty==='like'?'liked your post.':n.ty==='follow'?'started following you.':`commented: ${esc(n.txt)}`;
+        return `<div class="nrow"><span class="pav">${icFor('u'+n.u,person(n.u).ic)}</span><span><b>${esc(n.u)}</b> ${txt} <small>${ago(n.t)}</small></span>${n.ty==='follow'?'<button class="btn sm" style="height:32px">Follow</button>':th}</div>`}).join(''):'<div class="card small mute">No activity yet. Post something.</div>';
+      $$('[data-deal]',p).forEach(b=>b.onclick=()=>{const n=So.notif.find(x=>x.id===b.dataset.deal);if(!n||n.done)return;n.done='y';earnCash(n.amt);const ad={id:hex(8),u:'me',kind:'ad',data:{b:n.u,h:ri(0,359)},cap:`Fueled by ${n.u} #ad`,pl:'',t:Date.now(),likes:0,cmts:[],liked:false,saved:false,mine:1};publishPost(ad);So.fol=Math.max(0,So.fol-ri(0,Math.round(So.fol*.02)));toast(`${n.u} paid ${fmt(n.amt)}`,'good');render()});
+      $$('[data-no]',p).forEach(b=>b.onclick=()=>{const n=So.notif.find(x=>x.id===b.dataset.no);if(n){n.done='n';save(true);render()}});
+      $$('.nrow .btn',p).forEach(b=>b.onclick=()=>{b.textContent='Following';b.classList.add('ghost');So.fg++;save(true)});
+    }
+  };
+  render();
+  let n=0;const t=()=>{n++;if(stab==='me'&&n%3===0&&!sheetClose){const sc=main.scrollTop;render();main.scrollTop=sc}
+    const badge=$('#sact i',el),un=So.notif.filter(x=>!x.read).length;if(stab!=='act'){if(un&&!badge)$('#sact',el)&&$('#sact',el).insertAdjacentHTML('beforeend',`<i>${un}</i>`);else if(badge)badge.textContent=un>99?'99+':un}
+    if(stab==='feed'&&n%25===0&&main.scrollTop<40&&!sheetClose){const g=genPost();g.t=Date.now();FEED.unshift(g);if(FEED.length>40)FEED.pop();render()}};
+  tickSubs.add(t);return()=>tickSubs.delete(t);
+}
+function socTick(){const So=S.soc;if(!So)return;const now=Date.now();
+  for(const p of So.posts){if(now-p.t>900000||p.likes>=p.tg)continue;
+    const inc=Math.max(1,Math.round((p.tg-p.likes)*rnd(.015,.05)));if(Math.random()<.7){p.likes=Math.min(p.tg,p.likes+inc);if(Math.random()<.3)notif('like',pick(SNAMES),p.id)}
+    if(Math.random()<.05){const c=genComment();c.at=now;p.cmts=p.cmts||[];p.cmts.push(c);notif('comment',c.u,p.id,c.t)}
+    if(Math.random()<.09){So.fol+=ri(1,Math.max(1,Math.round(p.tg/35)));notif('follow',pick(SNAMES))}}
+  if(Math.random()<.01)So.fol+=ri(0,Math.max(1,Math.round(Math.log10(Math.max(10,netWorth())))));
+  if(So.fol>=800&&Math.random()<.003&&!So.notif.some(n=>n.ty==='deal'&&!n.done)){notif('deal',pick(BRANDS),null,null,Math.round(So.fol*rnd(1.5,4)))}
+  const dn=$('#dock [data-v=social]');if(dn)dn.classList.toggle('badge',cur!=='social'&&So.notif.some(x=>!x.read));
+}
+
+const VIEWS={home:homeView,casino:casinoView,trade:tradeView,wallet:walletView,social:socialView,lab:labView,shop:shopView};
 
 /* ---------- boot ---------- */
 (function boot(){
   if(S.t){const away=Math.min(Date.now()-S.t,8*3600e3)/1000,r=rentPerSec();
     if(away>60){S.lab.heat=Math.max(0,S.lab.heat-away*0.07);if(r>0){const a=r*away;S.cash+=a;setTimeout(()=>toast(`Rent collected while you were away · ${fmt(a)}`,'good'),700)}}}
-  cxInit();for(const c of S.coins)if(!c.ic)c.ic=mkIcon(c.name);if(!S.prof.av)S.prof.av=mkIcon('');renderPfb();$('#pfb').onclick=()=>{vib(8);profileSheet()};
+  cxInit();if(S.lab.dirty>0){addCoin(dirtyW(),'USDC',S.lab.dirty,S.lab.dirty);S.lab.dirty=0}$('#bal').onclick=curSheet;for(const c of S.coins)if(!c.ic)c.ic=mkIcon(c.name);if(!S.prof.av)S.prof.av=mkIcon('');renderPfb();$('#pfb').onclick=()=>{vib(8);profileSheet()};
   writeLocal();updBal(true);go('home',true);
   setTimeout(cloudInit,50);
 })();
