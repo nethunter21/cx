@@ -280,8 +280,24 @@ const W={en:{n:bank(EN_N),a:bank(EN_A),v:bank(EN_V)},fr:{n:bank(FR_N),a:bank(FR_
 const DICT=new Map();for(const lang of ['en','fr'])for(const pos of ['n','a','v']){const arr=W[lang][pos];arr.forEach((w,i)=>{if(!DICT.has(w))DICT.set(w,{r:i/arr.length,lang,pos})})}
 const AFF={en:['the','its','im','mr','real','just','not','hey','yo','x'],fr:['le','la','mon','ma','un','une','ton','petit','cest','jsuis']};
 const POOLS=new Map();
-function pool(lang,pos,mn,mx){const key=lang+pos+mn+'-'+mx;let p=POOLS.get(key);if(!p){const src=pos==='any'?[...W[lang].n,...W[lang].a,...W[lang].v]:W[lang][pos];p=src.filter(w=>w.length>=mn&&w.length<=mx);POOLS.set(key,p)}return p}
-function pickWord(lang,pos,mn,mx,hard){const p=pool(lang,pos,mn,mx);if(!p.length)return null;const k=hard?.3+.7*R():Math.pow(R(),1.6);return p[Math.min(p.length-1,Math.floor(k*p.length))]}
+const STOP=new Set('the be to of and a in that have i it for not on with he as you do at this but his by from they we say her she or an will my one all would there their what so up out if about who get which go me when make can like no just him know take into your some could them see other than then now look only come its over think also back after use two how our first well way even want because any these give most us is was are were been has had did does said got made went came took am being having doing very much more many such own same too here where why each few those both through during before again further once off down under while above below between whom whose shall should may might must ought let lot lots thing things yes yeah oh hey okay ok la le les de des du un une et en est pas que qui je tu il elle nous vous ils elles on ce cette ces mon ma mes ton ta tes son sa ses notre votre leur leurs au aux avec pour par sur dans mais ou donc or ni car ne se y ai as avez avons ont suis es sommes etes sont etait etre avoir fait faire dit dire va vais vas allons allez vont tout tous toute toutes plus moins tres bien oui non si comme quand alors aussi encore deja jamais rien ici ca cela ceci quoi dont lui meme autre autres peu beaucoup trop sans sous entre vers chez apres avant depuis pendant'.split(' ')),BIG={en:null,fr:null},BST={en:'idle',fr:'idle'},BRANK=new Map();
+async function loadBig(lang){if(BST[lang]!=='idle')return;BST[lang]='loading';bankStatus();
+  try{const r=await fetch('words-'+lang+'.txt');if(!r.ok)throw new Error(r.status);const txt=await r.text();
+    const L={all:[],allB:[],n:[],nB:[],a:[],aB:[],v:[],vB:[]},lines=txt.split('\n'),tot=lines.length;
+    for(let i=0;i<tot;i++){const ln=lines[i];if(!ln)continue;const c=ln.indexOf(':'),w=c<0?ln:ln.slice(0,c),f=c<0?'':ln.slice(c+1),b=f.includes('b');
+      L.all.push(w);if(b)L.allB.push(w);if(f.includes('n')){L.n.push(w);if(b)L.nB.push(w)}if(f.includes('a')){L.a.push(w);if(b)L.aB.push(w)}if(f.includes('v')){L.v.push(w);if(b)L.vB.push(w)}
+      if(!BRANK.has(w))BRANK.set(w,(i/tot)*(lang==='fr'?-1:1)||(lang==='fr'?-1e-9:1e-9))}
+    BIG[lang]=L;BST[lang]='ready';POOLS.clear();bankStatus();
+  }catch(e){BST[lang]='failed';bankStatus()}}
+function bankStatus(){const el=document.getElementById('bank');if(!el)return;const f=n=>n.toLocaleString('en-US');
+  const part=l=>BST[l]==='ready'?`<b>${f(BIG[l].all.length)}</b> ${l==='en'?'English':'French'}`:BST[l]==='loading'?`loading ${l==='en'?'English':'French'}…`:BST[l]==='failed'?`${l==='en'?'English':'French'} built-in only`:'';
+  el.innerHTML=`${part('en')} · ${part('fr')} words${S.set.norep?` · <b>${f(HIST.length)}</b> seen, never repeated`:''}`}
+function pool(lang,pos,mn,mx){const forms=S.set.words.forms||'base',big=BIG[lang],key=lang+pos+mn+'-'+mx+forms+(big?'B':'');let p=POOLS.get(key);
+  if(!p){let src;if(big){const k=(pos==='any'?'all':pos)+(forms==='base'?'B':'');src=big[k];if(!src||src.length<50)src=big[pos==='any'?'all':pos]||big.all}
+    else src=pos==='any'?[...W[lang].n,...W[lang].a,...W[lang].v]:W[lang][pos];
+    p=src.filter(w=>w.length>=mn&&w.length<=mx&&(pos==='any'||!STOP.has(w)));POOLS.set(key,p)}return p}
+function pickWord(lang,pos,mn,mx,hard,combo){const p=pool(lang,pos,mn,mx);if(!p.length)return null;let rar=hard?'deep':(S.set.words.rar||'mixed');if(combo)rar=rar==='deep'?'mixed':'common';
+  const k=rar==='common'?Math.pow(R(),3.2):rar==='deep'?.3+.7*R():Math.pow(R(),1.9);return p[Math.min(p.length-1,Math.floor(k*p.length))]}
 
 /* ---------- platforms ---------- */
 const PLAT={
@@ -325,8 +341,8 @@ const GEN={
   let u;
   if(type==='single'){u=pickWord(lang,o.pos,o.min,o.max,hard);if(!u)return null}
   else{const ps={an:['a','n'],nn:['n','n'],vn:['v','n']}[type];let order=ps;if(lang==='fr'&&type==='an')order=['n','a'];
-   const a=pickWord(lang,order[0],2,Math.max(2,o.max-2-sep.length),hard);if(!a)return null;const rest=o.max-a.length-sep.length;if(rest<2)return null;
-   const b=pickWord(lang,order[1],2,rest,hard);if(!b||b===a)return null;u=a+sep+b}
+   const a=pickWord(lang,order[0],3,Math.max(3,o.max-3-sep.length),hard,1);if(!a)return null;const rest=o.max-a.length-sep.length;if(rest<3)return null;
+   const b=pickWord(lang,order[1],3,rest,hard,1);if(!b||b===a)return null;u=a+sep+b}
   if(o.affix&&(R()<.55||hard)){const f=pick(AFF[lang]);u=R()<.75?f+(sep||'')+u:u+(sep||'')+f}
   if(o.num){u+=pick([String(ri(1,9)),String(ri(10,99)),pick(['00','01','07','11','13','22','23','69','77','88','99','x'])])}
   if(u.length<o.min||u.length>o.max)return null;return {u,meta:{lang}}},
@@ -352,7 +368,9 @@ const TIERS=[['lg','Legendary',90],['ep','Epic',74],['ra','Rare',58],['un','Unco
 const TN=Object.fromEntries(TIERS.map(t=>[t[0],t[1]]));
 const LBASE=[0,100,93,84,72,58,46,36,28,22,18,15,12];
 function isHead(u){return /^[a-z0-9][._]{1,2}[a-z0-9]$/.test(u)||/^[._][a-z0-9][._][a-z0-9][._]$/.test(u)||/^[a-z0-9][._][a-z0-9][._][a-z0-9]$/.test(u)}
-function split2(c){for(let i=2;i<=c.length-2;i++){if(DICT.has(c.slice(0,i))&&DICT.has(c.slice(i)))return [c.slice(0,i),c.slice(i)]}return null}
+function wordInfo(w){const d=DICT.get(w);if(d)return d;const r=BRANK.get(w);if(r===undefined)return null;return {r:Math.abs(r),lang:r<0?'fr':'en'}}
+const goodPart=w=>{const d=wordInfo(w);return d&&w.length>=3&&d.r<.2};
+function split2(c){for(let i=3;i<=c.length-3;i++){const a=c.slice(0,i),b=c.slice(i);if(goodPart(a)&&goodPart(b))return [a,b]}return null}
 function analyze(u,meta={}){
   const core=u.replace(/[._-]/g,''),L=u.length,cl=core.length,seps=L-cl,tags=[],why=[];let s;
   if(isHead(u)){const eyes=u.replace(/[._]/g,''),same=eyes[0]===eyes[eyes.length-1];s=L===3?(same?92:80):L===4?(same?76:66):(same?66:56);why.push([`${L}-character head`,s]);if(same){tags.push('head')}else tags.push('mixed head');if(/\d/.test(eyes)){s-=6;why.push(['digit eyes',-6])}}
@@ -360,8 +378,8 @@ function analyze(u,meta={}){
     s=LBASE[Math.min(cl,12)]||10;if(cl>12)s=Math.max(6,12-(cl-12));why.push([`${cl} characters`,s]);
     const letters=/^[a-z]+$/.test(core),digits=/^\d+$/.test(core);
     if(letters&&cl<=5)tags.push(cl+'L');else if(digits){tags.push(cl+'N');const b=cl<=3?2:-4;s+=b;why.push(['numbers only',b])}else if(!letters){s-=10;why.push(['letters and numbers mixed',-10]);if(cl<=5)tags.push(cl+'C')}
-    const d=DICT.get(core);
-    if(d){const b=d.r<.15?30:d.r<.4?24:18;s+=b;tags.unshift(d.lang==='fr'?'FR word':'word');why.push([d.r<.15?'common real word':'real word',b])}
+    const d=wordInfo(core);
+    if(d){const b=d.r<.03?30:d.r<.15?24:d.r<.5?18:12;s+=b;tags.unshift(d.lang==='fr'?'FR word':'word');why.push([d.r<.03?'very common word':d.r<.15?'common word':d.r<.5?'real word':'rare real word',b])}
     else{const sp=split2(core);if(sp){const b=cl<=8?14:9;s+=b;tags.push('combo');why.push(['two real words',b])}}
     if(cl>1&&/^(.)\1+$/.test(core)){s+=30;tags.push('rep');why.push(['one character repeated',30])}
     else if(cl>=4&&/^(.{2,3})\1+$/.test(core)){s+=16;tags.push('rep');why.push(['repeating pattern',16])}
@@ -377,8 +395,8 @@ const freeLbl=f=>f>=65?'likely free':f>=35?'maybe free':'likely taken';
 
 /* ---------- state ---------- */
 const KEY='handleforge.v1';
-const DEF={mode:'words',plat:'any',hard:0,n:36,inf:1,minTier:'co',at:0,sort:0,
- words:{lang:'en',type:'single',pos:'any',min:3,max:8,sep:'',affix:0,num:0},
+const DEF={mode:'words',plat:'any',hard:0,n:36,inf:1,minTier:'co',at:0,sort:0,norep:1,
+ words:{lang:'en',type:'single',pos:'any',min:3,max:8,sep:'',affix:0,num:0,forms:'base',rar:'mixed'},
  heads:{eyes:'same',set:'classic',mouth:'_',size:3,digits:0},
  nl:{len:4,cs:'letters',start:''},semi:{len:5,pat:'auto',start:''},
  rep:{range:'short',len:4,kind:'same',cs:'letters',sep:0,sepc:'_'},
@@ -413,6 +431,9 @@ function optsHTML(){const st=S.set,m=st.mode,o=st[m];let h='';
   if(m==='words'){h+=og('Language',seg('lang',[['en','English'],['fr','Français'],['mix','Both']],o.lang));
     h+=og('Style',seg('type',[['single','Single word'],['an','Adj + noun'],['nn','Noun + noun'],['vn','Verb + noun'],['mix','Mix']],o.type));
     if(o.type==='single')h+=og('Word type',seg('pos',[['any','Any'],['n','Nouns'],['a','Adjectives'],['v','Verbs']],o.pos));
+    h+=og('Word forms',seg('forms',[['base','Base words'],['all','+ plurals & forms']],o.forms));
+    h+=og('Rarity',seg('rar',[['common','Common'],['mixed','Mixed'],['deep','Deep cuts']],o.rar));
+    h+=`<p class="hint" id="bank"></p>`;
     h+=`<div class="row2">${step('min',o.min,1,24,'Min length')}${step('max',o.max,2,30,'Max length')}</div>`;
     h+=og('Separator',seg('sep',[['','None'],['_','_'],['.','.'],['-','-']],o.sep,'mono'));
     h+=tog('affix',o.affix,'Add a prefix or suffix',o.lang==='fr'?'le, la, mon, petit…':'the, its, real, just…');
@@ -439,22 +460,25 @@ function optsHTML(){const st=S.set,m=st.mode,o=st[m];let h='';
     h+=`<div class="tokens">${['C','V','L','N','X','W','A','O','B','_','.'].map(t=>`<button data-tok="${t}" aria-label="Insert ${t}">${t}</button>`).join('')}<button data-tok="⌫" aria-label="Delete last">⌫</button></div>`;
     h+=`<p class="hint"><b class="mono">C</b> consonant · <b class="mono">V</b> vowel · <b class="mono">L</b> any letter · <b class="mono">N</b> digit · <b class="mono">X</b> letter or digit · <b class="mono">W</b> word · <b class="mono">A</b> adjective · <b class="mono">O</b> noun · <b class="mono">B</b> verb. Anything else in lowercase stays as typed.</p>`;
     h+=og('Word language',seg('lang',[['en','English'],['fr','Français'],['mix','Both']],o.lang));}
+  if(m==='words'||m==='pat')h+=`<p class="hint">Word lists: an-array-of-english-words and an-array-of-french-words (MIT), WordNet, dictionary-fr (MPL 2.0), ordered by FrequencyWords (CC BY-SA 4.0).</p>`;
   h+=`<div style="height:1px;background:var(--line)"></div>`;
   h+=og('Show at least',seg('minTier',[['co','All'],['un','Uncommon+'],['ra','Rare+'],['ep','Epic+']],st.minTier,'g'));
   h+=og('Per batch',seg('n',[[24,'24'],[36,'36'],[60,'60'],[96,'96']],st.n,'g'));
   h+=tog('hard',st.hard,'Hard-to-take mode','Leans on rarer words, combos and longer shapes');
   h+=tog('inf',st.inf,'Infinite scroll','Keeps generating as you scroll');
   h+=tog('at',st.at,'Copy with @','@name instead of name');
+  h+=`<div class="tg"><span>Never repeat<small>${HIST.length.toLocaleString('en-US')} handles remembered on this device</small></span><button class="sw ${st.norep?'on':''}" data-tog="norep" role="switch" aria-checked="${st.norep?'true':'false'}" aria-label="Never repeat"></button></div>`;
+  if(HIST.length)h+=`<button class="btn" id="forget" style="align-self:flex-start">Forget seen history</button>`;
   return h}
 function optsSummary(){const st=S.set,o=st[st.mode];switch(st.mode){
   case 'words':return `${{en:'EN',fr:'FR',mix:'EN+FR'}[o.lang]} · ${{single:'single',an:'adj+noun',nn:'noun+noun',vn:'verb+noun',mix:'mix'}[o.type]} · ${o.min}–${o.max}${o.sep?' · '+o.sep:''}`;
   case 'heads':return `${o.eyes} · size ${o.size} · ${o.mouth}`;case 'nl':return `${o.len}L · ${o.cs}`;case 'semi':return `${o.len}L · ${o.pat}`;
   case 'rep':return `${o.kind} · ${o.len}`;default:return o.p}}
 function renderModes(){$('#modes').innerHTML=MODES.map(([k,l,i])=>`<button class="mode ${S.set.mode===k?'on':''}" data-mode="${k}"><i>${i}</i>${l}</button>`).join('')}
-function renderOpts(){$('#ob').innerHTML=optsHTML();$('#osum').textContent=optsSummary()}
+function renderOpts(){$('#ob').innerHTML=optsHTML();$('#osum').textContent=optsSummary();bankStatus();const fg=$('#forget');if(fg)fg.onclick=()=>{HIST=[];SEEN=new Set();histSave(1);renderOpts();regen();toast('Seen history cleared')}}
 function renderTip(){$('#tip').innerHTML=`<span>${TIPS[S.set.plat]}</span>`}
-const GLOBAL=['minTier','n','hard','inf','at'];
-function setOpt(k,v){const st=S.set;if(GLOBAL.includes(k)){st[k]=v}else{st[st.mode][k]=v;if(st.mode==='words'){const o=st.words;if(o.min>o.max)k==='min'?o.max=o.min:o.min=o.max}if(st.mode==='semi'&&k==='len')st.semi.pat='auto'}persist();renderOpts();
+const GLOBAL=['minTier','n','hard','inf','at','norep'];
+function setOpt(k,v){const st=S.set;if(k==='norep'&&v)for(const u of HIST)SEEN.add(u);if(k==='forms'||k==='rar')POOLS.clear();if(k==='type'&&v!=='single'&&st.words.max<12){st.words.max=12}if(GLOBAL.includes(k)){st[k]=v}else{st[st.mode][k]=v;if(st.mode==='words'){const o=st.words;if(o.min>o.max)k==='min'?o.max=o.min:o.min=o.max}if(st.mode==='semi'&&k==='len')st.semi.pat='auto'}persist();renderOpts();
   if(k!=='at'&&k!=='inf')regen()}
 $('#ob').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
   const sg=b.closest('[data-k]');if(sg&&b.dataset.v!==undefined){let v=b.dataset.v;if(/^\d+$/.test(v))v=+v;setOpt(sg.dataset.k,v);vib(5);return}
@@ -466,21 +490,27 @@ $('#ob').addEventListener('input',e=>{const t=e.target;if(t.dataset.txt){let v=t
 $('#modes').addEventListener('click',e=>{const b=e.target.closest('[data-mode]');if(!b)return;S.set.mode=b.dataset.mode;persist();renderModes();renderOpts();regen();vib(6)});
 
 /* ---------- results ---------- */
-let RES=[],SEEN=new Set(),dry=0;
+let RES=[],dry=0,HIST=[],SEEN=new Set(),histT=0;
+function idb(){return new Promise((res,rej)=>{try{const q=indexedDB.open('handleforge',1);q.onupgradeneeded=()=>q.result.createObjectStore('kv');q.onsuccess=()=>res(q.result);q.onerror=()=>rej(q.error)}catch(e){rej(e)}})}
+async function histLoad(){try{const db=await idb();const v=await new Promise(r=>{const g=db.transaction('kv').objectStore('kv').get('seen');g.onsuccess=()=>r(g.result||'');g.onerror=()=>r('')});HIST=v?v.split('\n'):[]}catch(e){try{HIST=(localStorage.getItem('handleforge.seen')||'').split('\n').filter(Boolean)}catch(_){}}
+  if(S.set.norep)for(const u of HIST)SEEN.add(u)}
+function histSave(now){clearTimeout(histT);histT=setTimeout(async()=>{if(HIST.length>400000)HIST=HIST.slice(-350000);const v=HIST.join('\n');
+  try{const db=await idb();db.transaction('kv','readwrite').objectStore('kv').put(v,'seen')}catch(e){try{localStorage.setItem('handleforge.seen',HIST.slice(-80000).join('\n'))}catch(_){}}},now?0:1500)}
+addEventListener('pagehide',()=>histSave(1));
 const TORD={lg:0,ep:1,ra:2,un:3,co:4};
 function genOne(){const st=S.set,r=GEN[st.mode](st[st.mode],!!st.hard);if(!r||!r.u)return null;const u=fitPlat(r.u,st.plat);if(!u||SEEN.has(u))return null;return {u,meta:r.meta}}
 function batch(n){const st=S.set,minI=TORD[st.minTier],out=[];let guard=0;const cap=n*(minI<4?260:60);
-  while(out.length<n&&guard<cap){guard++;const r=genOne();if(!r)continue;SEEN.add(r.u);const x=analyze(r.u,r.meta);if(TORD[x.tier]>minI)continue;out.push(x)}return out}
+  while(out.length<n&&guard<cap){guard++;const r=genOne();if(!r)continue;SEEN.add(r.u);if(S.set.norep)HIST.push(r.u);const x=analyze(r.u,r.meta);if(TORD[x.tier]>minI)continue;out.push(x)}return out}
 const fs=u=>{const l=u.length;return l<=3?'30px':l<=5?'24px':l<=8?'19px':l<=12?'16px':'14px'};
 const SV='<svg viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>';
 function tileHTML(x,i){return `<div class="tile t-${x.tier}" data-u="${esc(x.u)}" tabindex="0" style="--d:${Math.min(i,18)*16}ms"><div class="tn" style="font-size:${fs(x.u)}">${esc(x.u)}</div><div class="tm"><span class="tier">${TN[x.tier]}</span>${x.tags.slice(0,2).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}<span class="fc" title="Chance it is still free">${x.free}%</span></div><button class="ib sv ${VSET.has(x.u)?'on':''}" data-a="save" aria-label="Save ${esc(x.u)}">${SV}</button></div>`}
 function info(){$('#rinfo').innerHTML=`${RES.length} handle${RES.length===1?'':'s'}<small>tap to copy · hold for details · % = chance it's free</small>`}
 function append(n){const add=batch(n);if(!add.length){dry++;if(!RES.length)$('#grid').innerHTML=`<div class="empty"><b>Nothing fits these settings</b>Loosen the length, the minimum tier or the platform rules, then generate again.</div>`;else $('#more').innerHTML=`<span class="hint">You've seen every handle these settings can make. Change an option for more.</span>`;return}
-  dry=0;$('#more').innerHTML='';RES.push(...add);
+  dry=0;$('#more').innerHTML='';RES.push(...add);if(S.set.norep){histSave();bankStatus()}
   if(S.set.sort){RES.sort((a,b)=>b.s-a.s);$('#grid').innerHTML=RES.map((x,i)=>tileHTML(x,i>RES.length-add.length-1?i-(RES.length-add.length):99)).join('')}
   else{const g=$('#grid');if(g.querySelector('.empty'))g.innerHTML='';g.insertAdjacentHTML('beforeend',add.map(tileHTML).join(''))}
   info()}
-function regen(){RES=[];SEEN=new Set();dry=0;$('#grid').innerHTML='';$('#more').innerHTML='';append(S.set.n);window.scrollTo({top:0,behavior:'instant'in window?'instant':'auto'})}
+function regen(){RES=[];if(!S.set.norep)SEEN=new Set();dry=0;$('#grid').innerHTML='';$('#more').innerHTML='';append(S.set.n);window.scrollTo({top:0,behavior:'instant'in window?'instant':'auto'})}
 const io=new IntersectionObserver(es=>{if(es[0].isIntersecting&&S.set.inf&&RES.length&&!dry&&view==='gen'&&RES.length<3000)append(S.set.n)},{rootMargin:'900px 0px'});io.observe($('#sent'));
 $('#grid').addEventListener('click',e=>{const t=e.target.closest('.tile');if(!t)return;const u=t.dataset.u,x=RES.find(r=>r.u===u);
   if(e.target.closest('[data-a=save]')){toggleSave(x,e.target.closest('[data-a=save]'));return}
@@ -572,7 +602,8 @@ addEventListener('hashchange',()=>setView(location.hash==='#vault'?'vault':'gen'
 const mq=matchMedia('(min-width:920px)');const syncOpen=()=>{$('#opts').open=mq.matches?true:$('#opts').open};
 if(!mq.matches)$('#opts').open=false;mq.addEventListener?mq.addEventListener('change',syncOpen):0;
 $('#plat').value=S.set.plat;$('#sortb').classList.toggle('on',!!S.set.sort);
-renderModes();renderOpts();renderTip();counts();regen();
+renderModes();renderOpts();renderTip();counts();
+histLoad().then(()=>{renderOpts();regen();Promise.all([loadBig('en'),loadBig('fr')]).then(()=>{if(S.set.mode==='words'||S.set.mode==='pat'){regen();toast('Full word banks loaded')}})});
 if(location.hash==='#vault')setView('vault');
 })();
 </script>
